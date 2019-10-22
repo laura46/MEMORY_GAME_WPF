@@ -95,5 +95,39 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Kaartjes\1.svg" />
+    <Content Include="Kaartjes\10.svg" />
+    <Content Include="Kaartjes\11.svg" />
+    <Content Include="Kaartjes\12.svg" />
+    <Content Include="Kaartjes\13.svg" />
+    <Content Include="Kaartjes\14.svg" />
+    <Content Include="Kaartjes\15.svg" />
+    <Content Include="Kaartjes\16.svg" />
+    <Content Include="Kaartjes\17.svg" />
+    <Content Include="Kaartjes\18.svg" />
+    <Content Include="Kaartjes\19.svg" />
+    <Content Include="Kaartjes\2.svg" />
+    <Content Include="Kaartjes\20.svg" />
+    <Content Include="Kaartjes\21.svg" />
+    <Content Include="Kaartjes\22.svg" />
+    <Content Include="Kaartjes\23.svg" />
+    <Content Include="Kaartjes\24.svg" />
+    <Content Include="Kaartjes\25.svg" />
+    <Content Include="Kaartjes\26.svg" />
+    <Content Include="Kaartjes\27.svg" />
+    <Content Include="Kaartjes\28.svg" />
+    <Content Include="Kaartjes\29.svg" />
+    <Content Include="Kaartjes\3.svg" />
+    <Content Include="Kaartjes\30.svg" />
+    <Content Include="Kaartjes\31.svg" />
+    <Content Include="Kaartjes\32.svg" />
+    <Content Include="Kaartjes\4.svg" />
+    <Content Include="Kaartjes\5.svg" />
+    <Content Include="Kaartjes\6.svg" />
+    <Content Include="Kaartjes\7.svg" />
+    <Content Include="Kaartjes\8.svg" />
+    <Content Include="Kaartjes\9.svg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
