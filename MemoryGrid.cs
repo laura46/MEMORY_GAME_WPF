@@ -53,13 +53,23 @@ namespace MemoryProject
         private List<ImageSource> GetImagesList()
         {
             List<ImageSource> images = new List<ImageSource>();
-            for (int i= 0; i < 16; i++)
+            for (int i= 0; i < (rows * cols); i++)
             {
                 int imageNr = i % 8 + 1;
                 ImageSource source = new BitmapImage(new Uri("Kaartjes/" + imageNr + ".png", UriKind.Relative));
                 images.Add(source);
             }
-            return images;
+            //shuffle
+            Random random = new Random();
+            for (int i = 0; i < (rows * cols); i++)
+            {
+                int r = random.Next(0, (rows * cols));
+                ImageSource source = images[r];
+                images[r] = images[i];
+                images[i] = source;
+            }
+
+                return images;
 
         }
         private void InitializeGameGrid(int cols, int rows)
