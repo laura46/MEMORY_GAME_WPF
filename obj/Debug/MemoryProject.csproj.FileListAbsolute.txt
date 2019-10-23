@@ -49,7 +49,6 @@ C:\School\MemoryProject\bin\Debug\MemoryProject.pdb
 C:\School\MemoryProject\obj\Debug\MemoryProject.csprojAssemblyReference.cache
 C:\School\MemoryProject\obj\Debug\MainWindow.g.cs
 C:\School\MemoryProject\obj\Debug\App.g.cs
-C:\School\MemoryProject\obj\Debug\MemoryProject_Content.g.cs
 C:\School\MemoryProject\obj\Debug\MemoryProject_MarkupCompile.cache
 C:\School\MemoryProject\obj\Debug\MemoryProject_MarkupCompile.lref
 C:\School\MemoryProject\obj\Debug\MainWindow.baml
