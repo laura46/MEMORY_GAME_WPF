@@ -21,18 +21,17 @@ namespace MemoryProject
         {
             this.grid = grid;
             InitializeGameGrid(cols, rows);
-            AddImages();
+            AddImages(cols, rows);
         }
 
-        private void AddImages()
+        private void AddImages(int kolom, int rij)
         {
-            List<ImageSource> images = GetImagesList();
-            for(int row = 0; row < rows; row++)
+            for (int row = 0; row < rij; row++)
             {
-                for (int column = 0; column < cols; column++)
+                for (int column = 0; column < kolom; column++)
                 {
                     Image backgroundImage = new Image();
-                    backgroundImage.Source = new BitmapImage(new Uri("Kaartjes/Achterkant.svg", UriKind.Relative));
+                    backgroundImage.Source = new BitmapImage(new Uri("Kaartjes/Achterkant.png", UriKind.Relative));
                     backgroundImage.MouseDown += new MouseButtonEventHandler(CardClick);
                     Grid.SetColumn(backgroundImage, column);
                     Grid.SetRow(backgroundImage, row);
@@ -43,26 +42,13 @@ namespace MemoryProject
 
         private void CardClick(object sender, MouseButtonEventArgs e)
         {
-            Image card = (Image)sender;
-            ImageSource front = (ImageSource)card.Tag;
-            card.Source = front;
-        }
-        private List<ImageSource> GetImagesList()
-        {
-            List<ImageSource> images = new List<ImageSource>();
-            for (int i = 0; i < 16; i++)
-            {
-                int imageNr = i % 8 + 1;
-                ImageSource source = new BitmapImage(new Uri("Kaartjes/" + imageNr + ".svg", UriKind.Relative));
-                images.Add(source);
-            }
-            return images;
+            MessageBox.Show("Test");
         }
         private void InitializeGameGrid(int cols, int rows)
         {
             for (int i = 0; i < rows; i++)
             {
-                grid.RowDefinitions.Add(new RowDefinition());   
+                grid.RowDefinitions.Add(new RowDefinition());
             }
             for (int i = 0; i < cols; i++)
             {
