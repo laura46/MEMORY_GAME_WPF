@@ -58,3 +58,18 @@ C:\School\MemoryProject\obj\Debug\MemoryProject.csproj.GenerateResource.cache
 C:\School\MemoryProject\obj\Debug\MemoryProject.csproj.CoreCompileInputs.cache
 C:\School\MemoryProject\obj\Debug\MemoryProject.exe
 C:\School\MemoryProject\obj\Debug\MemoryProject.pdb
+D:\DOCS\School\Jaar 1\Blok 1\Memory game\MemoryProject\bin\Debug\MemoryProject.exe.config
+D:\DOCS\School\Jaar 1\Blok 1\Memory game\MemoryProject\bin\Debug\MemoryProject.exe
+D:\DOCS\School\Jaar 1\Blok 1\Memory game\MemoryProject\bin\Debug\MemoryProject.pdb
+D:\DOCS\School\Jaar 1\Blok 1\Memory game\MemoryProject\obj\Debug\MemoryProject.csprojAssemblyReference.cache
+D:\DOCS\School\Jaar 1\Blok 1\Memory game\MemoryProject\obj\Debug\MainWindow.g.cs
+D:\DOCS\School\Jaar 1\Blok 1\Memory game\MemoryProject\obj\Debug\App.g.cs
+D:\DOCS\School\Jaar 1\Blok 1\Memory game\MemoryProject\obj\Debug\MemoryProject_MarkupCompile.cache
+D:\DOCS\School\Jaar 1\Blok 1\Memory game\MemoryProject\obj\Debug\MemoryProject_MarkupCompile.lref
+D:\DOCS\School\Jaar 1\Blok 1\Memory game\MemoryProject\obj\Debug\MainWindow.baml
+D:\DOCS\School\Jaar 1\Blok 1\Memory game\MemoryProject\obj\Debug\MemoryProject.g.resources
+D:\DOCS\School\Jaar 1\Blok 1\Memory game\MemoryProject\obj\Debug\MemoryProject.Properties.Resources.resources
+D:\DOCS\School\Jaar 1\Blok 1\Memory game\MemoryProject\obj\Debug\MemoryProject.csproj.GenerateResource.cache
+D:\DOCS\School\Jaar 1\Blok 1\Memory game\MemoryProject\obj\Debug\MemoryProject.csproj.CoreCompileInputs.cache
+D:\DOCS\School\Jaar 1\Blok 1\Memory game\MemoryProject\obj\Debug\MemoryProject.exe
+D:\DOCS\School\Jaar 1\Blok 1\Memory game\MemoryProject\obj\Debug\MemoryProject.pdb
