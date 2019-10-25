@@ -50,6 +50,7 @@ namespace MemoryProject
         //Draait geklikte kaartjes om.
         private void CardClick(object sender, MouseButtonEventArgs e)
         {
+            Start:
             if (nrOfClickedCards < 2)
             {
                 nrOfClickedCards++;
@@ -59,6 +60,7 @@ namespace MemoryProject
 
                 if (nrOfClickedCards == 2)
                 {
+                    List<ImageSource> images = GetImagesList();
                     //TODO: vergelijk twee aangeklikte kaartjes!!!
                     MessageBox.Show("max aantal");
 
@@ -67,26 +69,21 @@ namespace MemoryProject
                     {
                         for (int column = 0; column < GridSize; column++)
                         {
-                            //TODO: terug naar achterkant moet ook voor de vorige kaart gelden.
-                            Image backgroundImage = new Image();
-                            backgroundImage.Source = new BitmapImage(new Uri("Kaartjes/Achterkant.png", UriKind.Relative));
-
-                            
-                            backgroundImage.MouseDown += new MouseButtonEventHandler(CardClick);
-                            Grid.SetColumn(backgroundImage, column);
-                            Grid.SetRow(backgroundImage, row);
-                            grid.Children.Add(backgroundImage);
+                            if (card.Source == front)
+                            {
+                                card.Source = new BitmapImage(new Uri("Kaartjes/Achterkant.png", UriKind.Relative));
+                            }
                         }
-                        nrOfClickedCards = 0;
                     }
-                    
+                    nrOfClickedCards = 0;
+                    goto Start;
                 }
                 //TODO: als twee aangeklikte kaartjes gelijk zijn, haal weg
                 //TODO: als twee aangeklikte kaartjes NIET gelijk zijn, draai ze weer om.
             }
         }
 
-            private List<ImageSource> GetImagesList()
+         private List<ImageSource> GetImagesList()
         {
             List<ImageSource> images = new List<ImageSource>();
             for (int i= 0; i < (GridSize * GridSize); i++)
@@ -104,9 +101,7 @@ namespace MemoryProject
                 images[r] = images[i];
                 images[i] = source;
             }
-
-                return images;
-
+             return images;
         }
 
         //Maakt grid aan.
