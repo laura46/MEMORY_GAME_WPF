@@ -18,13 +18,19 @@ namespace MemoryProject
 
     public partial class MainWindow : Window
     {
-        private const int NR_OF_COLS = 4;
-        private const int NR_OF_ROWS = 4;
+        private PLAYFIELD_SIZE GridSize;
         MemoryGrid grid;
+        
         public MainWindow()
         {
             InitializeComponent();
-            grid = new MemoryGrid(GameGrid, NR_OF_COLS, NR_OF_ROWS);
+            grid = new MemoryGrid(GameGrid, GridSize);
+        }
+
+        public enum PLAYFIELD_SIZE {
+            SMALL = 4,
+            MEDIUM = 6,
+            BIG = 8
         }
     }
 }

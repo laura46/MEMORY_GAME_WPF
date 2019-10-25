@@ -8,30 +8,33 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Diagnostics;
 
 namespace MemoryProject
 {
     class MemoryGrid
     {
         private Grid grid;
-        const int rows = 4;
-        const int cols = 4;
+        private MainWindow.PLAYFIELD_SIZE GridSize;
+
         int nrOfClickedCards = 0;
 
-        public MemoryGrid(Grid grid, int cols, int rows)
+        public MemoryGrid(Grid grid, MainWindow.PLAYFIELD_SIZE gridSize)
         {
             this.grid = grid;
-            InitializeGameGrid(cols, rows);
-            AddImages(cols, rows);
+            this.GridSize = gridSize;
+
+            InitializeGameGrid();
+            AddImages();
         }
 
         //Zet alle kaartjes als Achterkant kaart.
-        private void AddImages(int kolom, int rij)
+        private void AddImages()
         {
             List<ImageSource> images = GetImagesList();
-            for (int row = 0; row < rij; row++)
+            for (int row = 0; row < (int)GridSize; row++)
             {
-                for (int column = 0; column < kolom; column++)
+                for (int column = 0; column < (int)GridSize; column++)
                 {
                     Image backgroundImage = new Image();
                     backgroundImage.Source = new BitmapImage(new Uri("Kaartjes/Achterkant.png", UriKind.Relative));
@@ -79,7 +82,7 @@ namespace MemoryProject
          private List<ImageSource> GetImagesList()
         {
             List<ImageSource> images = new List<ImageSource>();
-            for (int i= 0; i < (rows * cols); i++)
+            for (int i= 0; i < (GridSize * GridSize); i++)
             {
                 int imageNr = i % 8 + 1;
                 ImageSource source = new BitmapImage(new Uri("Kaartjes/" + imageNr + ".png", UriKind.Relative));
@@ -87,9 +90,9 @@ namespace MemoryProject
             }
             //shuffle!
             Random random = new Random();
-            for (int i = 0; i < (rows * cols); i++)
+            for (int i = 0; i < (GridSize * GridSize); i++)
             {
-                int r = random.Next(0, (rows * cols));
+                int r = random.Next(0, (GridSize * GridSize));
                 ImageSource source = images[r];
                 images[r] = images[i];
                 images[i] = source;
@@ -98,18 +101,42 @@ namespace MemoryProject
         }
 
         //Maakt grid aan.
-        private void InitializeGameGrid(int cols, int rows)
+        private void InitializeGameGrid()
         {
-            for (int i = 0; i < rows; i++)
+            for (int i = 0; i < GridSize; i++)
             {
                 grid.RowDefinitions.Add(new RowDefinition());
             }
-            for (int i = 0; i < cols; i++)
+            for (int i = 0; i < GridSize; i++)
             {
                 grid.ColumnDefinitions.Add(new ColumnDefinition());
             }
         }
 
 
+        public void MemoryGrid2()
+        {
+        }
+        private void Button1_Click(object sender, RoutedEventArgs e)
+
+        {
+
+            //Code to Restart WPF Application
+
+            Process.Start(Application.ResourceAssembly.Location);
+            Application.Current.Shutdown();
+
+
+            //Start New Application Before Closing Current
+
+            Process.Start(Application.ResourceAssembly.Location);
+
+
+
+            //Close the Current
+
+            Application.Current.Shutdown();
+
+        }
     }
 }
