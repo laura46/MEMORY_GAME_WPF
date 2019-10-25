@@ -82,7 +82,7 @@ namespace MemoryProject
          private List<ImageSource> GetImagesList()
         {
             List<ImageSource> images = new List<ImageSource>();
-            for (int i= 0; i < (GridSize * GridSize); i++)
+            for (int i= 0; i < ((int)GridSize * (int)GridSize); i++)
             {
                 int imageNr = i % 8 + 1;
                 ImageSource source = new BitmapImage(new Uri("Kaartjes/" + imageNr + ".png", UriKind.Relative));
@@ -90,9 +90,9 @@ namespace MemoryProject
             }
             //shuffle!
             Random random = new Random();
-            for (int i = 0; i < (GridSize * GridSize); i++)
+            for (int i = 0; i < ((int)GridSize * (int)GridSize); i++)
             {
-                int r = random.Next(0, (GridSize * GridSize));
+                int r = random.Next(0, ((int)GridSize * (int)GridSize));
                 ImageSource source = images[r];
                 images[r] = images[i];
                 images[i] = source;
@@ -103,11 +103,11 @@ namespace MemoryProject
         //Maakt grid aan.
         private void InitializeGameGrid()
         {
-            for (int i = 0; i < GridSize; i++)
+            for (int i = 0; i < (int)GridSize; i++)
             {
                 grid.RowDefinitions.Add(new RowDefinition());
             }
-            for (int i = 0; i < GridSize; i++)
+            for (int i = 0; i < (int)GridSize; i++)
             {
                 grid.ColumnDefinitions.Add(new ColumnDefinition());
             }
