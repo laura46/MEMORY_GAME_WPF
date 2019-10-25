@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MemoryProject"
         mc:Ignorable="d"
+        
         Title="MainWindow" Height="450" Width="800">
-    <Grid x:Name="GameGrid" Width="500"  ShowGridLines="True">
-        <Button Click="Button_Click">Refresh</Button>
+    <Grid>
+        <Button Click="ResetGameGrid" Height="40" Width="140" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5">Reset</Button>
+        <Frame Name="Page" NavigationUIVisibility="Hidden" Padding="20"></Frame>
     </Grid>
-    
 </Window>

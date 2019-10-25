@@ -14,14 +14,14 @@ namespace MemoryProject
 {
     class MemoryGrid
     {
-        private Grid grid;
-        private MainWindow.PLAYFIELD_SIZE GridSize;
+        private Grid Grid;
+        private GameGrid.PLAYFIELD_SIZE GridSize;
 
         int nrOfClickedCards = 0;
 
-        public MemoryGrid(Grid grid, MainWindow.PLAYFIELD_SIZE gridSize)
+        public MemoryGrid(Grid grid, GameGrid.PLAYFIELD_SIZE gridSize)
         {
-            this.grid = grid;
+            this.Grid = grid;
             this.GridSize = gridSize;
 
             InitializeGameGrid();
@@ -43,7 +43,7 @@ namespace MemoryProject
                     backgroundImage.MouseDown += new MouseButtonEventHandler(CardClick);
                     Grid.SetColumn(backgroundImage, column);
                     Grid.SetRow(backgroundImage, row);
-                    grid.Children.Add(backgroundImage);
+                    Grid.Children.Add(backgroundImage);
                 }
             }
         }
@@ -105,11 +105,11 @@ namespace MemoryProject
         {
             for (int i = 0; i < (int)GridSize; i++)
             {
-                grid.RowDefinitions.Add(new RowDefinition());
+                Grid.RowDefinitions.Add(new RowDefinition());
             }
             for (int i = 0; i < (int)GridSize; i++)
             {
-                grid.ColumnDefinitions.Add(new ColumnDefinition());
+                Grid.ColumnDefinitions.Add(new ColumnDefinition());
             }
         }
 

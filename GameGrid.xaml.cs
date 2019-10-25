@@ -15,23 +15,27 @@ using System.Windows.Shapes;
 
 namespace MemoryProject
 {
-
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Interaction logic for GameGrid.xaml
+    /// </summary>
+    public partial class GameGrid : Page
     {
-
-        
-        public MainWindow()
+        private PLAYFIELD_SIZE GridSize;
+        MemoryGrid grid;
+        public GameGrid()
         {
             InitializeComponent();
-            Page.Content = new GameGrid();
+            this.GridSize = PLAYFIELD_SIZE.SMALL;
             
-            
+            this.grid = new MemoryGrid(GameGridref, this.GridSize);
+           
         }
 
-        public void ResetGameGrid(object sender, RoutedEventArgs e)
+        public enum PLAYFIELD_SIZE
         {
-            Page.Content = new GameGrid();
+            SMALL = 4,
+            MEDIUM = 6,
+            BIG = 8
         }
-
     }
 }
