@@ -48,7 +48,6 @@ namespace MemoryProject
         //Draait geklikte kaartjes om.
         private void CardClick(object sender, MouseButtonEventArgs e)
         {
-            Start:
             if (nrOfClickedCards < 2)
             {
                 nrOfClickedCards++;
@@ -61,18 +60,16 @@ namespace MemoryProject
                     List<ImageSource> images = GetImagesList();
                     //TODO: vergelijk twee aangeklikte kaartjes!!!
                     MessageBox.Show("max aantal");
-                    for (int row = 0; row < rows; row++)
+
+                    if (card.Source == front)
                     {
-                        for (int column = 0; column < rows; column++)
-                        {
-                            if (card.Source == front)
-                            {
-                                card.Source = new BitmapImage(new Uri("Kaartjes/Achterkant.png", UriKind.Relative));
-                            }
-                        }
+                        Image background = new Image();
+                        card.Source = new BitmapImage(new Uri("Kaartjes/Achterkant.png", UriKind.Relative));
+                        
+                            
                     }
                     nrOfClickedCards = 0;
-                    goto Start;
+                    
                 }
                 //TODO: als twee aangeklikte kaartjes gelijk zijn, haal weg
                 //TODO: als twee aangeklikte kaartjes NIET gelijk zijn, draai ze weer om.
