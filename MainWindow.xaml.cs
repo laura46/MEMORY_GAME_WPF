@@ -24,7 +24,7 @@ namespace MemoryProject
         public MainWindow()
         {
             InitializeComponent();
-            grid = new MemoryGrid(GameGrid, GridSize, GridSize);
+            grid = new MemoryGrid(GameGrid, GridSize);
         }
 
         public enum PLAYFIELD_SIZE {

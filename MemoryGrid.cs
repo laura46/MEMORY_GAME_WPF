@@ -32,9 +32,9 @@ namespace MemoryProject
         private void AddImages()
         {
             List<ImageSource> images = GetImagesList();
-            for (int row = 0; row < GridSize; row++)
+            for (int row = 0; row < (int)GridSize; row++)
             {
-                for (int column = 0; column < GridSize; column++)
+                for (int column = 0; column < (int)GridSize; column++)
                 {
                     Image backgroundImage = new Image();
                     backgroundImage.Source = new BitmapImage(new Uri("Kaartjes/Achterkant.png", UriKind.Relative));
@@ -65,10 +65,9 @@ namespace MemoryProject
                     //TODO: vergelijk twee aangeklikte kaartjes!!!
                     MessageBox.Show("max aantal");
 
-                    List<ImageSource> images = GetImagesList();
-                    for (int row = 0; row < GridSize; row++)
+                    for (int row = 0; row < (int)GridSize; row++)
                     {
-                        for (int column = 0; column < GridSize; column++)
+                        for (int column = 0; column < (int)GridSize; column++)
                         {
                             if (card.Source == front)
                             {
