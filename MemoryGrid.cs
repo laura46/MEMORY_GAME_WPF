@@ -17,7 +17,6 @@ namespace MemoryProject
         const int rows = 4;
         const int cols = 4;
         int nrOfClickedCards = 0;
-        int previousCard;
 
         public MemoryGrid(Grid grid, int cols, int rows)
         {
@@ -26,7 +25,7 @@ namespace MemoryProject
             AddImages(cols, rows);
         }
 
-        //Zet alle kaartjes als Achterkant kaart
+        //Zet alle kaartjes als Achterkant kaart.
         private void AddImages(int kolom, int rij)
         {
             List<ImageSource> images = GetImagesList();
@@ -60,9 +59,25 @@ namespace MemoryProject
                 {
                     //TODO: vergelijk twee aangeklikte kaartjes!!!
                     MessageBox.Show("max aantal");
-                    //TODO: terug naar achterkant moet ook voor de vorige kaart gelden.
-                    ImageSource back = (ImageSource)new BitmapImage(new Uri("Kaartjes/Achterkant.png", UriKind.Relative));
-                    card.Source = back;
+
+                    List<ImageSource> images = GetImagesList();
+                    for (int row = 0; row < rows; row++)
+                    {
+                        for (int column = 0; column < cols; column++)
+                        {
+                            //TODO: terug naar achterkant moet ook voor de vorige kaart gelden.
+                            Image backgroundImage = new Image();
+                            backgroundImage.Source = new BitmapImage(new Uri("Kaartjes/Achterkant.png", UriKind.Relative));
+
+                            
+                            backgroundImage.MouseDown += new MouseButtonEventHandler(CardClick);
+                            Grid.SetColumn(backgroundImage, column);
+                            Grid.SetRow(backgroundImage, row);
+                            grid.Children.Add(backgroundImage);
+                        }
+                        nrOfClickedCards = 0;
+                    }
+                    
                 }
                 //TODO: als twee aangeklikte kaartjes gelijk zijn, haal weg
                 //TODO: als twee aangeklikte kaartjes NIET gelijk zijn, draai ze weer om.
@@ -78,7 +93,7 @@ namespace MemoryProject
                 ImageSource source = new BitmapImage(new Uri("Kaartjes/" + imageNr + ".png", UriKind.Relative));
                 images.Add(source);
             }
-            //shuffle
+            //shuffle!
             Random random = new Random();
             for (int i = 0; i < (rows * cols); i++)
             {
@@ -91,6 +106,8 @@ namespace MemoryProject
                 return images;
 
         }
+
+        //Maakt grid aan.
         private void InitializeGameGrid(int cols, int rows)
         {
             for (int i = 0; i < rows; i++)
@@ -104,8 +121,5 @@ namespace MemoryProject
         }
 
 
-        public void MemoryGrid2()
-        {
-        }
     }
 }
