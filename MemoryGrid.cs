@@ -121,21 +121,23 @@ namespace MemoryProject
 
         {
 
-            //Code to Restart WPF Application
-
-            Process.Start(Application.ResourceAssembly.Location);
-            Application.Current.Shutdown();
 
 
-            //Start New Application Before Closing Current
+            ////Code to Restart WPF Application
 
-            Process.Start(Application.ResourceAssembly.Location);
+            //Process.Start(Application.ResourceAssembly.Location);
+            //Application.Current.Shutdown();
+
+
+            ////Start New Application Before Closing Current
+
+            //Process.Start(Application.ResourceAssembly.Location);
 
 
 
-            //Close the Current
+            ////Close the Current
 
-            Application.Current.Shutdown();
+            //Application.Current.Shutdown();
 
         }
     }

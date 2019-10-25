@@ -24,13 +24,19 @@ namespace MemoryProject
         public MainWindow()
         {
             InitializeComponent();
-            grid = new MemoryGrid(GameGrid, GridSize);
+            this.grid = new MemoryGrid(GameGrid, GridSize);
         }
 
         public enum PLAYFIELD_SIZE {
             SMALL = 4,
             MEDIUM = 6,
             BIG = 8
+        }
+
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
