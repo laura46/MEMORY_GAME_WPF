@@ -16,7 +16,7 @@ namespace MemoryProject
     {
         private Grid Grid;
         private GameGrid.PLAYFIELD_SIZE GridSize;
-
+        int Played = 0;
         int nrOfClickedCards = 0;
 
         public MemoryGrid(Grid grid, GameGrid.PLAYFIELD_SIZE gridSize)
@@ -46,7 +46,6 @@ namespace MemoryProject
                     Grid.Children.Add(backgroundImage);
                 }
             }
-            
         }
 
         //Draait geklikte kaartjes om.
@@ -82,16 +81,22 @@ namespace MemoryProject
                 images.Add(source);
             }
             //shuffle!
-            Random random = new Random();
-            for (int i = 0; i < ((int)GridSize * (int)GridSize); i++)
+            if (Played > 1)
             {
-                int r = random.Next(0, ((int)GridSize * (int)GridSize));
-                ImageSource source = images[r];
-                images[r] = images[i];
-                images[i] = source;
+                Played++;
+                Random random = new Random();
+                for (int i = 0; i < ((int)GridSize * (int)GridSize); i++)
+                {
+                    int r = random.Next(0, ((int)GridSize * (int)GridSize));
+                    ImageSource source = images[r];
+                    images[r] = images[i];
+                    images[i] = source;
+                }
             }
              return images;
+
         }
+
 
         //Maakt grid aan.
         private void InitializeGameGrid()
