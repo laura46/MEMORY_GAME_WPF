@@ -46,6 +46,7 @@ namespace MemoryProject
                     Grid.Children.Add(backgroundImage);
                 }
             }
+            
         }
 
         //Draait geklikte kaartjes om.
@@ -63,16 +64,8 @@ namespace MemoryProject
                     List<ImageSource> images = GetImagesList();
                     //TODO: vergelijk twee aangeklikte kaartjes!!!
                     MessageBox.Show("max aantal");
-
-                    if (card.Source == front)
-                    {
-                        Image background = new Image();
-                        card.Source = new BitmapImage(new Uri("Kaartjes/Achterkant.png", UriKind.Relative));
-                        
-                            
-                    }
+                    AddImages();
                     nrOfClickedCards = 0;
-                    
                 }
                 //TODO: als twee aangeklikte kaartjes gelijk zijn, haal weg
                 //TODO: als twee aangeklikte kaartjes NIET gelijk zijn, draai ze weer om.
