@@ -112,33 +112,5 @@ namespace MemoryProject
                 Grid.ColumnDefinitions.Add(new ColumnDefinition());
             }
         }
-
-
-        public void MemoryGrid2()
-        {
-        }
-        private void Button1_Click(object sender, RoutedEventArgs e)
-
-        {
-
-
-
-            ////Code to Restart WPF Application
-
-            //Process.Start(Application.ResourceAssembly.Location);
-            //Application.Current.Shutdown();
-
-
-            ////Start New Application Before Closing Current
-
-            //Process.Start(Application.ResourceAssembly.Location);
-
-
-
-            ////Close the Current
-
-            //Application.Current.Shutdown();
-
-        }
     }
 }

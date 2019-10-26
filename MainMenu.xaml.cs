@@ -15,23 +15,20 @@ using System.Windows.Shapes;
 
 namespace MemoryProject
 {
-
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Interaction logic for MainMenu.xaml
+    /// </summary>
+    public partial class MainMenu : Page
     {
-
-        
-        public MainWindow()
+        public MainMenu()
         {
             InitializeComponent();
-            Page.Content = new GameGrid();
-            
-            
         }
 
-        public void ResetGameGrid(object sender, RoutedEventArgs e)
+        public void StartGame(object sender, MouseButtonEventArgs e) 
         {
-            Page.Content = new GameGrid();
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("GameGrid.xaml", UriKind.RelativeOrAbsolute));
         }
-
     }
 }

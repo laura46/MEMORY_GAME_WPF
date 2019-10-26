@@ -25,10 +25,18 @@ namespace MemoryProject
         public GameGrid()
         {
             InitializeComponent();
-            this.GridSize = PLAYFIELD_SIZE.SMALL;
-            
+            this.GridSize = GameGrid.PLAYFIELD_SIZE.SMALL;
             this.grid = new MemoryGrid(GameGridref, this.GridSize);
            
+        }
+
+        public void ResetGameGrid(object sender, RoutedEventArgs e)
+        {
+            GameGridref.Children.Clear();
+            GameGridref.ColumnDefinitions.Clear();
+            GameGridref.RowDefinitions.Clear();
+            this.grid = new MemoryGrid(GameGridref, this.GridSize);
+
         }
 
         public enum PLAYFIELD_SIZE
