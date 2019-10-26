@@ -15,8 +15,8 @@ namespace MemoryProject
     class MemoryGrid
     {
         private Grid Grid;
-        private GridSizeOptions.GRID_SIZES GridSize;
-
+        private GameGrid.PLAYFIELD_SIZE GridSize;
+        int Played = 0;
         int nrOfClickedCards = 0;
 
         public MemoryGrid(Grid grid, GridSizeOptions.GRID_SIZES gridSize)
@@ -62,16 +62,8 @@ namespace MemoryProject
                     List<ImageSource> images = GetImagesList();
                     //TODO: vergelijk twee aangeklikte kaartjes!!!
                     MessageBox.Show("max aantal");
-
-                    if (card.Source == front)
-                    {
-                        Image background = new Image();
-                        card.Source = new BitmapImage(new Uri("Kaartjes/Achterkant.png", UriKind.Relative));
-                        
-                            
-                    }
+                    AddImages();
                     nrOfClickedCards = 0;
-                    
                 }
                 //TODO: als twee aangeklikte kaartjes gelijk zijn, haal weg
                 //TODO: als twee aangeklikte kaartjes NIET gelijk zijn, draai ze weer om.
@@ -88,16 +80,22 @@ namespace MemoryProject
                 images.Add(source);
             }
             //shuffle!
-            Random random = new Random();
-            for (int i = 0; i < ((int)GridSize * (int)GridSize); i++)
+            if (Played > 1)
             {
-                int r = random.Next(0, ((int)GridSize * (int)GridSize));
-                ImageSource source = images[r];
-                images[r] = images[i];
-                images[i] = source;
+                Played++;
+                Random random = new Random();
+                for (int i = 0; i < ((int)GridSize * (int)GridSize); i++)
+                {
+                    int r = random.Next(0, ((int)GridSize * (int)GridSize));
+                    ImageSource source = images[r];
+                    images[r] = images[i];
+                    images[i] = source;
+                }
             }
              return images;
+
         }
+
 
         //Maakt grid aan.
         private void InitializeGameGrid()
