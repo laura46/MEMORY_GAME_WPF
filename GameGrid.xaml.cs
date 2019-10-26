@@ -20,14 +20,14 @@ namespace MemoryProject
     /// </summary>
     public partial class GameGrid : Page
     {
-        private PLAYFIELD_SIZE GridSize;
+
         MemoryGrid grid;
-        public GameGrid()
+        GridSizeOptions.GRID_SIZES GridSize;
+        public GameGrid(GridSizeOptions.GRID_SIZES gridSize)
         {
             InitializeComponent();
-            this.GridSize = GameGrid.PLAYFIELD_SIZE.SMALL;
-            this.grid = new MemoryGrid(GameGridref, this.GridSize);
-           
+            this.GridSize = gridSize;
+            this.grid = new MemoryGrid(GameGridref, GridSize);
         }
 
         public void ResetGameGrid(object sender, RoutedEventArgs e)
@@ -35,15 +35,9 @@ namespace MemoryProject
             GameGridref.Children.Clear();
             GameGridref.ColumnDefinitions.Clear();
             GameGridref.RowDefinitions.Clear();
-            this.grid = new MemoryGrid(GameGridref, this.GridSize);
-
+            this.grid = new MemoryGrid(GameGridref, GridSize);
         }
 
-        public enum PLAYFIELD_SIZE
-        {
-            SMALL = 4,
-            MEDIUM = 6,
-            BIG = 8
-        }
+
     }
 }

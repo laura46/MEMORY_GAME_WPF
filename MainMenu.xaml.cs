@@ -15,20 +15,34 @@ using System.Windows.Shapes;
 
 namespace MemoryProject
 {
-    /// <summary>
-    /// Interaction logic for MainMenu.xaml
-    /// </summary>
     public partial class MainMenu : Page
     {
+        GridSizeOptions SizeOptions;
         public MainMenu()
         {
             InitializeComponent();
+            ShowStartButton();
+            this.SizeOptions = new GridSizeOptions();
+            this.SizeOptions.OnGridSizeChosen += new EventHandler<ChooseGridSizeEventArgs>(GoToGameGrid);
         }
 
-        public void StartGame(object sender, MouseButtonEventArgs e) 
+        public void ShowGridSizeOptions(object sender, MouseButtonEventArgs e) 
         {
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("GameGrid.xaml", UriKind.RelativeOrAbsolute));
+            startFrame.Content = this.SizeOptions;
+        }
+
+        public void GoToGameGrid(object sender, ChooseGridSizeEventArgs chosenSize) 
+        {
+            Application.Current.MainWindow.Content = new GameGrid(chosenSize.GridSize);
+        }
+
+        public void ShowStartButton() 
+        {
+            Image startButton = new Image();
+            startButton.Source = new BitmapImage(new Uri("Assets/play.png", UriKind.Relative));
+            startButton.MouseDown += new MouseButtonEventHandler(ShowGridSizeOptions);
+            startButton.Cursor = Cursors.Hand;
+            startFrame.Content = startButton;
         }
     }
 }

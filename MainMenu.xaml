@@ -16,9 +16,9 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Image Source="Assets/logo.png" Grid.Row="0" Margin="20"></Image>
         
-        <Image Source="Assets/play.png" MouseDown="StartGame" Grid.Row="1" Cursor="Hand"></Image>
+        <Image Source="Assets/logo.png" Grid.Row="0" Margin="20"></Image>
+        <Frame Name="startFrame" Grid.Row="1"></Frame>
         <Image Source="Assets/safe.png" Grid.Row="2" Cursor="Hand"></Image>
         <Image Source="Assets/highscore.png" Grid.Row="3" Cursor="Hand"></Image>
     </Grid>

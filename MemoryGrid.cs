@@ -15,15 +15,14 @@ namespace MemoryProject
     class MemoryGrid
     {
         private Grid Grid;
-        private GameGrid.PLAYFIELD_SIZE GridSize;
+        private GridSizeOptions.GRID_SIZES GridSize;
 
         int nrOfClickedCards = 0;
 
-        public MemoryGrid(Grid grid, GameGrid.PLAYFIELD_SIZE gridSize)
+        public MemoryGrid(Grid grid, GridSizeOptions.GRID_SIZES gridSize)
         {
             this.Grid = grid;
             this.GridSize = gridSize;
-
             InitializeGameGrid();
             AddImages();
         }
@@ -112,5 +111,7 @@ namespace MemoryProject
                 Grid.ColumnDefinitions.Add(new ColumnDefinition());
             }
         }
+
+
     }
 }
