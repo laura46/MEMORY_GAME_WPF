@@ -15,7 +15,7 @@ namespace MemoryProject
     class MemoryGrid
     {
         private Grid Grid;
-        private GameGrid.PLAYFIELD_SIZE GridSize;
+        private GridSizeOptions.GRID_SIZES GridSize;
         int Played = 0;
         int nrOfClickedCards = 0;
 
