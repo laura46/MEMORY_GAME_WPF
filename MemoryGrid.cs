@@ -14,35 +14,52 @@ namespace MemoryProject
 {
     class MemoryGrid
     {
-        private Grid Grid;
+        //Grid size
+        private Grid grid;
         private GridSizeOptions.GRID_SIZES GridSize;
-        int Played = 0;
-        int nrOfClickedCards = 0;
 
+        //Class voor kaarten
+        private List<Card> cards = new List<Card>();
+
+        //Variabelen voor CardClick
+        private int nrOfClickedCards = 0;
+        private int previousCard;
         public MemoryGrid(Grid grid, GridSizeOptions.GRID_SIZES gridSize)
         {
-            this.Grid = grid;
+            this.grid = grid;
             this.GridSize = gridSize;
             InitializeGameGrid();
             AddImages();
+            ShowCards();
         }
 
         //Zet alle kaartjes als Achterkant kaart.
         private void AddImages()
         {
             List<ImageSource> images = GetImagesList();
-            for (int row = 0; row < (int)GridSize; row++)
+            for (int i = 0; i < (int)GridSize; i++)
             {
-                for (int column = 0; column < (int)GridSize; column++)
+                for (int j = 0; j < (int)GridSize; j++)
                 {
-                    Image backgroundImage = new Image();
-                    backgroundImage.Source = new BitmapImage(new Uri("Kaartjes/Achterkant.png", UriKind.Relative));
-                    backgroundImage.Tag = images.First();
+                    cards.Add(new Card(images.First()));
                     images.RemoveAt(0);
-                    backgroundImage.MouseDown += new MouseButtonEventHandler(CardClick);
-                    Grid.SetColumn(backgroundImage, column);
-                    Grid.SetRow(backgroundImage, row);
-                    Grid.Children.Add(backgroundImage);
+                }
+            }
+        }
+
+        private void ShowCards()
+        {
+            for (int i = 0; i < (int)GridSize; i++)
+            {
+                for (int j = 0; j < (int)GridSize; j++)
+                { 
+                    Image image = new Image();
+                    image.MouseDown += new MouseButtonEventHandler(CardClick);
+                    image.Source = cards[j * (int)GridSize + i].Show();
+                    image.Tag = j * (int)GridSize + i;
+                    Grid.SetColumn(image, j);
+                    Grid.SetRow(image, i);
+                    grid.Children.Add(image);
                 }
             }
         }
@@ -53,26 +70,40 @@ namespace MemoryProject
             if (nrOfClickedCards < 2)
             {
                 nrOfClickedCards++;
-                Image card = (Image)sender;
-                ImageSource front = (ImageSource)card.Tag;
-                card.Source = front;
+                Image image = (Image)sender;
+                int index = (int)image.Tag;
+                image.Source = null;
+                cards[index].Clicked();
 
                 if (nrOfClickedCards == 2)
                 {
-                    List<ImageSource> images = GetImagesList();
-                    //TODO: vergelijk twee aangeklikte kaartjes!!!
-                    MessageBox.Show("max aantal");
-                    AddImages();
+                    ShowCards();
+                    //TODO: bugfix controleer kaartjes
+                    if (cards[previousCard].Show() == cards[index].Show())
+                    {
+                        cards[previousCard].MakeInvisible();
+                        cards[index].MakeInvisible();
+                        MessageBox.Show("GOED!");
+                    }
+                    else
+                    {
+                        cards[previousCard].FlipToBack();
+                        cards[index].FlipToBack();
+                        MessageBox.Show("Fout!");
+                    }
                     nrOfClickedCards = 0;
                 }
-                //TODO: als twee aangeklikte kaartjes gelijk zijn, haal weg
-                //TODO: als twee aangeklikte kaartjes NIET gelijk zijn, draai ze weer om.
+                else
+                    previousCard = index;
+                ShowCards();
             }
         }
 
-         private List<ImageSource> GetImagesList()
+        //Maakt lijst met voorkanten aan.
+        private List<ImageSource> GetImagesList()
         {
             List<ImageSource> images = new List<ImageSource>();
+
             for (int i= 0; i < ((int)GridSize * (int)GridSize); i++)
             {
                 int imageNr = i % 8 + 1;
@@ -80,20 +111,15 @@ namespace MemoryProject
                 images.Add(source);
             }
             //shuffle!
-            if (Played > 1)
+            Random random = new Random();
+            for (int i = 0; i < ((int)GridSize * (int)GridSize); i++)
             {
-                Played++;
-                Random random = new Random();
-                for (int i = 0; i < ((int)GridSize * (int)GridSize); i++)
-                {
-                    int r = random.Next(0, ((int)GridSize * (int)GridSize));
-                    ImageSource source = images[r];
-                    images[r] = images[i];
-                    images[i] = source;
-                }
+                int r = random.Next(0, ((int)GridSize * (int)GridSize));
+                ImageSource source = images[r];
+                images[r] = images[i];
+                images[i] = source;
             }
              return images;
-
         }
 
 
@@ -102,11 +128,11 @@ namespace MemoryProject
         {
             for (int i = 0; i < (int)GridSize; i++)
             {
-                Grid.RowDefinitions.Add(new RowDefinition());
+                grid.RowDefinitions.Add(new RowDefinition());
             }
             for (int i = 0; i < (int)GridSize; i++)
             {
-                Grid.ColumnDefinitions.Add(new ColumnDefinition());
+                grid.ColumnDefinitions.Add(new ColumnDefinition());
             }
         }
 
