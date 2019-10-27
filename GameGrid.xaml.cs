@@ -26,11 +26,22 @@ namespace MemoryProject
         public GameGrid(GridSizeOptions.GRID_SIZES gridSize)
         {
             InitializeComponent();
+            InitializeGameGrid(gridSize);
+            InitializeNavbar();
+        }
+        private void InitializeGameGrid(GridSizeOptions.GRID_SIZES gridSize) 
+        {
             this.GridSize = gridSize;
             this.grid = new MemoryGrid(GameGridref, GridSize);
         }
+        private void InitializeNavbar() 
+        {
+            TopNavBar navbar = new TopNavBar();
+            navbar.OnResetGame += new EventHandler(ResetGameGrid);
+            NavbarFrame.Content = navbar;
+        }
 
-        public void ResetGameGrid(object sender, RoutedEventArgs e)
+        public void ResetGameGrid(object sender, EventArgs e)
         {
             GameGridref.Children.Clear();
             GameGridref.ColumnDefinitions.Clear();

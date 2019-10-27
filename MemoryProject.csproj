@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="TopNavBar.xaml.cs">
+      <DependentUpon>TopNavBar.xaml</DependentUpon>
+    </Compile>
     <Page Include="GameGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -82,6 +85,10 @@
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="MemoryGrid.cs" />
+    <Page Include="TopNavBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -152,6 +159,12 @@
     <Resource Include="Assets\logo.png" />
     <Resource Include="Assets\play.png" />
     <Resource Include="Assets\safe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Laden.png" />
+    <Resource Include="Assets\Menu.png" />
+    <Resource Include="Assets\Opslaan.png" />
+    <Resource Include="Assets\Reset.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

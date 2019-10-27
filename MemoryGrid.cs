@@ -15,7 +15,7 @@ namespace MemoryProject
     class MemoryGrid
     {
         //Grid size
-        private Grid grid;
+        private Grid Grid;
         private GridSizeOptions.GRID_SIZES GridSize;
 
         //Class voor kaarten
@@ -26,8 +26,8 @@ namespace MemoryProject
         private int previousCard;
         public MemoryGrid(Grid grid, GridSizeOptions.GRID_SIZES gridSize)
         {
-            this.grid = grid;
-            this.GridSize = gridSize;
+            Grid = grid;
+            GridSize = gridSize;
             InitializeGameGrid();
             AddImages();
             ShowCards();
@@ -59,7 +59,7 @@ namespace MemoryProject
                     image.Tag = j * (int)GridSize + i;
                     Grid.SetColumn(image, j);
                     Grid.SetRow(image, i);
-                    grid.Children.Add(image);
+                    this.Grid.Children.Add(image);
                 }
             }
         }
@@ -128,11 +128,11 @@ namespace MemoryProject
         {
             for (int i = 0; i < (int)GridSize; i++)
             {
-                grid.RowDefinitions.Add(new RowDefinition());
+                Grid.RowDefinitions.Add(new RowDefinition());
             }
             for (int i = 0; i < (int)GridSize; i++)
             {
-                grid.ColumnDefinitions.Add(new ColumnDefinition());
+                Grid.ColumnDefinitions.Add(new ColumnDefinition());
             }
         }
 
