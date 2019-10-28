@@ -148,7 +148,7 @@ namespace MemoryProject
             {
                 kaart2.MakeInvisible();
                 kaart1.MakeInvisible();
-                MessageBox.Show("GOED!");
+                MessageBox.Show("Goed!");
             }
             else
             {
