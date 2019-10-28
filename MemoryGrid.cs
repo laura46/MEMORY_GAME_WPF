@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace MemoryProject
 {
@@ -78,19 +80,9 @@ namespace MemoryProject
                 if (nrOfClickedCards == 2)
                 {
                     ShowCards();
+                    CheckPair(cards[index], cards[previousCard]);
                     //TODO: bugfix controleer kaartjes
-                    if (cards[previousCard].Show() == cards[index].Show())
-                    {
-                        cards[previousCard].MakeInvisible();
-                        cards[index].MakeInvisible();
-                        MessageBox.Show("GOED!");
-                    }
-                    else
-                    {
-                        cards[previousCard].FlipToBack();
-                        cards[index].FlipToBack();
-                        MessageBox.Show("Fout!");
-                    }
+
                     nrOfClickedCards = 0;
                 }
                 else
@@ -120,7 +112,7 @@ namespace MemoryProject
                 images[r] = images[i];
                 images[i] = source;
             }
-             return images;
+            return images;
         }
 
 
@@ -137,6 +129,34 @@ namespace MemoryProject
             }
         }
 
+        private void CheckPair(Card kaart1, Card kaart2)
+        {
+            string kaart1String = kaart1.Show().ToString();
+            string kaart2String = kaart2.Show().ToString();
 
+            if (kaart1String.Contains("pack"))
+            {
+                kaart1String = Regex.Split(kaart1String, @"(;component/)")[2];
+            }
+
+            if (kaart2String.Contains("pack"))
+            {
+                kaart2String = Regex.Split(kaart2String, @"(;component/)")[2];
+            }
+
+            if (kaart1String == kaart2String)
+            {
+                kaart2.MakeInvisible();
+                kaart1.MakeInvisible();
+                MessageBox.Show("GOED!");
+            }
+            else
+            {
+                kaart2.FlipToBack();
+                kaart1.FlipToBack();
+                MessageBox.Show("Fout!");
+            }
+
+        }
     }
 }
