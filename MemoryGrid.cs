@@ -99,7 +99,7 @@ namespace MemoryProject
             for (int i= 0; i < ((int)GridSize * (int)GridSize); i++)
             {
                 //imageNr formule moet per grid anders zijn anders krijgen we niet alle verschillende plaatjes
-                int imageNr = i % 8 + 1;
+                int imageNr = i % ((int)GridSize * (int)GridSize / 2) + 1;
                 ImageSource source = new BitmapImage(new Uri("Kaartjes/" + imageNr + ".png", UriKind.Relative));
                 images.Add(source);
             }
