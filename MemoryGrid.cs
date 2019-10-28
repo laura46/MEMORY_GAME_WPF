@@ -133,6 +133,7 @@ namespace MemoryProject
         {
             string kaart1String = kaart1.Show().ToString();
             string kaart2String = kaart2.Show().ToString();
+            int score = 0;
 
             if (kaart1String.Contains("pack"))
             {
@@ -149,6 +150,7 @@ namespace MemoryProject
                 kaart2.MakeInvisible();
                 kaart1.MakeInvisible();
                 MessageBox.Show("Goed!");
+                score = score + 200;
             }
             else
             {

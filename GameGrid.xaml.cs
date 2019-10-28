@@ -28,6 +28,7 @@ namespace MemoryProject
             InitializeComponent();
             InitializeGameGrid(gridSize);
             InitializeNavbar();
+            ScoreFrame.Content = new Scorebord();
         }
         private void InitializeGameGrid(GridSizeOptions.GRID_SIZES gridSize) 
         {
