@@ -60,6 +60,9 @@
     <Compile Include="CounterTimer.xaml.cs">
       <DependentUpon>CounterTimer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NaamInvoer.xaml.cs">
+      <DependentUpon>NaamInvoer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Scorebord.xaml.cs">
       <DependentUpon>Scorebord.xaml</DependentUpon>
     </Compile>
@@ -97,6 +100,10 @@
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="MemoryGrid.cs" />
+    <Page Include="NaamInvoer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Scorebord.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
