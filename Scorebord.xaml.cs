@@ -20,10 +20,21 @@ namespace MemoryProject
     /// </summary>
     public partial class Scorebord : UserControl
     {
-        public Scorebord()
+        public Scorebord(MemoryGrid currentGrid)
         {
             InitializeComponent();
-            this.DataContext = this;
+
+            currentGrid.OnScore1Update += new EventHandler<int>(UpdateScore1);
+            currentGrid.OnScore2Update += new EventHandler<int>(UpdateScore2);
+        }
+
+        private void UpdateScore1(object sender, int score) 
+        {
+            //hier heb je nu de score1
+        }
+        private void UpdateScore2(object sender, int score) 
+        {
+            //hier heb je nu de score2
         }
     }
 }

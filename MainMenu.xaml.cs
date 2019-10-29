@@ -56,7 +56,7 @@ namespace MemoryProject
         {
             Image startButton = new Image();
             startButton.Source = new BitmapImage(new Uri("Assets/play.png", UriKind.Relative));
-            startButton.MouseDown += new MouseButtonEventHandler(ShowsNaamInvoer);
+            startButton.MouseDown += new MouseButtonEventHandler(ShowGridSizeOptions);
             startButton.Cursor = Cursors.Hand;
             startFrame.Content = startButton;
         }

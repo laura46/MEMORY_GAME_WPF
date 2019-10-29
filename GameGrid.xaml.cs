@@ -53,9 +53,8 @@ namespace MemoryProject
             
         }
         public void InitializeScorebord()
-        {
-            this.DataContext = this;
-            ScoreFrame.Content = new Scorebord();
+        {   
+            ScoreFrame.Content = new Scorebord(this.grid);
         }
     }
 }

@@ -14,7 +14,7 @@ using System.Timers;
 
 namespace MemoryProject
 {
-    class MemoryGrid
+    public class MemoryGrid
     {
         //Grid size
         private Grid Grid;
@@ -31,6 +31,8 @@ namespace MemoryProject
         bool player1 = true;
         int score1 = 0;
         int score2 = 0;
+        public EventHandler<int> OnScore1Update;
+        public EventHandler<int> OnScore2Update;
     
         
         public MemoryGrid(Grid grid, GridSizeOptions.GRID_SIZES gridSize)
@@ -163,12 +165,12 @@ namespace MemoryProject
                 MessageBox.Show("Goed!");
                 if(player1 == true)
                 {
-                    score1 = score1 + 200;
+                    UpdateScore(score1, true);
                     player1 = false;
                 }
                 if(player1 == false)
                 {
-                    score2 = score2 + 200;
+                    UpdateScore(score2, false);
                     player1 = true;
                 }
 
@@ -180,6 +182,18 @@ namespace MemoryProject
                 MessageBox.Show("Fout!");
             }
         
+        }
+        private void UpdateScore(int score, bool isScore1) 
+        {
+            score += 200;
+
+            if (isScore1) 
+            {
+                this.OnScore1Update?.Invoke(this, score);
+            } else 
+            {
+                this.OnScore2Update?.Invoke(this, score);
+            }
         }
     }
 }
