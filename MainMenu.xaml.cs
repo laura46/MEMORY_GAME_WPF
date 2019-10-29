@@ -22,9 +22,17 @@ namespace MemoryProject
         GridSizeOptions SizeOptions;
         public MainMenu()
         {
+
             InitializeComponent();
             ShowStartButton();
+            InitializeGridSizeOptions();
+
             this.NaamInvoer = new NaamInvoer();
+
+        }
+
+        private void InitializeGridSizeOptions() 
+        {
             this.SizeOptions = new GridSizeOptions();
             this.SizeOptions.OnGridSizeChosen += new EventHandler<ChooseGridSizeEventArgs>(GoToGameGrid);
         }
