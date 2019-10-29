@@ -49,8 +49,8 @@ namespace MemoryProject
             GameGridref.ColumnDefinitions.Clear();
             GameGridref.RowDefinitions.Clear();
             this.grid = new MemoryGrid(GameGridref, GridSize);
+            TimerFrame.Content = new CounterTimer();
+            
         }
-
-
     }
 }

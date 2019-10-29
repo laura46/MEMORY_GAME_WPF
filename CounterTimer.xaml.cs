@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace MemoryProject
 {
@@ -20,9 +21,34 @@ namespace MemoryProject
     /// </summary>
     public partial class CounterTimer : UserControl
     {
+        private int time = 0;
+        private DispatcherTimer Timer;
         public CounterTimer()
         {
             InitializeComponent();
+            Timer = new DispatcherTimer();
+            Timer.Interval = new TimeSpan(0, 0, 1);
+            Timer.Tick += TickTock;
+            Timer.Start();
+        }
+
+        private void TickTock(object sender, EventArgs e)
+        {
+            if (time > 8)
+            {
+                time++;
+                tCounter.Text = string.Format("00:0{0}:{1}", time / 60, time % 60);
+            }
+            else
+            {
+                time++;
+                tCounter.Text = string.Format("00:0{0}:0{1}", time / 60, time % 60);
+            }
+        }
+
+        private void ResetTimer()
+        {
+            
         }
     }
 }
