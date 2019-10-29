@@ -23,6 +23,7 @@ namespace MemoryProject
         public Scorebord()
         {
             InitializeComponent();
+            this.DataContext = this;
         }
     }
 }

@@ -26,6 +26,13 @@ namespace MemoryProject
         //Variabelen voor CardClick
         private int nrOfClickedCards = 0;
         private int previousCard;
+
+        //variabelen voor de score
+        bool player1 = true;
+        int score1 = 0;
+        int score2 = 0;
+    
+        
         public MemoryGrid(Grid grid, GridSizeOptions.GRID_SIZES gridSize)
         {
             Grid = grid;
@@ -33,6 +40,7 @@ namespace MemoryProject
             InitializeGameGrid();
             AddImages();
             ShowCards();
+            
         }
 
         //Zet alle kaartjes als Achterkant kaart.
@@ -136,7 +144,6 @@ namespace MemoryProject
         {
             string kaart1String = kaart1.Show().ToString();
             string kaart2String = kaart2.Show().ToString();
-            int score = 0;
 
             //Als het een duplicatie is van de uri (waarbij er een extentie op de naam komt) wordt deze eraf gehaald.
             if (kaart1String.Contains("pack"))
@@ -154,7 +161,17 @@ namespace MemoryProject
                 kaart2.MakeInvisible();
                 kaart1.MakeInvisible();
                 MessageBox.Show("Goed!");
-                score = score + 200;
+                if(player1 == true)
+                {
+                    score1 = score1 + 200;
+                    player1 = false;
+                }
+                if(player1 == false)
+                {
+                    score2 = score2 + 200;
+                    player1 = true;
+                }
+
             }
             else
             {
@@ -162,6 +179,7 @@ namespace MemoryProject
                 kaart1.FlipToBack();
                 MessageBox.Show("Fout!");
             }
+        
         }
     }
 }

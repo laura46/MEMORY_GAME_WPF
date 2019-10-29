@@ -28,7 +28,7 @@ namespace MemoryProject
             InitializeComponent();
             InitializeGameGrid(gridSize);
             InitializeNavbar();
-            ScoreFrame.Content = new Scorebord();
+            InitializeScorebord();
             TimerFrame.Content = new CounterTimer();
         }
         private void InitializeGameGrid(GridSizeOptions.GRID_SIZES gridSize) 
@@ -51,6 +51,11 @@ namespace MemoryProject
             this.grid = new MemoryGrid(GameGridref, GridSize);
             TimerFrame.Content = new CounterTimer();
             
+        }
+        public void InitializeScorebord()
+        {
+            this.DataContext = this;
+            ScoreFrame.Content = new Scorebord();
         }
     }
 }
