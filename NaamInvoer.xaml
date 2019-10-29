@@ -5,22 +5,21 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MemoryProject"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="500">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition ></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-
-        <Viewbox Grid.Column="0">
-            <TextBox TextAlignment="Center" Width="50" Height="10" FontSize="5" Text="Speler 1"/>
-
-        </Viewbox>
-        <Viewbox Grid.Column="1">
-            <TextBox TextAlignment="Center" Width="50" Height="10" FontSize="5" Text="Speler 2"/>
-
-        </Viewbox>
-        <Button Grid.ColumnSpan="2" Margin="125,10,125,130"></Button>
-
+             d:DesignHeight="200" d:DesignWidth="500"
+             >
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid x:Name="nameGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition ></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" TextAlignment="Center" Width="140" Height="40" FontSize="16" Padding="5" Text="Speler 1"/>
+            <TextBox Grid.Column="1" TextAlignment="Center" Width="140" Height="40" FontSize="16" Padding="5" Text="Speler 2"/>
+        </Grid>
+        <Button Grid.Row="1" Width="100" Height="40" Click="GoToSizeOptions">Start</Button>
     </Grid>
 </UserControl>

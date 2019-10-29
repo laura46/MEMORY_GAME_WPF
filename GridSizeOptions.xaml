@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MemoryProject"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="420">
+
+             >
     <Grid Width="420">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>

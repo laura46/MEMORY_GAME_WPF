@@ -28,7 +28,7 @@ namespace MemoryProject
             InitializeGridSizeOptions();
 
             this.NaamInvoer = new NaamInvoer();
-
+            this.NaamInvoer.OnGoToSizeOptions += new EventHandler(ShowGridSizeOptions);
         }
 
         private void InitializeGridSizeOptions() 
@@ -42,7 +42,7 @@ namespace MemoryProject
             startFrame.Content = this.NaamInvoer;
         }
 
-        public void ShowGridSizeOptions(object sender, MouseButtonEventArgs e) 
+        public void ShowGridSizeOptions(object sender, EventArgs e) 
         {
             startFrame.Content = this.SizeOptions;
         }
@@ -56,7 +56,7 @@ namespace MemoryProject
         {
             Image startButton = new Image();
             startButton.Source = new BitmapImage(new Uri("Assets/play.png", UriKind.Relative));
-            startButton.MouseDown += new MouseButtonEventHandler(ShowGridSizeOptions);
+            startButton.MouseDown += new MouseButtonEventHandler(ShowsNaamInvoer);
             startButton.Cursor = Cursors.Hand;
             startFrame.Content = startButton;
         }

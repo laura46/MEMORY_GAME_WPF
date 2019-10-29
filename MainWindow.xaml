@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" 
         WindowStyle="SingleBorderWindow"
-        WindowState="Maximized">
-    <Frame Name="mainPage"></Frame>
+        WindowState="Maximized"
+        >
+    <Frame Name="mainPage" NavigationUIVisibility="Hidden"></Frame>
 </Window>

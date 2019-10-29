@@ -20,6 +20,7 @@ namespace MemoryProject
     /// </summary>
     public partial class NaamInvoer : UserControl
     {
+        public EventHandler OnGoToSizeOptions;
         public NaamInvoer()
         {
             InitializeComponent();
@@ -28,6 +29,11 @@ namespace MemoryProject
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void GoToSizeOptions(object sender, RoutedEventArgs e)
+        {
+            OnGoToSizeOptions?.Invoke(this, EventArgs.Empty);
         }
     }
 }
