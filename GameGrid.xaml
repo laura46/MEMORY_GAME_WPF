@@ -21,8 +21,18 @@
                 <ColumnDefinition Width="200"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Frame  Name="ScoreFrame" Grid.Row="1" Grid.Column="0"></Frame>
-            <Grid HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" Name="GameGridref" Width="500"></Grid>
+            
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Frame  Name="ScoreFrame" Grid.Row="0" ></Frame>
+                <Frame Name="TimerFrame" Grid.Row="1" ></Frame>
+            </Grid>
+            <Grid Name="GameGridref" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1"  Width="500"></Grid>
+
         </Grid>
 
     </Grid>

@@ -10,7 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Diagnostics;
-using System.Text.RegularExpressions;
+using System.Timers;
 
 namespace MemoryProject
 {
@@ -66,6 +66,8 @@ namespace MemoryProject
             }
         }
 
+
+        //TODO: twee keer op hetzelfde kaartje is nu goed.
         //Draait geklikte kaartjes om.
         private void CardClick(object sender, MouseButtonEventArgs e)
         {
@@ -129,12 +131,14 @@ namespace MemoryProject
             }
         }
 
+        //Controlleerd of de kaartjes dezelfde naam hebben.
         private void CheckPair(Card kaart1, Card kaart2)
         {
             string kaart1String = kaart1.Show().ToString();
             string kaart2String = kaart2.Show().ToString();
             int score = 0;
 
+            //Als het een duplicatie is van de uri (waarbij er een extentie op de naam komt) wordt deze eraf gehaald.
             if (kaart1String.Contains("pack"))
             {
                 kaart1String = Regex.Split(kaart1String, @"(;component/)")[2];
@@ -158,7 +162,6 @@ namespace MemoryProject
                 kaart1.FlipToBack();
                 MessageBox.Show("Fout!");
             }
-
         }
     }
 }
