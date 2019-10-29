@@ -17,13 +17,21 @@ namespace MemoryProject
 {
     public partial class MainMenu : Page
     {
+        public NaamInvoer NaamInvoer { get; }
+
         GridSizeOptions SizeOptions;
         public MainMenu()
         {
             InitializeComponent();
             ShowStartButton();
+            this.NaamInvoer = new NaamInvoer();
             this.SizeOptions = new GridSizeOptions();
             this.SizeOptions.OnGridSizeChosen += new EventHandler<ChooseGridSizeEventArgs>(GoToGameGrid);
+        }
+
+        public void ShowsNaamInvoer(object sender, MouseButtonEventArgs e)
+        {
+            startFrame.Content = this.NaamInvoer;
         }
 
         public void ShowGridSizeOptions(object sender, MouseButtonEventArgs e) 
@@ -40,7 +48,7 @@ namespace MemoryProject
         {
             Image startButton = new Image();
             startButton.Source = new BitmapImage(new Uri("Assets/play.png", UriKind.Relative));
-            startButton.MouseDown += new MouseButtonEventHandler(ShowGridSizeOptions);
+            startButton.MouseDown += new MouseButtonEventHandler(ShowsNaamInvoer);
             startButton.Cursor = Cursors.Hand;
             startFrame.Content = startButton;
         }
