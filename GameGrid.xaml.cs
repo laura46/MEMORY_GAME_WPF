@@ -30,6 +30,7 @@ namespace MemoryProject
             InitializeNavbar();
             InitializeScorebord();
             TimerFrame.Content = new CounterTimer();
+            turnFrame.Content = new PlayerTurn(this.grid);
         }
         private void InitializeGameGrid(GridSizeOptions.GRID_SIZES gridSize) 
         {

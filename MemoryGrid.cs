@@ -28,7 +28,10 @@ namespace MemoryProject
         private int previousCard;
 
         //variabelen voor de score
-        bool player1 = true;
+        bool player1turn = true;
+        string player1Name = "Player 1";
+        string player2Name = "Player 2";
+        public EventHandler<bool> OnPlayerTurn;
         int score1 = 0;
         int score2 = 0;
         public EventHandler<int> OnScore1Update;
@@ -163,25 +166,31 @@ namespace MemoryProject
                 kaart2.MakeInvisible();
                 kaart1.MakeInvisible();
                 MessageBox.Show("Goed!");
-                if(player1 == true)
+                if(player1turn == true)
                 {
-                    UpdateScore(score1, true);
-                    player1 = false;
+                    UpdateScore(score1, player1turn);
+                    SetPlayerTurn(!player1turn);
                 }
-                if(player1 == false)
+                if(player1turn == false)
                 {
-                    UpdateScore(score2, false);
-                    player1 = true;
+                    UpdateScore(score2, player1turn);
+                    SetPlayerTurn(!player1turn);
                 }
-
+                
             }
             else
             {
                 kaart2.FlipToBack();
                 kaart1.FlipToBack();
+                SetPlayerTurn(!player1turn);
                 MessageBox.Show("Fout!");
             }
-        
+            
+        }
+        private void SetPlayerTurn(bool IsPlayer1Turn) 
+        {
+            player1turn = IsPlayer1Turn;
+            OnPlayerTurn?.Invoke(this, player1turn);
         }
         private void UpdateScore(int score, bool isScore1) 
         {
