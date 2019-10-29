@@ -7,6 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="200">
     <Grid>
-        <Label Grid.Row="0">test</Label>
+        <TextBox Name="tCounter" HorizontalAlignment="Left" Height="38" Margin="32,31,0,0" TextWrapping="Wrap" Text="00:00:00" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontSize="25"/>
     </Grid>
 </UserControl>
