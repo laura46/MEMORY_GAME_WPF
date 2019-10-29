@@ -8,14 +8,14 @@
              d:DesignHeight="80" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="180"></ColumnDefinition>
-            <ColumnDefinition Width="180"></ColumnDefinition>
-            <ColumnDefinition Width="180"></ColumnDefinition>
+            <ColumnDefinition Width="240"></ColumnDefinition>
+            <ColumnDefinition Width="240"></ColumnDefinition>
+            <ColumnDefinition Width="240"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Image MouseDown="BackToMainMenu" Source="Assets/Menu.png" Grid.Column="0" Cursor="Hand"></Image>
         <Image MouseDown="SaveGame" Source="Assets/Opslaan.png"  Grid.Column="1" Cursor="Hand"></Image>
         <Image MouseDown="LoadGame" Source="Assets/Laden.png"  Grid.Column="2" Cursor="Hand"></Image>
-        <Image MouseDown="ResetGame" Source="Assets/Reset.png" Grid.Column="3" Cursor="Hand" Width="180" HorizontalAlignment="Right"></Image>
+        <Image MouseDown="ResetGame" Source="Assets/Reset.png" Grid.Column="3" Cursor="Hand" Width="240" HorizontalAlignment="Right"></Image>
     </Grid>
 </UserControl>

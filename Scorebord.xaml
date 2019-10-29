@@ -6,11 +6,26 @@
              xmlns:local="clr-namespace:MemoryProject"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Width="300" Height="300">
+        <Grid.Background >
+            <ImageBrush ImageSource="Assets/Scorebord.png" />
+        </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
         </Grid.RowDefinitions>
-        <Image Source="Assets/Scorebord.png" Grid.Row="0"></Image>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Padding="10" Grid.Row="2" Grid.Column="1" FontSize="20">Laura</Label>
+        <Label Padding="10" Grid.Row="3" Grid.Column="1" FontSize="20">Petje</Label>
+        <Label Padding="10" Grid.Row="2" Grid.Column="2" FontSize="20">3245</Label>
+        <Label Padding="10" Grid.Row="3" Grid.Column="2" FontSize="20">3246</Label>
     </Grid>
 </UserControl>
