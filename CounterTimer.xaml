@@ -4,9 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MemoryProject"
-             mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="200">
-    <Grid>
-        <TextBox Name="tCounter" HorizontalAlignment="Left" Height="38" Margin="32,31,0,0" TextWrapping="Wrap" Text="00:00:00" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontSize="25"/>
-    </Grid>
+             mc:Ignorable="d" >
+    <TextBox Name="tCounter" Height="38"  TextWrapping="Wrap" Text="00:00:00" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontSize="25" />
 </UserControl>

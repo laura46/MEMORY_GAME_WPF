@@ -5,35 +5,35 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MemoryProject"
       mc:Ignorable="d" 
-      d:DesignHeight="1000" d:DesignWidth="1500"
       Title="GameGrid">
     <Grid Name="mainGrid" >
         <Grid.RowDefinitions>
             <RowDefinition Height="80"></RowDefinition>
             <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
-        <Frame Grid.Row="0" Name="NavbarFrame" ></Frame>
+        <Frame Grid.Row="0" Name="NavbarFrame" NavigationUIVisibility="Hidden"></Frame>
         <Grid Name="playGrid" Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
+                <RowDefinition ></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="400"></ColumnDefinition>
-                <ColumnDefinition Width="auto"></ColumnDefinition>
-                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="320"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="220" ></ColumnDefinition>
             </Grid.ColumnDefinitions>
             
             <Grid Name="scoreGrid" Grid.Row="0" Grid.Column="0" >
                 <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="300" ></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
+                    <RowDefinition ></RowDefinition>
                 </Grid.RowDefinitions>
-                <Frame  Name="ScoreFrame" Grid.Row="0" ></Frame>
-                <Frame Name="TimerFrame" HorizontalAlignment="Center"  Grid.Row="1" Height="80"></Frame>
+                <Frame VerticalAlignment="Top"  Name="ScoreFrame" Grid.Row="0" NavigationUIVisibility="Hidden"></Frame>
+                <Frame VerticalAlignment="Top" Name="TimerFrame" HorizontalAlignment="Center" NavigationUIVisibility="Hidden" Grid.Row="1" ></Frame>
+                <Frame Name="powerupFrame" Grid.Row="2" NavigationUIVisibility="Hidden"></Frame>
             </Grid>
             <Grid Name="GameGridref" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" ></Grid>
-            <Frame x:Name="turnFrame" Grid.Row="0" Grid.Column="2" VerticalAlignment="Top"></Frame>
+            <Frame x:Name="turnFrame" HorizontalAlignment="Left" HorizontalContentAlignment="left" Grid.Row="0" Grid.Column="2" VerticalAlignment="Top" NavigationUIVisibility="Hidden"></Frame>
         </Grid>
 
     </Grid>
