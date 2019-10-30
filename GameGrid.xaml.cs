@@ -29,7 +29,9 @@ namespace MemoryProject
             InitializeGameGrid(gridSize);
             InitializeNavbar();
             InitializeScorebord();
+            InitializePlayerTurn();
             TimerFrame.Content = new CounterTimer();
+            ScoreFrame.Content = new Scorebord(this.grid);
             turnFrame.Content = new PlayerTurn(this.grid);
         }
         private void InitializeGameGrid(GridSizeOptions.GRID_SIZES gridSize) 
@@ -51,11 +53,17 @@ namespace MemoryProject
             GameGridref.RowDefinitions.Clear();
             this.grid = new MemoryGrid(GameGridref, GridSize);
             TimerFrame.Content = new CounterTimer();
-            
+            ScoreFrame.Content = new Scorebord(this.grid);
+            turnFrame.Content = new PlayerTurn(this.grid);
+
         }
         public void InitializeScorebord()
         {   
             ScoreFrame.Content = new Scorebord(this.grid);
+        }
+        public void InitializePlayerTurn()
+        {
+            turnFrame.Content = new PlayerTurn(this.grid);
         }
     }
 }
