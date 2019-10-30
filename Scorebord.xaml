@@ -24,13 +24,9 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Label Padding="10" Grid.Row="2" Grid.Column="1" FontSize="20">Laura</Label>
-        <Label Padding="10" Grid.Row="3" Grid.Column="1" FontSize="20">Petje</Label>
-        <Label Padding="10" Grid.Row="2" Grid.Column="2" FontSize="20">
-            <TextBlock Text="{Binding Path=UpdateScore1}"/>
-        </Label>
-        <Label Padding="10" Grid.Row="3" Grid.Column="2" FontSize="20">
-            <TextBlock Text="{Binding Path=Updatecore2}"/>
-        </Label>
+        <Label Padding="10" Grid.Row="2" Grid.Column="1" FontSize="20" Name="player1">Laura</Label>
+        <Label Padding="10" Grid.Row="3" Grid.Column="1" FontSize="20" Name="player2">Petje</Label>
+        <Label Padding="10" Grid.Row="2" Grid.Column="2" FontSize="20" Name="lblscore1">0</Label>
+        <Label Padding="10" Grid.Row="3" Grid.Column="2" FontSize="20" Name="lblscore2">0</Label>
     </Grid>
 </UserControl>

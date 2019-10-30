@@ -168,13 +168,13 @@ namespace MemoryProject
                 MessageBox.Show("Goed!");
                 if(player1turn == true)
                 {
+                    score1 += 200;
                     UpdateScore(score1, player1turn);
-                    SetPlayerTurn(!player1turn);
                 }
                 if(player1turn == false)
                 {
+                    score2 += 200;
                     UpdateScore(score2, player1turn);
-                    SetPlayerTurn(!player1turn);
                 }
                 
             }
@@ -194,7 +194,6 @@ namespace MemoryProject
         }
         private void UpdateScore(int score, bool isScore1) 
         {
-            score += 200;
 
             if (isScore1) 
             {
