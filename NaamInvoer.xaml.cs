@@ -26,9 +26,10 @@ namespace MemoryProject
             InitializeComponent();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        public void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            String Player1 = Textbox1.Text;
+            String Player2 = Textbox2.Text;
         }
 
         private void GoToSizeOptions(object sender, RoutedEventArgs e)

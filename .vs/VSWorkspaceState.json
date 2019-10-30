@@ -2,6 +2,10 @@
   "ExpandedNodes": [
     ""
   ],
+<<<<<<< Updated upstream
   "SelectedNode": "\\MemoryGrid.cs",
+=======
+  "SelectedNode": "\\MainMenu.xaml.cs",
+>>>>>>> Stashed changes
   "PreviewInSolutionExplorer": false
 }
