@@ -22,33 +22,24 @@ namespace MemoryProject
     public partial class CounterTimer : UserControl
     {
         private int time = 0;
-        private DispatcherTimer Timer;
+        private DateTime _myDateTime;
+
         public CounterTimer()
         {
             InitializeComponent();
-            Timer = new DispatcherTimer();
-            Timer.Interval = new TimeSpan(0, 0, 1);
-            Timer.Tick += TickTock;
-            Timer.Start();
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += TickTock;
+            _myDateTime = DateTime.Now;
+            timer.Start();
         }
 
         private void TickTock(object sender, EventArgs e)
         {
-            if (time > 8)
-            {
-                time++;
-                tCounter.Text = string.Format("00:0{0}:{1}", time / 60, time % 60);
-            }
-            else
-            {
-                time++;
-                tCounter.Text = string.Format("00:0{0}:0{1}", time / 60, time % 60);
-            }
-        }
+            time++;
 
-        private void ResetTimer()
-        {
-            
+            var diff = DateTime.Now.Subtract(_myDateTime);
+            tCounter.Text = diff.ToString(@"hh\:mm\:ss");
         }
     }
 }
