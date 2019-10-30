@@ -23,6 +23,12 @@ namespace MemoryProject
 
         public void Clicked()
         {
+            if (clicked == true)
+            {
+                clicked = false;
+                return;
+            }else 
+
             clicked = true;
         }
 

@@ -23,11 +23,12 @@ namespace MemoryProject
     {
         private int time = 0;
         private DateTime _myDateTime;
+        DispatcherTimer timer;
 
         public CounterTimer()
         {
             InitializeComponent();
-            DispatcherTimer timer = new DispatcherTimer();
+            timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += TickTock;
             _myDateTime = DateTime.Now;
@@ -40,6 +41,11 @@ namespace MemoryProject
 
             var diff = DateTime.Now.Subtract(_myDateTime);
             tCounter.Text = diff.ToString(@"hh\:mm\:ss");
+        }
+        
+        private void TimerReset()
+        {
+            timer.Stop();
         }
     }
 }

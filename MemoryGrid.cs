@@ -36,8 +36,8 @@ namespace MemoryProject
         int score2 = 0;
         public EventHandler<int> OnScore1Update;
         public EventHandler<int> OnScore2Update;
-    
-        
+
+
         public MemoryGrid(Grid grid, GridSizeOptions.GRID_SIZES gridSize)
         {
             Grid = grid;
@@ -45,7 +45,7 @@ namespace MemoryProject
             InitializeGameGrid();
             AddImages();
             ShowCards();
-            
+
         }
 
         //Zet alle kaartjes als Achterkant kaart.
@@ -67,7 +67,7 @@ namespace MemoryProject
             for (int i = 0; i < (int)GridSize; i++)
             {
                 for (int j = 0; j < (int)GridSize; j++)
-                { 
+                {
                     Image image = new Image();
                     image.MouseDown += new MouseButtonEventHandler(CardClick);
                     image.Source = cards[j * (int)GridSize + i].Show();
@@ -92,6 +92,7 @@ namespace MemoryProject
                 image.Source = null;
                 cards[index].Clicked();
 
+
                 if (nrOfClickedCards == 2)
                 {
                     ShowCards();
@@ -111,7 +112,7 @@ namespace MemoryProject
         {
             List<ImageSource> images = new List<ImageSource>();
 
-            for (int i= 0; i < ((int)GridSize * (int)GridSize); i++)
+            for (int i = 0; i < ((int)GridSize * (int)GridSize); i++)
             {
                 //imageNr formule moet per grid anders zijn anders krijgen we niet alle verschillende plaatjes
                 int imageNr = i % ((int)GridSize * (int)GridSize / 2) + 1;
@@ -161,22 +162,27 @@ namespace MemoryProject
                 kaart2String = Regex.Split(kaart2String, @"(;component/)")[2];
             }
 
+            if (kaart1String == "Kaartjes/Achterkant.png")
+            {
+                MessageBox.Show("Je kunt niet twee keer hetzelde kaartje omdraaien!");
+                return;
+            }
+
             if (kaart1String == kaart2String)
             {
                 kaart2.MakeInvisible();
                 kaart1.MakeInvisible();
                 MessageBox.Show("Goed!");
-                if(player1turn == true)
+                if (player1turn == true)
                 {
                     score1 += 200;
                     UpdateScore(score1, player1turn);
                 }
-                if(player1turn == false)
+                if (player1turn == false)
                 {
                     score2 += 200;
                     UpdateScore(score2, player1turn);
                 }
-                
             }
             else
             {
@@ -185,8 +191,10 @@ namespace MemoryProject
                 SetPlayerTurn(!player1turn);
                 MessageBox.Show("Fout!");
             }
-            
         }
+    
+        
+
         private void SetPlayerTurn(bool IsPlayer1Turn) 
         {
             player1turn = IsPlayer1Turn;
