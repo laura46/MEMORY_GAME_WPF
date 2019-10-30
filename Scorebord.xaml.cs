@@ -22,19 +22,19 @@ namespace MemoryProject
     {
         public Scorebord(MemoryGrid currentGrid)
         {
+            this.DataContext = this;
             InitializeComponent();
-
             currentGrid.OnScore1Update += new EventHandler<int>(UpdateScore1);
             currentGrid.OnScore2Update += new EventHandler<int>(UpdateScore2);
         }
 
-        private void UpdateScore1(object sender, int score) 
+        private void UpdateScore1(object sender, int score1) 
         {
-            //hier heb je nu de score1
+            this.DataContext = score1;
         }
-        private void UpdateScore2(object sender, int score) 
+        private void UpdateScore2(object sender, int score2) 
         {
-            //hier heb je nu de score2
+            this.DataContext = score2;
         }
     }
 }
