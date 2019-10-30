@@ -29,11 +29,22 @@ namespace MemoryProject
             InitializeComponent();
         }
 
-        public void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Player1 = Textbox1.Text;
-            Player2 = Textbox2.Text;
+         Player1 = Textbox1.Text;
+
+        
         }
+        private void TextBox_TextChanged2(object sender, TextChangedEventArgs e)
+        {
+           
+
+            Player2 = Textbox2.Text;
+           
+        }
+
+
+
 
         private void GoToSizeOptions(object sender, RoutedEventArgs e)
         {
