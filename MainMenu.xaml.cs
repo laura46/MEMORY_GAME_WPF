@@ -17,7 +17,9 @@ namespace MemoryProject
 {
     public partial class MainMenu : Page
     {
-        public NaamInvoer NaamInvoer { get; }
+        public NaamInvoer NaamInvoer;
+        private string player1Name;
+        private string player2Name;
 
         GridSizeOptions SizeOptions;
         public MainMenu()
@@ -26,9 +28,14 @@ namespace MemoryProject
             InitializeComponent();
             ShowStartButton();
             InitializeGridSizeOptions();
+            InitializeNameInput();
 
+        }
+        private void InitializeNameInput() 
+        {
             this.NaamInvoer = new NaamInvoer();
             this.NaamInvoer.OnGoToSizeOptions += new EventHandler(ShowGridSizeOptions);
+            this.NaamInvoer.OnInputNames += new EventHandler<string>(SetNames);
         }
 
         private void InitializeGridSizeOptions() 
@@ -37,22 +44,26 @@ namespace MemoryProject
             this.SizeOptions.OnGridSizeChosen += new EventHandler<ChooseGridSizeEventArgs>(GoToGameGrid);
         }
 
-        public void ShowsNaamInvoer(object sender, MouseButtonEventArgs e)
+        private void ShowsNaamInvoer(object sender, MouseButtonEventArgs e)
         {
             startFrame.Content = this.NaamInvoer;
         }
 
-        public void ShowGridSizeOptions(object sender, EventArgs e) 
+        private void ShowGridSizeOptions(object sender, EventArgs e) 
         {
             startFrame.Content = this.SizeOptions;
         }
-
-        public void GoToGameGrid(object sender, ChooseGridSizeEventArgs chosenSize) 
+        private void SetNames(object sender, string names)
         {
-            Application.Current.MainWindow.Content = new GameGrid(chosenSize.GridSize);
+            player1Name = names.Split(new char[] { ';' })[0];
+            player2Name = names.Split(new char[] { ';' })[1];
+        }
+        private void GoToGameGrid(object sender, ChooseGridSizeEventArgs chosenSize) 
+        {
+            Application.Current.MainWindow.Content = new GameGrid(chosenSize.GridSize, player1Name, player2Name);
         }
 
-        public void ShowStartButton() 
+        private void ShowStartButton() 
         {
             Image startButton = new Image();
             startButton.Source = new BitmapImage(new Uri("Assets/play.png", UriKind.Relative));

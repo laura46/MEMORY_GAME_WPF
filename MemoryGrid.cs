@@ -29,8 +29,8 @@ namespace MemoryProject
 
         //variabelen voor de score
         bool player1turn = true;
-        string player1Name = "Player 1";
-        string player2Name = "Player 2";
+        public string player1Name;
+        public string player2Name;
         public EventHandler<bool> OnPlayerTurn;
         int score1 = 0;
         int score2 = 0;

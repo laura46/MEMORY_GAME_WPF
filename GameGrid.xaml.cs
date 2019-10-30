@@ -23,16 +23,19 @@ namespace MemoryProject
 
         MemoryGrid grid;
         GridSizeOptions.GRID_SIZES GridSize;
-        public GameGrid(GridSizeOptions.GRID_SIZES gridSize)
+        private string Player1Name;
+        private string Player2Name;
+        public GameGrid(GridSizeOptions.GRID_SIZES gridSize, string player1Name, string player2Name)
         {
             InitializeComponent();
             InitializeGameGrid(gridSize);
             InitializeNavbar();
-            InitializeScorebord();
-            InitializePlayerTurn();
+            InitializeScorebord(player1Name, player2Name);
+            InitializePlayerTurn(player1Name, player2Name);
             TimerFrame.Content = new CounterTimer();
-            ScoreFrame.Content = new Scorebord(this.grid);
-            turnFrame.Content = new PlayerTurn(this.grid);
+            Player1Name = player1Name;
+            Player2Name = player2Name;
+
         }
         private void InitializeGameGrid(GridSizeOptions.GRID_SIZES gridSize) 
         {
@@ -53,17 +56,17 @@ namespace MemoryProject
             GameGridref.RowDefinitions.Clear();
             this.grid = new MemoryGrid(GameGridref, GridSize);
             TimerFrame.Content = new CounterTimer();
-            ScoreFrame.Content = new Scorebord(this.grid);
-            turnFrame.Content = new PlayerTurn(this.grid);
+            ScoreFrame.Content = new Scorebord(this.grid, this.Player1Name, this.Player2Name);
+            turnFrame.Content = new PlayerTurn(this.grid, this.Player1Name, this.Player2Name);
 
         }
-        public void InitializeScorebord()
+        public void InitializeScorebord(string player1Name, string player2Name)
         {   
-            ScoreFrame.Content = new Scorebord(this.grid);
+            ScoreFrame.Content = new Scorebord(this.grid, player1Name, player2Name);
         }
-        public void InitializePlayerTurn()
+        public void InitializePlayerTurn(string player1Name, string player2Name)
         {
-            turnFrame.Content = new PlayerTurn(this.grid);
+            turnFrame.Content = new PlayerTurn(this.grid, player1Name, player2Name);
         }
     }
 }

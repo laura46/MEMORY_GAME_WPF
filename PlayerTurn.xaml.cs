@@ -20,14 +20,22 @@ namespace MemoryProject
     /// </summary>
     public partial class PlayerTurn : UserControl
     {
-        public PlayerTurn(MemoryGrid currentGrid)
+        private string Player1Name;
+        private string Player2Name;
+        public PlayerTurn(MemoryGrid currentGrid, string player1Name, string player2Name)
         {
             InitializeComponent();
+            SetPlayerNames(player1Name, player2Name);
             currentGrid.OnPlayerTurn += new EventHandler<bool>(UpdateTurnLabel);
+        }
+        private void SetPlayerNames(string player1Name, string player2Name) 
+        {
+            this.Player1Name = player1Name;
+            this.Player2Name = player2Name;
         }
         private void UpdateTurnLabel(object sender,bool player1) 
         {
-            lblPlayer.Content = (player1) ? "Player 1" : "Player 2";
+            lblPlayer.Content = (player1) ? Player1Name : Player2Name;
         }
     }
 }
