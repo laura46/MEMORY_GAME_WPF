@@ -26,6 +26,7 @@ namespace MemoryProject
         {
             InitializeComponent();
             SetPlayerNames(player1Name, player2Name);
+            lblPlayer.Content = player1Name;
             currentGrid.OnPlayerTurn += new EventHandler<bool>(UpdateTurnLabel);
         }
         private void SetPlayerNames(string player1Name, string player2Name) 

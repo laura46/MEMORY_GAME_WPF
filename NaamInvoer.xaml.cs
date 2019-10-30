@@ -30,7 +30,7 @@ namespace MemoryProject
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
+        { 
          Player1 = Textbox1.Text;
 
         
