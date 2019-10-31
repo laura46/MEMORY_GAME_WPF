@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace MemoryProject
 {
@@ -35,6 +36,7 @@ namespace MemoryProject
             TimerFrame.Content = new CounterTimer();
             Player1Name = player1Name;
             Player2Name = player2Name;
+            grid.OnPairMade += new EventHandler<string>(ShowPopup);
 
         }
         private void InitializeGameGrid(GridSizeOptions.GRID_SIZES gridSize) 
@@ -67,6 +69,77 @@ namespace MemoryProject
         public void InitializePlayerTurn(string player1Name, string player2Name)
         {
             turnFrame.Content = new PlayerTurn(this.grid, player1Name, player2Name);
+        }
+
+        public void ShowPopup(object sender, string uitkomst)
+        {
+            if(uitkomst == "fout")
+            {
+                foutpop.IsOpen = true;
+
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromSeconds(1);
+                timer.Start();
+                timer.Tick += delegate (object senders, EventArgs e)
+                {
+                    ((DispatcherTimer)timer).Stop();
+                    if (foutpop.IsOpen)
+                    {
+                        foutpop.IsOpen = false;
+                    }
+                };
+            }
+
+            if (uitkomst == "goed")
+            {
+                goedpop.IsOpen = true;
+
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromSeconds(1);
+                timer.Start();
+                timer.Tick += delegate (object senders, EventArgs e)
+                {
+                    ((DispatcherTimer)timer).Stop();
+                    if (goedpop.IsOpen)
+                    {
+                        goedpop.IsOpen = false;
+                    }
+                };
+            }
+
+            if (uitkomst == "dubbelKlik")
+            {
+                dubbelKlik.IsOpen = true;
+
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromSeconds(2);
+                timer.Start();
+                timer.Tick += delegate (object senders, EventArgs e)
+                {
+                    ((DispatcherTimer)timer).Stop();
+                    if (dubbelKlik.IsOpen)
+                    {
+                        dubbelKlik.IsOpen = false;
+                    }
+                };
+            }
+
+            if (uitkomst == "alGeklikt")
+            {
+                alGeklikt.IsOpen = true;
+
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromSeconds(1);
+                timer.Start();
+                timer.Tick += delegate (object senders, EventArgs e)
+                {
+                    ((DispatcherTimer)timer).Stop();
+                    if (alGeklikt.IsOpen)
+                    {
+                        alGeklikt.IsOpen = false;
+                    }
+                };
+            }
         }
     }
 }
