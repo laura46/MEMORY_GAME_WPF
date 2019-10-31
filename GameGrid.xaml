@@ -35,6 +35,25 @@
             <Grid Name="GameGridref" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" ></Grid>
             <Frame x:Name="turnFrame" HorizontalAlignment="Left" HorizontalContentAlignment="left" Grid.Row="0" Grid.Column="2" VerticalAlignment="Top" NavigationUIVisibility="Hidden"></Frame>
         </Grid>
-
+        <Popup Placement="Center" Name="foutpop" Grid.ColumnSpan="2">
+            <TextBlock Name="Fout" Background="Orange" Width="800" TextAlignment="Center" FontSize="25">
+                Fout!
+            </TextBlock>
+        </Popup>
+        <Popup Placement="Center" Name="goedpop" Grid.ColumnSpan="2">
+            <TextBlock Name="Goed" Background="ForestGreen" Width="800" TextAlignment="Center" FontSize="25">
+                Goed!
+            </TextBlock>
+        </Popup>
+        <Popup Placement="Center" Name="dubbelKlik" Grid.ColumnSpan="2">
+            <TextBlock Background="Tomato" Width="800" TextAlignment="Center" FontSize="25">
+                Je kunt niet twee keer op dezelfde kaart klikken!
+            </TextBlock>
+        </Popup>
+        <Popup Placement="Center" Name="alGeklikt" Grid.ColumnSpan="2">
+            <TextBlock Background="Tomato" Width="800" TextAlignment="Center" FontSize="25">
+                Deze kaart is al omgedraaid!
+            </TextBlock>
+        </Popup>
     </Grid>
 </Page>

@@ -7,20 +7,23 @@
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="500"
              >
-    <Grid >
+    <Grid HorizontalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid x:Name="nameGrid">
+        <Grid x:Name="nameGrid" >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition ></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="250" ></ColumnDefinition>
+                <ColumnDefinition Width="250"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBox  Name="Textbox1" Grid.Column="0" TextAlignment="Center" TextChanged="TextBox_TextChanged" Width="140" Height="40" FontSize="16" Padding="5" Text="Speler 1"/>
-            <TextBox Name="Textbox2" Grid.Column="1" TextAlignment="Center" TextChanged="TextBox_TextChanged2" Width="140" Height="40" FontSize="16" Padding="5" Text="Speler 2"/>
+            <Label Name="speler1" Grid.Column="0" HorizontalAlignment="Center" Padding="-15" Margin="-25" FontSize="25">Speler 1</Label>
+            <Label Name="speler2" Grid.Column="1" HorizontalAlignment="Center" Padding="-15" Margin="-25" FontSize="25">Speler 2</Label>
+            <TextBox   Name="Textbox1" Grid.Column="0" TextAlignment="Center" TextChanged="TextBox_TextChanged" Width="140" Height="40" FontSize="16" Padding="5" Margin="0"/>
+            <TextBox  Name="Textbox2" Grid.Column="1" TextAlignment="Center" TextChanged="TextBox_TextChanged2" Width="140" Height="40" FontSize="16" Padding="5" Margin="0"/>
         
         </Grid>
-        <Button Grid.Row="1" Width="100" Height="40" Click="GoToSizeOptions">Start</Button>
+        <Image MouseDown="GoToSizeOptions" Source="Assets/Start.png" Grid.Row="1" Height="90" Cursor="Hand"></Image>
+        
     </Grid>
 </UserControl>

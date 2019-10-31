@@ -42,10 +42,5 @@ namespace MemoryProject
             var diff = DateTime.Now.Subtract(_myDateTime);
             tCounter.Text = diff.ToString(@"hh\:mm\:ss");
         }
-        
-        private void TimerReset()
-        {
-            timer.Stop();
-        }
     }
 }

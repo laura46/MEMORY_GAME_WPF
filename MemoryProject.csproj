@@ -75,6 +75,9 @@
     <Compile Include="Scorebord.xaml.cs">
       <DependentUpon>Scorebord.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TimedPopup.xaml.cs">
+      <DependentUpon>TimedPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TopNavBar.xaml.cs">
       <DependentUpon>TopNavBar.xaml</DependentUpon>
     </Compile>
@@ -126,6 +129,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Scorebord.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimedPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -215,6 +222,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Beurt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Start.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

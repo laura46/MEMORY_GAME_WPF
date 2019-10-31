@@ -23,6 +23,8 @@ namespace MemoryProject
         //Class voor kaarten
         private List<Card> cards = new List<Card>();
 
+
+
         //Variabelen voor CardClick
         private int nrOfClickedCards = 0;
         private int previousCard;
@@ -40,6 +42,7 @@ namespace MemoryProject
         public int AmountOfWins2;
         public EventHandler<Dictionary<string, int>> OnPowerUpUpdate;
 
+        public EventHandler<string> OnPairMade;
 
 
         public MemoryGrid(Grid grid, GridSizeOptions.GRID_SIZES gridSize)
@@ -168,7 +171,7 @@ namespace MemoryProject
 
             if (kaart1String == "Kaartjes/Achterkant.png")
             {
-                MessageBox.Show("Je kunt niet twee keer hetzelde kaartje omdraaien!");
+                OnPairMade?.Invoke(this, "dubbelKlik");
                 return;
             }
             Dictionary<string, int> powerup = new Dictionary<string, int>();
@@ -176,8 +179,7 @@ namespace MemoryProject
             {
                 kaart2.MakeInvisible();
                 kaart1.MakeInvisible();
-                MessageBox.Show("Goed!");
-
+                OnPairMade?.Invoke(this, "goed");
                 if (player1turn == true)
                 {
                     score1 += 200;
@@ -203,10 +205,11 @@ namespace MemoryProject
                 kaart2.FlipToBack();
                 kaart1.FlipToBack();
                 SetPlayerTurn(!player1turn);
+
+                OnPairMade?.Invoke(this, "fout");
                 AmountOfWins1 = 0;
                 AmountOfWins2 = 0;
-                
-                MessageBox.Show("Fout!");
+     
             }
         }
     
