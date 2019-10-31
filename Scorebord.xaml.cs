@@ -28,6 +28,11 @@ namespace MemoryProject
             currentGrid.OnScore2Update += new EventHandler<int>(UpdateScore2);
         }
 
+        public int GetScore(bool isScore1) 
+        {
+            return (isScore1) ? (int)lblscore1.Content : (int)lblscore2.Content;
+        }
+
         private void SetPlayerNames(string player1Name, string player2Name)
         {
             player1.Content = player1Name;

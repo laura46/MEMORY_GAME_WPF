@@ -25,7 +25,7 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Label Padding="10" Grid.Row="2" Grid.Column="1" FontSize="13" Name="player1"></Label>
-        <Label Padding="10" Grid.Row="3" Grid.Column="1" FontSize="13" Name="player2">Petje</Label>
+        <Label Padding="10" Grid.Row="3" Grid.Column="1" FontSize="13" Name="player2"></Label>
         <Label Padding="10" Grid.Row="2" Grid.Column="2" FontSize="13" Name="lblscore1">0</Label>
         <Label Padding="10" Grid.Row="3" Grid.Column="2" FontSize="13" Name="lblscore2">0</Label>
     </Grid>

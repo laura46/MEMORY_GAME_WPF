@@ -25,13 +25,25 @@ namespace MemoryProject
             InitializeComponent();
             currentGrid.OnPowerUpUpdate += new EventHandler<Dictionary<string, int>>(HandlePowerUp);
 
-
-            //lbl1x2.Content = "hoi";
-            //lbl1x4.Content = "";
-            //lbl1x6.Content = "";
-            //lbl2x2.Content = "";
-            //lbl2x4.Content = "";
-            //lbl2x6.Content = "";
+        }
+        public Dictionary<string, int> GetPowerups(bool isPlayer1) 
+        {
+            
+            object[] player1Labels = { lbl1x2.Content, lbl1x4.Content, lbl1x6.Content };
+            object[] player2Labels = { lbl2x2.Content, lbl2x4.Content, lbl2x6.Content };
+            return (isPlayer1) ? GetLabelValues(player1Labels, 1) : GetLabelValues(player2Labels, 2);
+        }
+        private Dictionary<string, int> GetLabelValues(object[] labels, int player) 
+        {
+            Dictionary<string, int> powerups = new Dictionary<string, int>();
+            for (int i = 0; i < labels.Length; i++)
+            {
+                if (labels[i] != null)
+                {
+                    powerups.Add("p" + player + (i + i + 2), (int)labels[i]);
+                }
+            }
+            return powerups;
         }
 
         private void HandlePowerUp(object sender, Dictionary<string, int> powerUp)
@@ -44,16 +56,6 @@ namespace MemoryProject
                 switch (value)
                 {
                     case 2:
-                        //var currentlabelvalue = lbl1x2.Content;
-                        //lbl1x2.Content = (lbl1x2.Content);
-                        //if (lbl1x2.Content == null)
-                        //{
-                        //    lbl1x2.Content = 1;
-                        //}
-                        //else
-                        //{
-                        //    lbl1x2.Content = (int)currentlabelvalue + 1;
-                        //}
                         SetLabelContent(lbl1x2);
                         break;
                     case 4:

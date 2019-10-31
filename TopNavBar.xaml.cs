@@ -21,6 +21,7 @@ namespace MemoryProject
     public partial class TopNavBar : UserControl
     {
         public EventHandler OnResetGame;
+        public EventHandler OnSaveGame;
         public TopNavBar()
         {
             InitializeComponent();
@@ -32,7 +33,7 @@ namespace MemoryProject
         }
         private void SaveGame(object sender, MouseButtonEventArgs e)
         {
-
+            OnSaveGame?.Invoke(this, EventArgs.Empty);
         }
         private void LoadGame(object sender, MouseButtonEventArgs e)
         {

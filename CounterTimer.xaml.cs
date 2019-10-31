@@ -24,6 +24,7 @@ namespace MemoryProject
         private int time = 0;
         private DateTime _myDateTime;
         DispatcherTimer timer;
+        private TimeSpan Timed;
 
         public CounterTimer()
         {
@@ -34,6 +35,10 @@ namespace MemoryProject
             _myDateTime = DateTime.Now;
             timer.Start();
         }
+        public TimeSpan GetTimerTime() 
+        {
+            return this.Timed;
+        }
 
         private void TickTock(object sender, EventArgs e)
         {
@@ -41,6 +46,8 @@ namespace MemoryProject
 
             var diff = DateTime.Now.Subtract(_myDateTime);
             tCounter.Text = diff.ToString(@"hh\:mm\:ss");
+
+            this.Timed = diff;
         }
     }
 }
