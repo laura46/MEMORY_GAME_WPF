@@ -35,6 +35,7 @@ namespace MemoryProject
             TimerFrame.Content = new CounterTimer();
             Player1Name = player1Name;
             Player2Name = player2Name;
+            powerupFrame.Content = new PowerUp(this.grid);
 
         }
         private void InitializeGameGrid(GridSizeOptions.GRID_SIZES gridSize) 

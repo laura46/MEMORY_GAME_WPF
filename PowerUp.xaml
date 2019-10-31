@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="MemoryProject.PowerUp"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MemoryProject"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="1">Speler 1</Label>
+        <Label Grid.Row="0" Grid.Column="2">Speler 2</Label> 
+
+        <Label Grid.Row="1" Grid.Column="0">2x</Label>
+        <Label Grid.Row="2" Grid.Column="0">4x</Label>
+        <Label Grid.Row="3" Grid.Column="0">6x</Label>
+
+        <Label Grid.Row="1" Grid.Column="1" Name="lbl1x2"></Label>
+        <Label Grid.Row="2" Grid.Column="1" Name="lbl1x4"></Label>
+        <Label Grid.Row="3" Grid.Column="1" Name="lbl1x6"></Label>
+        <Label Grid.Row="1" Grid.Column="2" Name="lbl2x2"></Label>
+        <Label Grid.Row="2" Grid.Column="2" Name="lbl2x4"></Label>
+        <Label Grid.Row="3" Grid.Column="2" Name="lbl2x6"></Label>
+        
+    </Grid>
+</UserControl>

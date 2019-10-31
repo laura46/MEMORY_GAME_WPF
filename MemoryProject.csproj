@@ -69,6 +69,9 @@
     <Compile Include="PlayerTurn.xaml.cs">
       <DependentUpon>PlayerTurn.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PowerUp.xaml.cs">
+      <DependentUpon>PowerUp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Scorebord.xaml.cs">
       <DependentUpon>Scorebord.xaml</DependentUpon>
     </Compile>
@@ -115,6 +118,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PlayerTurn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PowerUp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

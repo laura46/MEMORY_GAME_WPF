@@ -36,6 +36,10 @@ namespace MemoryProject
         int score2 = 0;
         public EventHandler<int> OnScore1Update;
         public EventHandler<int> OnScore2Update;
+        public int AmountOfWins1;
+        public int AmountOfWins2;
+        public EventHandler<Dictionary<string, int>> OnPowerUpUpdate;
+
 
 
         public MemoryGrid(Grid grid, GridSizeOptions.GRID_SIZES gridSize)
@@ -120,14 +124,14 @@ namespace MemoryProject
                 images.Add(source);
             }
             //shuffle!
-            Random random = new Random();
-            for (int i = 0; i < ((int)GridSize * (int)GridSize); i++)
-            {
-                int r = random.Next(0, ((int)GridSize * (int)GridSize));
-                ImageSource source = images[r];
-                images[r] = images[i];
-                images[i] = source;
-            }
+            //Random random = new Random();
+            //for (int i = 0; i < ((int)GridSize * (int)GridSize); i++)
+            //{
+            //    int r = random.Next(0, ((int)GridSize * (int)GridSize));
+            //    ImageSource source = images[r];
+            //    images[r] = images[i];
+            //    images[i] = source;
+            //}
             return images;
         }
 
@@ -167,28 +171,41 @@ namespace MemoryProject
                 MessageBox.Show("Je kunt niet twee keer hetzelde kaartje omdraaien!");
                 return;
             }
-
+            Dictionary<string, int> powerup = new Dictionary<string, int>();
             if (kaart1String == kaart2String)
             {
                 kaart2.MakeInvisible();
                 kaart1.MakeInvisible();
                 MessageBox.Show("Goed!");
+
                 if (player1turn == true)
                 {
                     score1 += 200;
                     UpdateScore(score1, player1turn);
+                    AmountOfWins1 += 1;
+                    
+                    powerup.Add("player1", AmountOfWins1);
+                    OnPowerUpUpdate?.Invoke(this, powerup);
                 }
                 if (player1turn == false)
                 {
                     score2 += 200;
                     UpdateScore(score2, player1turn);
+                    AmountOfWins2 += 1;
+
+                    powerup.Add("player2", AmountOfWins2);
+                    OnPowerUpUpdate?.Invoke(this, powerup);
                 }
+                powerup = new Dictionary<string, int>();
             }
             else
             {
                 kaart2.FlipToBack();
                 kaart1.FlipToBack();
                 SetPlayerTurn(!player1turn);
+                AmountOfWins1 = 0;
+                AmountOfWins2 = 0;
+                
                 MessageBox.Show("Fout!");
             }
         }
