@@ -9,6 +9,6 @@
         <Grid.Background >
             <ImageBrush ImageSource="Assets/Beurt.png"></ImageBrush>
         </Grid.Background>
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="20" Name="lblPlayer"></Label>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="20" Name="turnFrame"></Label>
     </Grid>
 </UserControl>
