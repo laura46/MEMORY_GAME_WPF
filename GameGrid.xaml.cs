@@ -36,9 +36,8 @@ namespace MemoryProject
             TimerFrame.Content = new CounterTimer();
             Player1Name = player1Name;
             Player2Name = player2Name;
-
-
-               grid.OnPairMade += new EventHandler<string>(ShowPopup);
+            powerupFrame.Content = new PowerUp(this.grid);
+            grid.OnPairMade += new EventHandler<string>(ShowPopup);
 
         }
         private void InitializeGameGrid(GridSizeOptions.GRID_SIZES gridSize) 
