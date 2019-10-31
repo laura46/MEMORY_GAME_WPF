@@ -17,8 +17,10 @@
                 <ColumnDefinition ></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBox  Name="Textbox1" Grid.Column="0" TextAlignment="Center" TextChanged="TextBox_TextChanged" Width="140" Height="40" FontSize="16" Padding="5" Text="Speler 1"/>
-            <TextBox Name="Textbox2" Grid.Column="1" TextAlignment="Center" TextChanged="TextBox_TextChanged2" Width="140" Height="40" FontSize="16" Padding="5" Text="Speler 2"/>
+            <Label Name="speler1" Grid.Column="0" HorizontalAlignment="Center" Padding="-15" Margin="-25" FontSize="25">Speler 1</Label>
+            <Label Name="speler2" Grid.Column="1" HorizontalAlignment="Center" Padding="-15" Margin="-25" FontSize="25">Speler 2</Label>
+            <TextBox  Name="Textbox1" Grid.Column="0" TextAlignment="Center" TextChanged="TextBox_TextChanged" Width="140" Height="40" FontSize="16" Padding="5"/>
+            <TextBox Name="Textbox2" Grid.Column="1" TextAlignment="Center" TextChanged="TextBox_TextChanged2" Width="140" Height="40" FontSize="16" Padding="5"/>
         
         </Grid>
         <Button Grid.Row="1" Width="100" Height="40" Click="GoToSizeOptions">Start</Button>
