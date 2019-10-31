@@ -36,7 +36,9 @@ namespace MemoryProject
             TimerFrame.Content = new CounterTimer();
             Player1Name = player1Name;
             Player2Name = player2Name;
-            grid.OnPairMade += new EventHandler<string>(ShowPopup);
+
+
+               grid.OnPairMade += new EventHandler<string>(ShowPopup);
 
         }
         private void InitializeGameGrid(GridSizeOptions.GRID_SIZES gridSize) 
@@ -129,7 +131,7 @@ namespace MemoryProject
                 alGeklikt.IsOpen = true;
 
                 DispatcherTimer timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromSeconds(1);
+                timer.Interval = TimeSpan.FromSeconds(2);
                 timer.Start();
                 timer.Tick += delegate (object senders, EventArgs e)
                 {
@@ -143,3 +145,4 @@ namespace MemoryProject
         }
     }
 }
+

@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Diagnostics;
 using System.Timers;
+using System.Windows.Threading;
 
 namespace MemoryProject
 {
@@ -24,10 +25,10 @@ namespace MemoryProject
         private List<Card> cards = new List<Card>();
 
 
-
         //Variabelen voor CardClick
         private int nrOfClickedCards = 0;
         private int previousCard;
+        private bool turned;
 
         //variabelen voor de score
         bool player1turn = true;
@@ -40,6 +41,8 @@ namespace MemoryProject
         public EventHandler<int> OnScore2Update;
 
         public EventHandler<string> OnPairMade;
+        DispatcherTimer timer = new DispatcherTimer();
+        int time = 0;
 
 
         public MemoryGrid(Grid grid, GridSizeOptions.GRID_SIZES gridSize)
@@ -106,9 +109,27 @@ namespace MemoryProject
                     nrOfClickedCards = 0;
                 }
                 else
+                {
                     previousCard = index;
+                }
+
+                
                 ShowCards();
             }
+        }
+        private void Timeout(Card kaart1, Card kaart2)
+        {
+           // System.Threading.Thread.Sleep(2000);
+
+            //timer = new DispatcherTimer();
+            //timer.Interval = TimeSpan.FromSeconds(0);
+            //timer.Start();
+            //timer.Tick += delegate (object senders, EventArgs e)
+            //{
+            //   FlipBack(kaart1, kaart2);
+            //};
+            
+            //FlipBack(kaart1, kaart2);
         }
 
         //Maakt lijst met voorkanten aan.
@@ -190,15 +211,20 @@ namespace MemoryProject
             }
             else
             {
-                kaart2.FlipToBack();
-                kaart1.FlipToBack();
-                SetPlayerTurn(!player1turn);
-
                 OnPairMade?.Invoke(this, "fout");
+                FlipBack(kaart1, kaart2);
+
             }
         }
-    
-        
+
+        private void FlipBack(Card kaart1, Card kaart2)
+        {
+
+            kaart2.FlipToBack();
+            kaart1.FlipToBack();
+            SetPlayerTurn(!player1turn);
+        }
+
 
         private void SetPlayerTurn(bool IsPlayer1Turn) 
         {
