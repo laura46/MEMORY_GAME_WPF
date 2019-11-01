@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:MemoryProject"
       mc:Ignorable="d" 
       Title="GameGrid">
-    <Grid Name="mainGrid" >
+    <Grid Background="#75ccdd" Width="auto" Height="auto" Name="mainGrid" >
         <Grid.RowDefinitions>
             <RowDefinition Height="80"></RowDefinition>
             <RowDefinition ></RowDefinition>

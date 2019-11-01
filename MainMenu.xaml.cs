@@ -18,6 +18,7 @@ namespace MemoryProject
 {
     public partial class MainMenu : Page
     {
+        public EventHandler OnGoToHighscores;
         public NaamInvoer NaamInvoer;
         public LoadGame loadGame;
         private Game newGame;
@@ -25,51 +26,53 @@ namespace MemoryProject
         GridSizeOptions SizeOptions;
         public MainMenu()
         {
+            
             InitializeComponent();
-            InitializeGame();    
+            InitializeGame();
             ShowStartButton();
             InitializeGridSizeOptions();
             InitializeNameInput();
             InitializeLoadGame();
         }
-        private void InitializeGame() 
+        private void InitializeGame()
         {
             this.newGame = new Game();
             this.newGame.Player1 = new Player();
             this.newGame.Player2 = new Player();
             this.newGame.Grid = new Models.Grid();
         }
-        private void InitializeLoadGame() 
+        private void InitializeLoadGame()
         {
             loadGame = new LoadGame();
             loadGame.OnLoadGame += new EventHandler<Game>(LoadGame);
         }
-        private void LoadGame(object sender, Game game) 
+        private void LoadGame(object sender, Game game)
         {
             Application.Current.MainWindow.Content = new GameGrid(game);
         }
-        private void InitializeNameInput() 
+        private void InitializeNameInput()
         {
             this.NaamInvoer = new NaamInvoer();
             this.NaamInvoer.OnGoToSizeOptions += new EventHandler(ShowGridSizeOptions);
             this.NaamInvoer.OnInputNames += new EventHandler<string>(SetNames);
         }
 
-        private void InitializeGridSizeOptions() 
+        private void InitializeGridSizeOptions()
         {
             this.SizeOptions = new GridSizeOptions();
             this.SizeOptions.OnGridSizeChosen += new EventHandler<ChooseGridSizeEventArgs>(GoToGameGrid);
         }
 
+
         private void ShowsNaamInvoer(object sender, MouseButtonEventArgs e)
         {
             startFrame.Content = this.NaamInvoer;
         }
-        public void ShowSavedGames(object sender, MouseButtonEventArgs e) 
+        public void ShowSavedGames(object sender, MouseButtonEventArgs e)
         {
             Application.Current.MainWindow.Content = this.loadGame;
         }
-        private void ShowGridSizeOptions(object sender, EventArgs e) 
+        private void ShowGridSizeOptions(object sender, EventArgs e)
         {
             startFrame.Content = this.SizeOptions;
         }
@@ -78,13 +81,13 @@ namespace MemoryProject
             this.newGame.Player1.Name = names.Split(new char[] { ';' })[0];
             this.newGame.Player2.Name = names.Split(new char[] { ';' })[1];
         }
-        private void GoToGameGrid(object sender, ChooseGridSizeEventArgs chosenSize) 
+        private void GoToGameGrid(object sender, ChooseGridSizeEventArgs chosenSize)
         {
             this.newGame.Grid.GridSize = chosenSize.GridSize;
             Application.Current.MainWindow.Content = new GameGrid(this.newGame);
         }
 
-        private void ShowStartButton() 
+        private void ShowStartButton()
         {
             Image startButton = new Image
             {
@@ -95,5 +98,12 @@ namespace MemoryProject
 
             startFrame.Content = startButton;
         }
+        private void GoToHighscores(object sender, MouseButtonEventArgs e)
+        {
+            Application.Current.MainWindow.Content = new Highscores();
+
+
+        }
+
     }
 }

@@ -19,6 +19,6 @@
         <Image Source="Assets/logo.png" Grid.Row="0" Margin="20" ></Image>
         <Frame Name="startFrame" Grid.Row="1" Height="140" NavigationUIVisibility="Hidden"></Frame>
         <Image MouseDown="ShowSavedGames" Source="Assets/safe.png" Grid.Row="2" Cursor="Hand" Height="140"></Image>
-        <Image Source="Assets/highscore.png" Grid.Row="3" Cursor="Hand" Height="140"></Image>
+        <Image MouseDown="GoToHighscores" Source="Assets/highscore.png" Grid.Row="3" Cursor="Hand" Height="140"></Image>
     </Grid>
 </Page>

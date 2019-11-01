@@ -34,6 +34,7 @@ namespace MemoryProject
         {
             InitializeComponent();
             InitializeSavedGames();
+            navbarFrame.Content = new MenuNavbar();
         }
         private void InitializeSavedGames() 
         {

@@ -63,13 +63,18 @@
     <Compile Include="CounterTimer.xaml.cs">
       <DependentUpon>CounterTimer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Highscores.xaml.cs">
+      <DependentUpon>Highscores.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoadGame.xaml.cs">
       <DependentUpon>LoadGame.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MessageBoxEx.cs" />
+    <Compile Include="MenuNavbar.xaml.cs">
+      <DependentUpon>MenuNavbar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Grid.cs" />
     <Compile Include="Models\Player.cs" />
@@ -103,6 +108,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Highscores.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoadGame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -127,6 +136,10 @@
     </Compile>
     <Compile Include="MemoryGrid.cs" />
     <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MenuNavbar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
