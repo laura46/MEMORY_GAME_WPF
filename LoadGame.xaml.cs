@@ -78,6 +78,7 @@ namespace MemoryProject
                     var fileContent = File.ReadAllText(path + file.Name);
                     Game gameToLoad = JsonConvert.DeserializeObject<Game>(fileContent);
                     OnLoadGame?.Invoke(this, gameToLoad);
+                    return;
                 }
             }
         }

@@ -45,7 +45,7 @@ namespace MemoryProject
         }
         private void InitializeTimer() 
         {
-            this.Timer = new CounterTimer();
+            this.Timer = new CounterTimer(this.currentGame);
             TimerFrame.Content = this.Timer;
         }
         private void InitializePowerups() 
@@ -85,7 +85,7 @@ namespace MemoryProject
             GameGridref.ColumnDefinitions.Clear();
             GameGridref.RowDefinitions.Clear();
             this.grid = new MemoryGrid(GameGridref, currentGame.Grid.GridSize);
-            TimerFrame.Content = new CounterTimer();
+            TimerFrame.Content = new CounterTimer(currentGame);
             ScoreFrame.Content = new Scorebord(this.grid, currentGame);
             turnFrame.Content = new PlayerTurn(this.grid, currentGame.Player1.Name, currentGame.Player2.Name);
 

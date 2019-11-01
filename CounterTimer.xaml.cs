@@ -29,26 +29,26 @@ namespace MemoryProject
 
         Game loadedGame;
 
-        public CounterTimer()
+        public CounterTimer(Game loadGame)
         {
             InitializeComponent();
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += TickTock;
-            _myDateTime = DateTime.Now;
-            timer.Start();
-        }
-        public CounterTimer(Game loadGame) 
-        {
             this.loadedGame = loadGame;
-            InitializeComponent();
+
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += SetTimerOfLoadedGame;
-            
+            if (loadGame.Grid.Timer != null)
+            {
+                timer.Tick += SetTimerOfLoadedGame;
+            } else 
+            {
+                timer.Tick += TickTock;
+            }
             _myDateTime = DateTime.Now;
             timer.Start();
         }
+      
+            
+
         public TimeSpan GetTimerTime() 
         {
             return this.Timed;
