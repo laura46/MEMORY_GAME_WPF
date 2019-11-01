@@ -38,6 +38,10 @@ namespace MemoryProject
         private void InitializeSavedGames() 
         {
             storageDirectory = new DirectoryInfo(path);
+            if (!storageDirectory.Exists)
+            {
+                Directory.CreateDirectory(path);
+            }
             int counter = 0;
             foreach (var file in storageDirectory.GetFiles("*.txt"))
             {
