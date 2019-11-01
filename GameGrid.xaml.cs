@@ -1,20 +1,10 @@
 ﻿using MemoryProject.Models;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Controls.Primitives;
 using System.Windows.Threading;
 
 namespace MemoryProject
@@ -86,7 +76,6 @@ namespace MemoryProject
             File.WriteAllText(@"Storage\Finish\"+ Guid.NewGuid() +".txt", json);
 
             Application.Current.MainWindow.Content = new EndScreen(currentGame.Player1, currentGame.Player2, Timer.GetTimerTime());
-            File.WriteAllText(@"Storage\" + Guid.NewGuid() + ".txt", json);
         }
         private void SaveGame(object sender, EventArgs e)
         {
@@ -126,71 +115,40 @@ namespace MemoryProject
         {
             if(uitkomst == "fout")
             {
-                foutpop.IsOpen = true;
-
-                DispatcherTimer timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromSeconds(1);
-                timer.Start();
-                timer.Tick += delegate (object senders, EventArgs e)
-                {
-                    ((DispatcherTimer)timer).Stop();
-                    if (foutpop.IsOpen)
-                    {
-                        foutpop.IsOpen = false;
-                    }
-                };
+                ShowPopup(foutpop);
             }
 
             if (uitkomst == "goed")
             {
-                goedpop.IsOpen = true;
-
-                DispatcherTimer timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromSeconds(1);
-                timer.Start();
-                timer.Tick += delegate (object senders, EventArgs e)
-                {
-                    ((DispatcherTimer)timer).Stop();
-                    if (goedpop.IsOpen)
-                    {
-                        goedpop.IsOpen = false;
-                    }
-                };
+                ShowPopup(goedpop);
             }
 
             if (uitkomst == "dubbelKlik")
             {
-                dubbelKlik.IsOpen = true;
-
-                DispatcherTimer timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromSeconds(2);
-                timer.Start();
-                timer.Tick += delegate (object senders, EventArgs e)
-                {
-                    ((DispatcherTimer)timer).Stop();
-                    if (dubbelKlik.IsOpen)
-                    {
-                        dubbelKlik.IsOpen = false;
-                    }
-                };
+                ShowPopup(dubbelKlik);
             }
 
             if (uitkomst == "alGeklikt")
             {
-                alGeklikt.IsOpen = true;
-
-                DispatcherTimer timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromSeconds(2);
-                timer.Start();
-                timer.Tick += delegate (object senders, EventArgs e)
-                {
-                    ((DispatcherTimer)timer).Stop();
-                    if (alGeklikt.IsOpen)
-                    {
-                        alGeklikt.IsOpen = false;
-                    }
-                };
+                ShowPopup(alGeklikt);
             }
+        }
+        private void ShowPopup(object sender)
+        {
+            Popup popup = (Popup)sender;
+            popup.IsOpen = true;
+
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(2);
+            timer.Start();
+            timer.Tick += delegate (object senders, EventArgs e)
+            {
+                ((DispatcherTimer)timer).Stop();
+                if (popup.IsOpen)
+                {
+                    popup.IsOpen = false;
+                }
+            };
         }
     }
 }

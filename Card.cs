@@ -14,29 +14,29 @@ namespace MemoryProject
         private ImageSource front, back;
         private bool visible, correct;
         public bool clicked;
-        public EventHandler<Image> OnCorrectPair;
-        private Image image;
+        public EventHandler OnCorrectPair;
+        //private Image image;
 
-        public Card(Image frontOfCard)
+        public Card()
         {
             back = new BitmapImage(new Uri("Kaartjes/Achterkant.png", UriKind.Relative));
             clicked = false;
             visible = true;
             correct = false;
-            front = frontOfCard.Source;
-            image = frontOfCard;
+            //front = frontOfCard.Source;
+            //image = frontOfCard;
             
         }
 
-        public Card(ImageSource frontOfCard)
-        {
-            back = new BitmapImage(new Uri("Kaartjes/Achterkant.png", UriKind.Relative));
-            clicked = false;
-            visible = true;
-            correct = false;
-            front = frontOfCard;
+        //public Card(ImageSource frontOfCard)
+        //{
+        //    back = new BitmapImage(new Uri("Kaartjes/Achterkant.png", UriKind.Relative));
+        //    clicked = false;
+        //    visible = true;
+        //    correct = false;
+        //    front = frontOfCard;
 
-        }
+        //}
 
         public void Clicked()
         {
@@ -57,7 +57,7 @@ namespace MemoryProject
                 {
                     if (correct)
                     {
-                        OnCorrectPair?.Invoke(this, this.image);
+                        OnCorrectPair?.Invoke(this, EventArgs.Empty);
                         return front;
 
                     }
