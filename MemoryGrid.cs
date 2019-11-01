@@ -12,13 +12,14 @@ using System.Windows.Media.Imaging;
 using System.Diagnostics;
 using System.Timers;
 using System.Windows.Threading;
+using MemoryProject.Models;
 
 namespace MemoryProject
 {
     public class MemoryGrid
     {
         //Grid size
-        private Grid Grid;
+        private System.Windows.Controls.Grid Grid;
         private GridSizeOptions.GRID_SIZES GridSize;
 
         //Class voor kaarten
@@ -42,13 +43,14 @@ namespace MemoryProject
         public int AmountOfWins1;
         public int AmountOfWins2;
         public EventHandler<Dictionary<string, int>> OnPowerUpUpdate;
+        public EventHandler<bool> OnEndGame;
 
         public EventHandler<string> OnPairMade;
         DispatcherTimer timer = new DispatcherTimer();
         int time = 0;
 
 
-        public MemoryGrid(Grid grid, GridSizeOptions.GRID_SIZES gridSize)
+        public MemoryGrid(System.Windows.Controls.Grid grid, GridSizeOptions.GRID_SIZES gridSize)
         {
             Grid = grid;
             GridSize = gridSize;
@@ -82,8 +84,8 @@ namespace MemoryProject
                     image.MouseDown += new MouseButtonEventHandler(CardClick);
                     image.Source = cards[j * (int)GridSize + i].Show();
                     image.Tag = j * (int)GridSize + i;
-                    Grid.SetColumn(image, j);
-                    Grid.SetRow(image, i);
+                    System.Windows.Controls.Grid.SetColumn(image, j);
+                    System.Windows.Controls.Grid.SetRow(image, i);
                     this.Grid.Children.Add(image);
                 }
             }
@@ -148,14 +150,14 @@ namespace MemoryProject
                 images.Add(source);
             }
             //shuffle!
-            //Random random = new Random();
-            //for (int i = 0; i < ((int)GridSize * (int)GridSize); i++)
-            //{
-            //    int r = random.Next(0, ((int)GridSize * (int)GridSize));
-            //    ImageSource source = images[r];
-            //    images[r] = images[i];
-            //    images[i] = source;
-            //}
+            Random random = new Random();
+            for (int i = 0; i < ((int)GridSize * (int)GridSize); i++)
+            {
+                int r = random.Next(0, ((int)GridSize * (int)GridSize));
+                ImageSource source = images[r];
+                images[r] = images[i];
+                images[i] = source;
+            }
             return images;
         }
 
@@ -220,6 +222,7 @@ namespace MemoryProject
                     OnPowerUpUpdate?.Invoke(this, powerup);
                 }
                 powerup = new Dictionary<string, int>();
+                if (IsGameFinished()) { EndGame(); }
             }
             else
             {
@@ -231,6 +234,38 @@ namespace MemoryProject
                 AmountOfWins2 = 0;
      
             }
+        }
+        private void EndGame()
+        {
+           
+            List<Player> players = new List<Player>();
+            Player player1 = new Player {
+                Name = player1Name,
+                Score = score1
+            };
+            Player player2 = new Player
+            {
+                Name = player2Name,
+                Score = score2
+            };
+            players.Add(player1);
+            players.Add(player2);
+            OnEndGame?.Invoke(this, true);
+            
+            //player1 en 2 namen, score, timer tijd, 
+
+        }
+        private bool IsGameFinished()
+        {
+            List<Card> clickedCards = new List<Card>();
+            foreach (var card in cards)
+            {
+                if (card.clicked)
+                {
+                    clickedCards.Add(card);
+                }
+            }
+            return (clickedCards.Count == cards.Count) ? true : false;
         }
 
         private void FlipBack(Card kaart1, Card kaart2)

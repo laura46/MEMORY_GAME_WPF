@@ -12,18 +12,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="100"></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
         <Frame Name="navbarFrame" Grid.Row="0" Width="auto"></Frame>
         <Label Name="highscores" Grid.Row ="1" HorizontalAlignment="Center" FontSize="60">Highscores</Label>
+        <Grid Name="scoreGrid" Grid.Row="2"></Grid>
     </Grid>
 </Page>

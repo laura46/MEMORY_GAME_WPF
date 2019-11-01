@@ -11,7 +11,8 @@ namespace MemoryProject
     class Card
     {
         private ImageSource front, back;
-        private bool clicked, visible;
+        public bool clicked;
+        private bool visible;
 
         public Card(ImageSource frontOfCard)
         {

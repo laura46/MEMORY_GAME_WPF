@@ -24,7 +24,7 @@ namespace MemoryProject
     public partial class LoadGame : Page
     {
         
-        string path = @"Storage/";
+        string path = @"Storage/Load";
         DirectoryInfo storageDirectory;
         private EventHandler<Game> onLoadGame;
 
@@ -46,8 +46,9 @@ namespace MemoryProject
             int counter = 0;
             foreach (var file in storageDirectory.GetFiles("*.txt"))
             {
-                string content = File.ReadAllText(@"Storage/" + file.Name);
+                string content = File.ReadAllText(path + file.Name);
                 Game savedGame = JsonConvert.DeserializeObject<Game>(content);
+                
                 RowDefinition row = new RowDefinition
                 {
                     Height = new GridLength(80)
@@ -85,6 +86,7 @@ namespace MemoryProject
                     OnLoadGame?.Invoke(this, gameToLoad);
                     return;
                 }
+                return;
             }
         }
     }

@@ -57,6 +57,7 @@ namespace MemoryProject
         {
             this.grid = new MemoryGrid(GameGridref, currentGame.Grid.GridSize);
             grid.OnPairMade += new EventHandler<string>(ShowPopup);
+            grid.OnEndGame += new EventHandler<bool>(SaveGame);
         }
         private void InitializeNavbar() 
         {
@@ -66,7 +67,7 @@ namespace MemoryProject
             NavbarFrame.Content = navbar;
         }
 
-        private void SaveGame(object sender, EventArgs e) 
+        public void SaveGame(object sender, bool isFinishedGame) 
         {
             currentGame.Player1.Score = this.Scorebord.GetScore(true);
             currentGame.Player1.Powerups = this.PowerUp.GetPowerups(true);
@@ -76,7 +77,25 @@ namespace MemoryProject
             currentGame.Date = DateTime.Now;
 
             string json = JsonConvert.SerializeObject(currentGame);
-            File.WriteAllText(@"Storage\"+ Guid.NewGuid() +".txt", json);  
+            if (!Directory.Exists(@"Storage\Finish\"))
+            {
+                Directory.CreateDirectory(@"Storage\Finish\");
+            }
+            File.WriteAllText(@"Storage\Finish\"+ Guid.NewGuid() +".txt", json);
+
+            Application.Current.MainWindow.Content = new EndScreen(currentGame.Player1, currentGame.Player2, Timer.GetTimerTime());
+        }
+        private void SaveGame(object sender, EventArgs e)
+        {
+            currentGame.Player1.Score = this.Scorebord.GetScore(true);
+            currentGame.Player1.Powerups = this.PowerUp.GetPowerups(true);
+            currentGame.Player2.Score = this.Scorebord.GetScore(false);
+            currentGame.Player2.Powerups = this.PowerUp.GetPowerups(false);
+            currentGame.Grid.Timer = this.Timer.GetTimerTime();
+            currentGame.Date = DateTime.Now;
+
+            string json = JsonConvert.SerializeObject(currentGame);
+            File.WriteAllText(@"Storage\Load\" + Guid.NewGuid() + ".txt", json);
         }
 
         public void ResetGameGrid(object sender, EventArgs e)
