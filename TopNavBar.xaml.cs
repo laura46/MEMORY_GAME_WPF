@@ -37,7 +37,8 @@ namespace MemoryProject
         }
         private void LoadGame(object sender, MouseButtonEventArgs e)
         {
-
+            MainMenu newMenu = new MainMenu();
+            Application.Current.MainWindow.Content = newMenu.loadGame;
         }
         private void BackToMainMenu(object sender, MouseButtonEventArgs e)
         {

@@ -23,25 +23,63 @@ namespace MemoryProject
     /// </summary>
     public partial class LoadGame : Page
     {
+        
+        string path = @"Storage/";
+        DirectoryInfo storageDirectory;
+        private EventHandler<Game> onLoadGame;
+
+        internal EventHandler<Game> OnLoadGame { get => onLoadGame; set => onLoadGame = value; }
+
         public LoadGame()
         {
             InitializeComponent();
-
-            DirectoryInfo dir = new DirectoryInfo(@"Storage/");
+            InitializeSavedGames();
+        }
+        private void InitializeSavedGames() 
+        {
+            storageDirectory = new DirectoryInfo(path);
             int counter = 0;
-            foreach (var file in dir.GetFiles("*.txt"))
+            foreach (var file in storageDirectory.GetFiles("*.txt"))
             {
                 string content = File.ReadAllText(@"Storage/" + file.Name);
                 Game savedGame = JsonConvert.DeserializeObject<Game>(content);
-                savedGames.RowDefinitions.Add(new RowDefinition());
-                Label dateLabel = new Label();
-                dateLabel.Content = savedGame.Date;
-                System.Windows.Controls.Grid.SetRow(dateLabel, counter);
-                savedGames.Children.Add(dateLabel);
+                RowDefinition row = new RowDefinition
+                {
+                    Height = new GridLength(80)
+                };
+
+                savedGames.RowDefinitions.Add(row);
+                Label game = new Label
+                {
+                    Content = savedGame.Player1.Name + " en " + savedGame.Player2.Name + " " + savedGame.Date,
+                    FontSize = 20,
+                    FontWeight = FontWeights.Bold,
+                    Margin = new Thickness(10),
+                    Cursor = Cursors.Hand,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Uid = file.Name
+                    
+                };
+                game.MouseDown += Game_MouseDown;
+                
+                System.Windows.Controls.Grid.SetRow(game, counter);
+                savedGames.Children.Add(game);
                 counter++;
             }
+        }
 
-
+        private void Game_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            foreach (var file in storageDirectory.GetFiles())
+            {
+                Label lbl = (Label)sender;
+                if (file.Name == lbl.Uid)
+                {
+                    var fileContent = File.ReadAllText(path + file.Name);
+                    Game gameToLoad = JsonConvert.DeserializeObject<Game>(fileContent);
+                    OnLoadGame?.Invoke(this, gameToLoad);
+                }
+            }
         }
     }
 }

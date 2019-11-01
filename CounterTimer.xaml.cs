@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MemoryProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,12 +27,25 @@ namespace MemoryProject
         DispatcherTimer timer;
         private TimeSpan Timed;
 
+        Game loadedGame;
+
         public CounterTimer()
         {
             InitializeComponent();
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += TickTock;
+            _myDateTime = DateTime.Now;
+            timer.Start();
+        }
+        public CounterTimer(Game loadGame) 
+        {
+            this.loadedGame = loadGame;
+            InitializeComponent();
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += SetTimerOfLoadedGame;
+            
             _myDateTime = DateTime.Now;
             timer.Start();
         }
@@ -45,6 +59,16 @@ namespace MemoryProject
             time++;
 
             var diff = DateTime.Now.Subtract(_myDateTime);
+            tCounter.Text = diff.ToString(@"hh\:mm\:ss");
+
+            this.Timed = diff;
+        }
+
+        private void SetTimerOfLoadedGame(object sender, EventArgs e) 
+        {
+            time++;
+
+            var diff = DateTime.Now.Subtract(_myDateTime).Add(loadedGame.Grid.Timer);
             tCounter.Text = diff.ToString(@"hh\:mm\:ss");
 
             this.Timed = diff;

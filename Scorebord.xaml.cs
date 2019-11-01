@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MemoryProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,23 +21,35 @@ namespace MemoryProject
     /// </summary>
     public partial class Scorebord : UserControl
     {
-        public Scorebord(MemoryGrid currentGrid, string player1Name, string player2Name)
+        Game CurrentGame;
+        public Scorebord(MemoryGrid currentGrid, Game currentGame)
         {
             InitializeComponent();
-            SetPlayerNames(player1Name, player2Name);
+            CurrentGame = currentGame;
+            SetPlayerNames();
             currentGrid.OnScore1Update += new EventHandler<int>(UpdateScore1);
             currentGrid.OnScore2Update += new EventHandler<int>(UpdateScore2);
+
+            if (CurrentGame.Player1.Score != null) 
+            {
+                SetScoresFromLoadedGame();
+            }
+        }
+        private void SetScoresFromLoadedGame() 
+        {
+            UpdateScore1(this, (int)CurrentGame.Player1.Score);
+            UpdateScore2(this, (int)CurrentGame.Player2.Score);
         }
 
         public int GetScore(bool isScore1) 
         {
-            return (isScore1) ? (int)lblscore1.Content : (int)lblscore2.Content;
+            return (isScore1) ? Convert.ToInt32(lblscore1.Content) : Convert.ToInt32(lblscore2.Content);
         }
 
-        private void SetPlayerNames(string player1Name, string player2Name)
+        private void SetPlayerNames()
         {
-            player1.Content = player1Name;
-            player2.Content = player2Name;
+            player1.Content = CurrentGame.Player1.Name;
+            player2.Content = CurrentGame.Player2.Name;
         }
 
         private void UpdateScore1(object sender, int score) 

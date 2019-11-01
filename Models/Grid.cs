@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MemoryProject.Models
 {
-    class Grid
+    public class Grid
     {
         public GridSizeOptions.GRID_SIZES GridSize { get; set; }
         public TimeSpan Timer { get; set; }

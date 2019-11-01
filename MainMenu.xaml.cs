@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MemoryProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,18 +19,34 @@ namespace MemoryProject
     public partial class MainMenu : Page
     {
         public NaamInvoer NaamInvoer;
-        private string player1Name;
-        private string player2Name;
+        public LoadGame loadGame;
+        private Game newGame;
 
         GridSizeOptions SizeOptions;
         public MainMenu()
         {
-
             InitializeComponent();
+            InitializeGame();    
             ShowStartButton();
             InitializeGridSizeOptions();
             InitializeNameInput();
-
+            InitializeLoadGame();
+        }
+        private void InitializeGame() 
+        {
+            this.newGame = new Game();
+            this.newGame.Player1 = new Player();
+            this.newGame.Player2 = new Player();
+            this.newGame.Grid = new Models.Grid();
+        }
+        private void InitializeLoadGame() 
+        {
+            loadGame = new LoadGame();
+            loadGame.OnLoadGame += new EventHandler<Game>(LoadGame);
+        }
+        private void LoadGame(object sender, Game game) 
+        {
+            Application.Current.MainWindow.Content = new GameGrid(game);
         }
         private void InitializeNameInput() 
         {
@@ -48,27 +65,34 @@ namespace MemoryProject
         {
             startFrame.Content = this.NaamInvoer;
         }
-
+        public void ShowSavedGames(object sender, MouseButtonEventArgs e) 
+        {
+            Application.Current.MainWindow.Content = this.loadGame;
+        }
         private void ShowGridSizeOptions(object sender, EventArgs e) 
         {
             startFrame.Content = this.SizeOptions;
         }
         private void SetNames(object sender, string names)
         {
-            player1Name = names.Split(new char[] { ';' })[0];
-            player2Name = names.Split(new char[] { ';' })[1];
+            this.newGame.Player1.Name = names.Split(new char[] { ';' })[0];
+            this.newGame.Player2.Name = names.Split(new char[] { ';' })[1];
         }
         private void GoToGameGrid(object sender, ChooseGridSizeEventArgs chosenSize) 
         {
-            Application.Current.MainWindow.Content = new GameGrid(chosenSize.GridSize, player1Name, player2Name);
+            this.newGame.Grid.GridSize = chosenSize.GridSize;
+            Application.Current.MainWindow.Content = new GameGrid(this.newGame);
         }
 
         private void ShowStartButton() 
         {
-            Image startButton = new Image();
-            startButton.Source = new BitmapImage(new Uri("Assets/play.png", UriKind.Relative));
+            Image startButton = new Image
+            {
+                Source = new BitmapImage(new Uri("Assets/play.png", UriKind.Relative)),
+                Cursor = Cursors.Hand
+            };
             startButton.MouseDown += new MouseButtonEventHandler(ShowsNaamInvoer);
-            startButton.Cursor = Cursors.Hand;
+
             startFrame.Content = startButton;
         }
     }

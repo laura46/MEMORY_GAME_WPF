@@ -23,7 +23,6 @@ namespace MemoryProject
         {
             InitializeComponent();
             mainPage.Content = new MainMenu();
-            //mainPage.Content = new LoadGame();
         }
     }
 }

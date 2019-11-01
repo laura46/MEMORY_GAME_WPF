@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace MemoryProject.Models
 {
-    class Player
+    public class Player
     {
         public string Name { get; set; }
-        public int Score { get; set; }
+        public int? Score { get; set; }
         public Dictionary<string,int> Powerups { get; set; }
 
     }

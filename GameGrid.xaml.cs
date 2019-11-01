@@ -29,14 +29,14 @@ namespace MemoryProject
         Scorebord Scorebord;
         PowerUp PowerUp;
         CounterTimer Timer;
-        GridSizeOptions.GRID_SIZES GridSize;
-        private string Player1Name;
-        private string Player2Name;
+        Game currentGame; 
 
-        public GameGrid(GridSizeOptions.GRID_SIZES gridSize, string player1Name, string player2Name)
+        public GameGrid(Game game)
         {
             InitializeComponent();
-            InitializeGameGrid(gridSize, player1Name, player2Name);
+            this.currentGame = game;
+
+            InitializeGameGrid();
             InitializeNavbar();
             InitializeScorebord();
             InitializePlayerTurn();
@@ -53,12 +53,9 @@ namespace MemoryProject
             this.PowerUp = new PowerUp(this.grid);
             powerupFrame.Content = this.PowerUp;
         }
-        private void InitializeGameGrid(GridSizeOptions.GRID_SIZES gridSize, string player1Name, string player2Name) 
+        private void InitializeGameGrid() 
         {
-            this.GridSize = gridSize;
-            Player1Name = player1Name;
-            Player2Name = player2Name;
-            this.grid = new MemoryGrid(GameGridref, GridSize);
+            this.grid = new MemoryGrid(GameGridref, currentGame.Grid.GridSize);
             grid.OnPairMade += new EventHandler<string>(ShowPopup);
         }
         private void InitializeNavbar() 
@@ -71,40 +68,15 @@ namespace MemoryProject
 
         private void SaveGame(object sender, EventArgs e) 
         {
+            currentGame.Player1.Score = this.Scorebord.GetScore(true);
+            currentGame.Player1.Powerups = this.PowerUp.GetPowerups(true);
+            currentGame.Player2.Score = this.Scorebord.GetScore(false);
+            currentGame.Player2.Powerups = this.PowerUp.GetPowerups(false);
+            currentGame.Grid.Timer = this.Timer.GetTimerTime();
+            currentGame.Date = DateTime.Now;
 
-
-
-
-            Player player1 = new Player
-            {
-                Name = this.Player1Name,
-                Score = this.Scorebord.GetScore(true),
-                Powerups = this.PowerUp.GetPowerups(true)
-            };
-
-            Player player2 = new Player
-            {
-                Name = this.Player2Name,
-                Score = this.Scorebord.GetScore(false),
-                Powerups = this.PowerUp.GetPowerups(false)
-            };
-
-            Models.Grid playGrid = new Models.Grid
-            {
-                GridSize = this.GridSize,
-                Timer = this.Timer.GetTimerTime()
-            };
-
-            Game Game = new Game
-            {
-                Player1 = player1,
-                Player2 = player2,
-                Grid = playGrid
-            };
-            string json = JsonConvert.SerializeObject(Game);
-
-            File.WriteAllText(@"Storage\"+ Guid.NewGuid() +".txt", json);
-            
+            string json = JsonConvert.SerializeObject(currentGame);
+            File.WriteAllText(@"Storage\"+ Guid.NewGuid() +".txt", json);  
         }
 
         public void ResetGameGrid(object sender, EventArgs e)
@@ -112,20 +84,20 @@ namespace MemoryProject
             GameGridref.Children.Clear();
             GameGridref.ColumnDefinitions.Clear();
             GameGridref.RowDefinitions.Clear();
-            this.grid = new MemoryGrid(GameGridref, GridSize);
+            this.grid = new MemoryGrid(GameGridref, currentGame.Grid.GridSize);
             TimerFrame.Content = new CounterTimer();
-            ScoreFrame.Content = new Scorebord(this.grid, this.Player1Name, this.Player2Name);
-            turnFrame.Content = new PlayerTurn(this.grid, this.Player1Name, this.Player2Name);
+            ScoreFrame.Content = new Scorebord(this.grid, currentGame);
+            turnFrame.Content = new PlayerTurn(this.grid, currentGame.Player1.Name, currentGame.Player2.Name);
 
         }
         public void InitializeScorebord()
         {   
-            this.Scorebord = new Scorebord(this.grid, this.Player1Name, this.Player2Name);
+            this.Scorebord = new Scorebord(this.grid, currentGame);
             ScoreFrame.Content = this.Scorebord;
         }
         public void InitializePlayerTurn()
         {
-            turnFrame.Content = new PlayerTurn(this.grid, this.Player1Name, this.Player2Name);
+            turnFrame.Content = new PlayerTurn(this.grid, currentGame.Player1.Name, currentGame.Player2.Name);
         }
 
         public void ShowPopup(object sender, string uitkomst)
