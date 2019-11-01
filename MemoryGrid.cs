@@ -42,10 +42,9 @@ namespace MemoryProject
         public int AmountOfWins1;
         public int AmountOfWins2;
         public EventHandler<Dictionary<string, int>> OnPowerUpUpdate;
-
         public EventHandler<string> OnPairMade;
+        public EventHandler<string> OnOpenCardClicked;
         DispatcherTimer timer = new DispatcherTimer();
-        int time = 0;
 
 
         public MemoryGrid(Grid grid, GridSizeOptions.GRID_SIZES gridSize)
@@ -66,7 +65,9 @@ namespace MemoryProject
             {
                 for (int j = 0; j < (int)GridSize; j++)
                 {
-                    cards.Add(new Card(images.First()));
+                    Image image = new Image();
+                    image.Source = images.First();
+                    cards.Add(new Card(image));
                     images.RemoveAt(0);
                 }
             }
@@ -115,24 +116,8 @@ namespace MemoryProject
                 {
                     previousCard = index;
                 }
-
-                
                 ShowCards();
             }
-        }
-        private void Timeout(Card kaart1, Card kaart2)
-        {
-           // System.Threading.Thread.Sleep(2000);
-
-            //timer = new DispatcherTimer();
-            //timer.Interval = TimeSpan.FromSeconds(0);
-            //timer.Start();
-            //timer.Tick += delegate (object senders, EventArgs e)
-            //{
-            //   FlipBack(kaart1, kaart2);
-            //};
-            
-            //FlipBack(kaart1, kaart2);
         }
 
         //Maakt lijst met voorkanten aan.
@@ -148,14 +133,14 @@ namespace MemoryProject
                 images.Add(source);
             }
             //shuffle!
-            //Random random = new Random();
-            //for (int i = 0; i < ((int)GridSize * (int)GridSize); i++)
-            //{
-            //    int r = random.Next(0, ((int)GridSize * (int)GridSize));
-            //    ImageSource source = images[r];
-            //    images[r] = images[i];
-            //    images[i] = source;
-            //}
+            Random random = new Random();
+            for (int i = 0; i < ((int)GridSize * (int)GridSize); i++)
+            {
+                int r = random.Next(0, ((int)GridSize * (int)GridSize));
+                ImageSource source = images[r];
+                images[r] = images[i];
+                images[i] = source;
+            }
             return images;
         }
 
@@ -190,6 +175,7 @@ namespace MemoryProject
                 kaart2String = Regex.Split(kaart2String, @"(;component/)")[2];
             }
 
+
             if (kaart1String == "Kaartjes/Achterkant.png")
             {
                 OnPairMade?.Invoke(this, "dubbelKlik");
@@ -200,6 +186,10 @@ namespace MemoryProject
             {
                 kaart2.MakeInvisible();
                 kaart1.MakeInvisible();
+                kaart2.Correct();
+                kaart1.Correct();
+                kaart1.OnCorrectPair += new EventHandler<Image>(OnClickOpenPair);
+                kaart2.OnCorrectPair += new EventHandler<Image>(OnClickOpenPair);
                 OnPairMade?.Invoke(this, "goed");
                 if (player1turn == true)
                 {
@@ -224,29 +214,30 @@ namespace MemoryProject
             else
             {
                 OnPairMade?.Invoke(this, "fout");
-                FlipBack(kaart1, kaart2);
-
-                OnPairMade?.Invoke(this, "fout");
-                AmountOfWins1 = 0;
-                AmountOfWins2 = 0;
-     
+                kaart2.FlipToBack();
+                kaart1.FlipToBack();
+                SetPlayerTurn(!player1turn);
             }
         }
 
-        private void FlipBack(Card kaart1, Card kaart2)
+        private void OnClickOpenPair(object sender, Image image)
         {
-
-            kaart2.FlipToBack();
-            kaart1.FlipToBack();
-            SetPlayerTurn(!player1turn);
+            image.MouseDown += TriggerNotification;
+            
+        }
+        private void TriggerNotification(object sender, MouseButtonEventArgs e)
+        {
+            OnOpenCardClicked?.Invoke(this, "alGeklikt");
         }
 
-
+        //Houdt de player turn bij
         private void SetPlayerTurn(bool IsPlayer1Turn) 
         {
             player1turn = IsPlayer1Turn;
             OnPlayerTurn?.Invoke(this, player1turn);
         }
+
+        //Houdt de score bij
         private void UpdateScore(int score, bool isScore1) 
         {
 

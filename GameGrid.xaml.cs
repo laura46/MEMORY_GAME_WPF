@@ -42,6 +42,7 @@ namespace MemoryProject
             InitializePlayerTurn();
             InitializePowerups();
             InitializeTimer();
+
         }
         private void InitializeTimer() 
         {
@@ -57,6 +58,7 @@ namespace MemoryProject
         {
             this.grid = new MemoryGrid(GameGridref, currentGame.Grid.GridSize);
             grid.OnPairMade += new EventHandler<string>(ShowPopup);
+            grid.OnOpenCardClicked += new EventHandler<string>(ShowPopup);
         }
         private void InitializeNavbar() 
         {
@@ -66,7 +68,7 @@ namespace MemoryProject
             NavbarFrame.Content = navbar;
         }
 
-        private void SaveGame(object sender, EventArgs e) 
+        private void SaveGame(object sender, EventArgs e)
         {
             currentGame.Player1.Score = this.Scorebord.GetScore(true);
             currentGame.Player1.Powerups = this.PowerUp.GetPowerups(true);
@@ -76,7 +78,7 @@ namespace MemoryProject
             currentGame.Date = DateTime.Now;
 
             string json = JsonConvert.SerializeObject(currentGame);
-            File.WriteAllText(@"Storage\"+ Guid.NewGuid() +".txt", json);  
+            File.WriteAllText(@"Storage\" + Guid.NewGuid() + ".txt", json);
         }
 
         public void ResetGameGrid(object sender, EventArgs e)

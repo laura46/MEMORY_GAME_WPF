@@ -63,10 +63,10 @@ namespace MemoryProject
                     Cursor = Cursors.Hand,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     Uid = file.Name
-                    
+
                 };
                 game.MouseDown += Game_MouseDown;
-                
+
                 System.Windows.Controls.Grid.SetRow(game, counter);
                 savedGames.Children.Add(game);
                 counter++;
