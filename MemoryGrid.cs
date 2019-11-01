@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Diagnostics;
 using System.Timers;
 using System.Windows.Threading;
+using System.Windows.Diagnostics;
 using MemoryProject.Models;
 
 namespace MemoryProject
@@ -45,7 +46,7 @@ namespace MemoryProject
         public EventHandler<Dictionary<string, int>> OnPowerUpUpdate;
         public EventHandler<bool> OnEndGame;
 
-        public EventHandler<string> OnPairMade;
+        //public EventHandler<string> OnPairMade;
         public EventHandler<string> OnOpenCardClicked;
         DispatcherTimer timer = new DispatcherTimer();
 
@@ -94,33 +95,28 @@ namespace MemoryProject
         }
 
 
-        //TODO: twee keer op hetzelfde kaartje is nu goed.
         //Draait geklikte kaartjes om.
         private void CardClick(object sender, MouseButtonEventArgs e)
         {
             if (nrOfClickedCards < 2)
             {
-                nrOfClickedCards++;
                 Image image = (Image)sender;
                 int index = (int)image.Tag;
                 image.Source = null;
                 cards[index].Clicked();
-
+                nrOfClickedCards++;
 
                 if (nrOfClickedCards == 2)
                 {
                     ShowCards();
-                    CheckPair(cards[index], cards[previousCard]);
-                    //TODO: bugfix controleer kaartjes
+                    CheckPair( cards[previousCard], cards[index]);
 
                     nrOfClickedCards = 0;
                 }
-                else
-                {
-                    previousCard = index;
-                }
+                previousCard = index;
                 ShowCards();
             }
+            
         }
 
         //Maakt lijst met voorkanten aan.
@@ -178,12 +174,13 @@ namespace MemoryProject
                 kaart2String = Regex.Split(kaart2String, @"(;component/)")[2];
             }
 
-
-            if (kaart1String == "Kaartjes/Achterkant.png")
+            if (kaart1.Show().ToString() == kaart2.Show().ToString())
             {
-                OnPairMade?.Invoke(this, "dubbelKlik");
+                MessageBox.Show("Je kunt niet twee keer dezelfde kaart aanklikken!");
+                kaart1.FlipToBack();
                 return;
             }
+
             Dictionary<string, int> powerup = new Dictionary<string, int>();
             if (kaart1String == kaart2String)
             {
@@ -191,9 +188,7 @@ namespace MemoryProject
                 kaart1.MakeInvisible();
                 kaart2.Correct();
                 kaart1.Correct();
-                kaart1.OnCorrectPair += new EventHandler<Image>(OnClickOpenPair);
-                kaart2.OnCorrectPair += new EventHandler<Image>(OnClickOpenPair);
-                OnPairMade?.Invoke(this, "goed");
+                MessageBox.Show("Goed!");
                 if (player1turn == true)
                 {
                     score1 += 200;
@@ -217,15 +212,22 @@ namespace MemoryProject
             }
             else
             {
-                OnPairMade?.Invoke(this, "fout");
+                MessageBox.Show("Fout!");
                 kaart2.FlipToBack();
                 kaart1.FlipToBack();
+                
                 SetPlayerTurn(!player1turn);
             }
         }
+        private void OnClickOpenPair(object sender, Image image)
+        {
+            MessageBox.Show("Deze kaart is deel van een goed paar.");
+            return;
+        }
+
+        
         private void EndGame()
         {
-           
             List<Player> players = new List<Player>();
             Player player1 = new Player {
                 Name = player1Name,
@@ -243,6 +245,8 @@ namespace MemoryProject
             //player1 en 2 namen, score, timer tijd, 
 
         }
+
+        //Controlleerd of het spel over is.
         private bool IsGameFinished()
         {
             List<Card> clickedCards = new List<Card>();
@@ -256,17 +260,7 @@ namespace MemoryProject
             return (clickedCards.Count == cards.Count) ? true : false;
         }
 
-        private void OnClickOpenPair(object sender, Image image)
-        {
-            image.MouseDown += TriggerNotification;
-            
-        }
-        private void TriggerNotification(object sender, MouseButtonEventArgs e)
-        {
-            OnOpenCardClicked?.Invoke(this, "alGeklikt");
-        }
-
-        //Houdt de player turn bij
+        //Houdt de player turn bij.
         private void SetPlayerTurn(bool IsPlayer1Turn) 
         {
             player1turn = IsPlayer1Turn;

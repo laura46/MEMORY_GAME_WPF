@@ -57,9 +57,9 @@ namespace MemoryProject
         private void InitializeGameGrid() 
         {
             this.grid = new MemoryGrid(GameGridref, currentGame.Grid.GridSize);
-            grid.OnPairMade += new EventHandler<string>(ShowPopup);
+            //grid.OnPairMade += new EventHandler<string>(ShowPopup);
             grid.OnEndGame += new EventHandler<bool>(SaveGame);
-            grid.OnOpenCardClicked += new EventHandler<string>(ShowPopup);
+            //grid.OnOpenCardClicked += new EventHandler<string>(ShowPopup);
         }
         private void InitializeNavbar() 
         {
@@ -122,76 +122,76 @@ namespace MemoryProject
             turnFrame.Content = new PlayerTurn(this.grid, currentGame.Player1.Name, currentGame.Player2.Name);
         }
 
-        public void ShowPopup(object sender, string uitkomst)
-        {
-            if(uitkomst == "fout")
-            {
-                foutpop.IsOpen = true;
+        //public void ShowPopup(object sender, string uitkomst)
+        //{
+        //    if(uitkomst == "fout")
+        //    {
+        //        foutpop.IsOpen = true;
 
-                DispatcherTimer timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromSeconds(1);
-                timer.Start();
-                timer.Tick += delegate (object senders, EventArgs e)
-                {
-                    ((DispatcherTimer)timer).Stop();
-                    if (foutpop.IsOpen)
-                    {
-                        foutpop.IsOpen = false;
-                    }
-                };
-            }
+        //        DispatcherTimer timer = new DispatcherTimer();
+        //        timer.Interval = TimeSpan.FromSeconds(1);
+        //        timer.Start();
+        //        timer.Tick += delegate (object senders, EventArgs e)
+        //        {
+        //            ((DispatcherTimer)timer).Stop();
+        //            if (foutpop.IsOpen)
+        //            {
+        //                foutpop.IsOpen = false;
+        //            }
+        //        };
+        //    }
 
-            if (uitkomst == "goed")
-            {
-                goedpop.IsOpen = true;
+        //    if (uitkomst == "goed")
+        //    {
+        //        goedpop.IsOpen = true;
 
-                DispatcherTimer timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromSeconds(1);
-                timer.Start();
-                timer.Tick += delegate (object senders, EventArgs e)
-                {
-                    ((DispatcherTimer)timer).Stop();
-                    if (goedpop.IsOpen)
-                    {
-                        goedpop.IsOpen = false;
-                    }
-                };
-            }
+        //        DispatcherTimer timer = new DispatcherTimer();
+        //        timer.Interval = TimeSpan.FromSeconds(1);
+        //        timer.Start();
+        //        timer.Tick += delegate (object senders, EventArgs e)
+        //        {
+        //            ((DispatcherTimer)timer).Stop();
+        //            if (goedpop.IsOpen)
+        //            {
+        //                goedpop.IsOpen = false;
+        //            }
+        //        };
+        //    }
 
-            if (uitkomst == "dubbelKlik")
-            {
-                dubbelKlik.IsOpen = true;
+        //    if (uitkomst == "dubbelKlik")
+        //    {
+        //        dubbelKlik.IsOpen = true;
 
-                DispatcherTimer timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromSeconds(2);
-                timer.Start();
-                timer.Tick += delegate (object senders, EventArgs e)
-                {
-                    ((DispatcherTimer)timer).Stop();
-                    if (dubbelKlik.IsOpen)
-                    {
-                        dubbelKlik.IsOpen = false;
-                    }
-                };
-            }
+        //        DispatcherTimer timer = new DispatcherTimer();
+        //        timer.Interval = TimeSpan.FromSeconds(2);
+        //        timer.Start();
+        //        timer.Tick += delegate (object senders, EventArgs e)
+        //        {
+        //            ((DispatcherTimer)timer).Stop();
+        //            if (dubbelKlik.IsOpen)
+        //            {
+        //                dubbelKlik.IsOpen = false;
+        //            }
+        //        };
+        //    }
 
-            if (uitkomst == "alGeklikt")
-            {
-                alGeklikt.IsOpen = true;
+        //    if (uitkomst == "alGeklikt")
+        //    {
+        //        alGeklikt.IsOpen = true;
 
-                DispatcherTimer timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromSeconds(2);
-                timer.Start();
-                timer.Tick += delegate (object senders, EventArgs e)
-                {
-                    ((DispatcherTimer)timer).Stop();
-                    if (alGeklikt.IsOpen)
-                    {
-                        alGeklikt.IsOpen = false;
-                    }
-                };
-            }
-        }
+        //        DispatcherTimer timer = new DispatcherTimer();
+        //        timer.Interval = TimeSpan.FromSeconds(2);
+        //        timer.Start();
+        //        timer.Tick += delegate (object senders, EventArgs e)
+        //        {
+        //            ((DispatcherTimer)timer).Stop();
+        //            if (alGeklikt.IsOpen)
+        //            {
+        //                alGeklikt.IsOpen = false;
+        //            }
+        //        };
+        //    }
+        //}
     }
 }
 
