@@ -23,25 +23,79 @@ namespace MemoryProject
     /// </summary>
     public partial class Highscores : Page
     {
+        int maxValue;
+        int plek = 0;
+        int scores = 0;
+        string playerScores;
+
         string path = @"Storage/Finish/";
         DirectoryInfo storageDirectory;
         public Highscores()
         {
             InitializeComponent();
             navbarFrame.Content = new MenuNavbar();
-            int plek = 0;
-            int scores = 0;
+            DirectoryStorage();
+            GetFiles();
+        }
 
+        private void DirectoryStorage()
+        {
             storageDirectory = new DirectoryInfo(path);
             if (!storageDirectory.Exists)
             {
                 Directory.CreateDirectory(path);
             }
+        }
 
-            int counter = 0;
+        //private void GetFiles()
+        //{
+        //    int counter = 0;
+        //    foreach (var file in storageDirectory.GetFiles("*.txt"))
+        //    {
+
+        //        string content = File.ReadAllText(path + file.Name);
+        //        Game finishedGame = JsonConvert.DeserializeObject<Game>(content);
+        //        Player[] players = { finishedGame.Player1, finishedGame.Player2 };
+        //        foreach (var player in players)
+        //        {
+        //            scores = player.Score ?? default(int); // zorgt ervoor dat alle scores nu in een int vorm zitten en gebruikt kunnen worden
+        //            int[] scoreArray = { scores };
+
+        //            Array.Sort(scoreArray);
+        //            Array.Reverse(scoreArray);
+        //            plek += 1;
+        //            maxValue = scoreArray.Max();
+
+        //            var regel = "#" + plek + " Naam: " + player.Name + " Score: " + scoreArray[0] + " Tijd: " + finishedGame.Grid.Timer.ToString().Split(new char[] { '.' })[0];
+
+        //            RowDefinition row = new RowDefinition
+        //            {
+        //                Height = new GridLength(80)
+        //            };
+
+
+        //            scoreGrid.RowDefinitions.Add(row);
+        //            Label game = new Label
+        //            {
+        //                Content = regel,
+        //                FontSize = 20,
+        //                FontWeight = FontWeights.Bold,
+        //                Margin = new Thickness(10),
+        //                HorizontalAlignment = HorizontalAlignment.Center
+
+        //            };
+        //            System.Windows.Controls.Grid.SetRow(game, counter);
+        //            scoreGrid.Children.Add(game);
+        //            counter++;
+
+        //        }
+        //    }
+        //}
+        List<string> scorePlayer = new List<string>();
+        private void GetFiles()
+        {
             foreach (var file in storageDirectory.GetFiles("*.txt"))
             {
-                
                 string content = File.ReadAllText(path + file.Name);
                 Game finishedGame = JsonConvert.DeserializeObject<Game>(content);
                 Player[] players = { finishedGame.Player1, finishedGame.Player2 };
@@ -53,40 +107,29 @@ namespace MemoryProject
                     Array.Sort(scoreArray);
                     Array.Reverse(scoreArray);
                     plek += 1;
-                    int maxValue = scoreArray.Max();
+                    maxValue = scoreArray.Max();
 
+                    var regel = "#" + plek + " Naam: " + player.Name + " Score: " + scoreArray[0] + " Tijd: " + finishedGame.Grid.Timer.ToString().Split(new char[] { '.' })[0];
 
-                    var regel = "#" + plek  + " Naam: " + player.Name + " Score: " + scoreArray[0] + " Tijd: " + finishedGame.Grid.Timer.ToString().Split(new char[] { '.' })[0];
-
-                    RowDefinition row = new RowDefinition
-                    {
-                        Height = new GridLength(80)
-                    };
-
-
-                    scoreGrid.RowDefinitions.Add(row);
-                    Label game = new Label
-                    {
-                        
-                        Content = regel,
-                        FontSize = 20,
-                        FontWeight = FontWeights.Bold,
-                        Margin = new Thickness(10),
-                        HorizontalAlignment = HorizontalAlignment.Center
-
-                    };
-                    System.Windows.Controls.Grid.SetRow(game, counter);
-                    scoreGrid.Children.Add(game);
-                    counter++;
+                    scorePlayer.Add(regel);
+                    //foreach txt file
+                    //foreach player
+                    //zet regel
+                    //store in list
                 }
             }
-
+            
         }
-
-
-
-
-
+        private void CheckScores(string playerScores)
+        {
+            int scores = 0;
+            foreach(string score in scorePlayer)
+            {
+                //ga door alle items in de lijst
+                // split op de score
+                //
+            }
+        }
     }
 }
 
