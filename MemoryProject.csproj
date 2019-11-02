@@ -260,5 +260,8 @@
   <ItemGroup>
     <Folder Include="Storage\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\GrootScherm.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
