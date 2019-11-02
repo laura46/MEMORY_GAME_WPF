@@ -29,6 +29,7 @@ namespace MemoryProject
         {
             InitializeComponent();
             navbarFrame.Content = new MenuNavbar();
+            int plek = 0;
 
             storageDirectory = new DirectoryInfo(path);
             if (!storageDirectory.Exists)
@@ -45,15 +46,22 @@ namespace MemoryProject
                 Player[] players = { finishedGame.Player1, finishedGame.Player2 };
                 foreach (var player in players)
                 {
-                    var regel = player.Name + " " + player.Score + " " + finishedGame.Grid.Timer.ToString().Split(new char[] { '.' })[0];
+                    for (int i = 0; i < 1; i++)
+                    {
+                        plek = plek + 1;
+                    }
+                    var regel = "#" + plek  + " Naam: " + player.Name + " Score: " + player.Score + " Tijd: " + finishedGame.Grid.Timer.ToString().Split(new char[] { '.' })[0];
+
                     RowDefinition row = new RowDefinition
                     {
                         Height = new GridLength(80)
                     };
 
+
                     scoreGrid.RowDefinitions.Add(row);
                     Label game = new Label
                     {
+                        
                         Content = regel,
                         FontSize = 20,
                         FontWeight = FontWeights.Bold,
