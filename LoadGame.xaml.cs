@@ -24,7 +24,7 @@ namespace MemoryProject
     public partial class LoadGame : Page
     {
         
-        string path = @"Storage/Load";
+        string path = @"Storage/Load/";
         DirectoryInfo storageDirectory;
         private EventHandler<Game> onLoadGame;
 
@@ -86,7 +86,6 @@ namespace MemoryProject
                     OnLoadGame?.Invoke(this, gameToLoad);
                     return;
                 }
-                return;
             }
         }
     }

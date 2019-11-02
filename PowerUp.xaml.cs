@@ -1,17 +1,7 @@
-﻿using System;
+﻿using MemoryProject.Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MemoryProject
 {
@@ -24,26 +14,36 @@ namespace MemoryProject
         {
             InitializeComponent();
             currentGrid.OnPowerUpUpdate += new EventHandler<Dictionary<string, int>>(HandlePowerUp);
+        }
+        public PowerUp(MemoryGrid currentGrid, Game loadGame)
+        {
+            InitializeComponent();
+            RestoreLoadGame(loadGame);
+            currentGrid.OnPowerUpUpdate += new EventHandler<Dictionary<string, int>>(HandlePowerUp);
+        }
+        private void RestoreLoadGame(Game loadGame) 
+        {
+            lbl1x2.Content = loadGame.Player1.Powerups.X2;
+            lbl1x4.Content = loadGame.Player1.Powerups.X4;
+            lbl1x6.Content = loadGame.Player1.Powerups.X6;
+            lbl2x2.Content = loadGame.Player2.Powerups.X2;
+            lbl2x4.Content = loadGame.Player2.Powerups.X4;
+            lbl2x6.Content = loadGame.Player2.Powerups.X6;
 
         }
-        public Dictionary<string, int> GetPowerups(bool isPlayer1) 
+        public Game GetPowerups(Game currentGame) 
         {
-            
-            object[] player1Labels = { lbl1x2.Content, lbl1x4.Content, lbl1x6.Content };
-            object[] player2Labels = { lbl2x2.Content, lbl2x4.Content, lbl2x6.Content };
-            return (isPlayer1) ? GetLabelValues(player1Labels, 1) : GetLabelValues(player2Labels, 2);
+            currentGame.Player1.Powerups.X2 = GetLabelValue(lbl1x2.Content);
+            currentGame.Player1.Powerups.X4 = GetLabelValue(lbl1x4.Content);
+            currentGame.Player1.Powerups.X6 = GetLabelValue(lbl1x6.Content);
+            currentGame.Player2.Powerups.X2 = GetLabelValue(lbl2x2.Content);
+            currentGame.Player2.Powerups.X4 = GetLabelValue(lbl2x4.Content);
+            currentGame.Player2.Powerups.X6 = GetLabelValue(lbl2x6.Content);
+            return currentGame;
         }
-        private Dictionary<string, int> GetLabelValues(object[] labels, int player) 
+        private int GetLabelValue(object labelContent) 
         {
-            Dictionary<string, int> powerups = new Dictionary<string, int>();
-            for (int i = 0; i < labels.Length; i++)
-            {
-                if (labels[i] != null)
-                {
-                    powerups.Add("p" + player + (i + i + 2), (int)labels[i]);
-                }
-            }
-            return powerups;
+            return Convert.ToInt32(labelContent);
         }
 
         private void HandlePowerUp(object sender, Dictionary<string, int> powerUp)
@@ -93,7 +93,7 @@ namespace MemoryProject
         {
             var currentlabelvalue = label.Content;
             label.Content = (label.Content);
-            if (label.Content == null)
+            if (label.Content.ToString() == "0")
             {
                 label.Content = 1;
             }

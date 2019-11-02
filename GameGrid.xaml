@@ -55,5 +55,10 @@
                 Deze kaart is al omgedraaid!
             </TextBlock>
         </Popup>
+        <Popup Placement="Center" Name="opgeslagen" Grid.ColumnSpan="2">
+            <TextBlock Background="ForestGreen" Width="800" TextAlignment="Center" FontSize="25">
+                Het spel is opgeslagen!
+            </TextBlock>
+        </Popup>
     </Grid>
 </Page>

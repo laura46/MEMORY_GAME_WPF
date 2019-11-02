@@ -27,12 +27,12 @@
         <Label Grid.Row="2" Grid.Column="0">4x</Label>
         <Label Grid.Row="3" Grid.Column="0">6x</Label>
 
-        <Label Grid.Row="1" Grid.Column="1" Name="lbl1x2"></Label>
-        <Label Grid.Row="2" Grid.Column="1" Name="lbl1x4"></Label>
-        <Label Grid.Row="3" Grid.Column="1" Name="lbl1x6"></Label>
-        <Label Grid.Row="1" Grid.Column="2" Name="lbl2x2"></Label>
-        <Label Grid.Row="2" Grid.Column="2" Name="lbl2x4"></Label>
-        <Label Grid.Row="3" Grid.Column="2" Name="lbl2x6"></Label>
+        <Label Grid.Row="1" Grid.Column="1" Name="lbl1x2">0</Label>
+        <Label Grid.Row="2" Grid.Column="1" Name="lbl1x4">0</Label>
+        <Label Grid.Row="3" Grid.Column="1" Name="lbl1x6">0</Label>
+        <Label Grid.Row="1" Grid.Column="2" Name="lbl2x2">0</Label>
+        <Label Grid.Row="2" Grid.Column="2" Name="lbl2x4">0</Label>
+        <Label Grid.Row="3" Grid.Column="2" Name="lbl2x6">0</Label>
         
     </Grid>
 </UserControl>

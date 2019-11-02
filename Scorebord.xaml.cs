@@ -41,9 +41,11 @@ namespace MemoryProject
             UpdateScore2(this, (int)CurrentGame.Player2.Score);
         }
 
-        public int GetScore(bool isScore1) 
+        public Game GetScore(Game currentGame) 
         {
-            return (isScore1) ? Convert.ToInt32(lblscore1.Content) : Convert.ToInt32(lblscore2.Content);
+            currentGame.Player1.Score = Convert.ToInt32(lblscore1.Content);
+            currentGame.Player2.Score = Convert.ToInt32(lblscore2.Content);
+            return currentGame;
         }
 
         private void SetPlayerNames()

@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace MemoryProject.Models
 {
-    public class Grid
+    public class PowerUp
     {
-        public GridSizeOptions.GRID_SIZES GridSize { get; set; }
-        public TimeSpan Timer { get; set; }
+        public int X2 { get; set; }
+        public int X4 { get; set; }
+        public int X6 { get; set; }
     }
 }

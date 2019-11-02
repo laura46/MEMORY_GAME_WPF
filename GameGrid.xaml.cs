@@ -19,6 +19,7 @@ namespace MemoryProject
         Scorebord Scorebord;
         PowerUp PowerUp;
         CounterTimer Timer;
+        PlayerTurn Turn;
         Game currentGame; 
 
         public GameGrid(Game game)
@@ -41,7 +42,13 @@ namespace MemoryProject
         }
         private void InitializePowerups() 
         {
-            this.PowerUp = new PowerUp(this.grid);
+            if (currentGame.Date != new DateTime())
+            {
+                this.PowerUp = new PowerUp(this.grid, currentGame);
+            }
+            else {
+                this.PowerUp = new PowerUp(this.grid);
+            }
             powerupFrame.Content = this.PowerUp;
         }
         private void InitializeGameGrid() 
@@ -61,10 +68,10 @@ namespace MemoryProject
 
         public void SaveGame(object sender, bool isFinishedGame) 
         {
-            currentGame.Player1.Score = this.Scorebord.GetScore(true);
-            currentGame.Player1.Powerups = this.PowerUp.GetPowerups(true);
-            currentGame.Player2.Score = this.Scorebord.GetScore(false);
-            currentGame.Player2.Powerups = this.PowerUp.GetPowerups(false);
+            currentGame = this.Scorebord.GetScore(currentGame);
+            currentGame = this.PowerUp.GetPowerups(currentGame);
+            currentGame = this.Turn.GetTurn(currentGame);
+
             currentGame.Grid.Timer = this.Timer.GetTimerTime();
             currentGame.Date = DateTime.Now;
 
@@ -79,15 +86,17 @@ namespace MemoryProject
         }
         private void SaveGame(object sender, EventArgs e)
         {
-            currentGame.Player1.Score = this.Scorebord.GetScore(true);
-            currentGame.Player1.Powerups = this.PowerUp.GetPowerups(true);
-            currentGame.Player2.Score = this.Scorebord.GetScore(false);
-            currentGame.Player2.Powerups = this.PowerUp.GetPowerups(false);
+            currentGame = this.Scorebord.GetScore(currentGame);
+            currentGame = this.PowerUp.GetPowerups(currentGame);
+            currentGame = this.Turn.GetTurn(currentGame);
+
             currentGame.Grid.Timer = this.Timer.GetTimerTime();
             currentGame.Date = DateTime.Now;
 
             string json = JsonConvert.SerializeObject(currentGame);
             File.WriteAllText(@"Storage\Load\" + Guid.NewGuid() + ".txt", json);
+
+            ShowPopup(this, "opgeslagen");
         }
 
         public void ResetGameGrid(object sender, EventArgs e)
@@ -108,32 +117,45 @@ namespace MemoryProject
         }
         public void InitializePlayerTurn()
         {
-            turnFrame.Content = new PlayerTurn(this.grid, currentGame.Player1.Name, currentGame.Player2.Name);
+            if (currentGame.Player1.IsMyTurn || currentGame.Player2.IsMyTurn)
+            {
+                this.Turn = new PlayerTurn(this.grid, currentGame);
+            }
+            else 
+            {
+                this.Turn = new PlayerTurn(this.grid, currentGame.Player1.Name, currentGame.Player2.Name);
+            }
+            turnFrame.Content = this.Turn;
         }
 
         public void ShowPopup(object sender, string uitkomst)
         {
             if(uitkomst == "fout")
             {
-                ShowPopup(foutpop);
+                OpenPopup(foutpop);
             }
 
             if (uitkomst == "goed")
             {
-                ShowPopup(goedpop);
+                OpenPopup(goedpop);
             }
 
             if (uitkomst == "dubbelKlik")
             {
-                ShowPopup(dubbelKlik);
+                OpenPopup(dubbelKlik);
             }
 
             if (uitkomst == "alGeklikt")
             {
-                ShowPopup(alGeklikt);
+                OpenPopup(alGeklikt);
+            }
+
+            if (uitkomst == "opgeslagen")
+            {
+                OpenPopup(opgeslagen);
             }
         }
-        private void ShowPopup(object sender)
+        private void OpenPopup(object sender)
         {
             Popup popup = (Popup)sender;
             popup.IsOpen = true;

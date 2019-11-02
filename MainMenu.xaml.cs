@@ -36,9 +36,13 @@ namespace MemoryProject
         }
         private void InitializeGame()
         {
-            this.newGame = new Game();
-            this.newGame.Player1 = new Player();
-            this.newGame.Player2 = new Player();
+            this.newGame = new Game
+            {
+                Player1 = new Player(),
+                Player2 = new Player()
+            };
+            this.newGame.Player1.Powerups = new Models.PowerUp();
+            this.newGame.Player2.Powerups = new Models.PowerUp();
             this.newGame.Grid = new Models.Grid();
         }
         private void InitializeLoadGame()

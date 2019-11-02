@@ -14,7 +14,7 @@ namespace MemoryProject
     public class MemoryGrid
     {
         //Grid size
-        private System.Windows.Controls.Grid Grid;
+        public System.Windows.Controls.Grid Grid;
         private GridSizeOptions.GRID_SIZES GridSize;
 
         //Class voor kaarten
@@ -41,6 +41,11 @@ namespace MemoryProject
         public EventHandler<Dictionary<string, int>> OnPowerUpUpdate;
         public EventHandler<bool> OnEndGame;
 
+        public MemoryGrid(System.Windows.Controls.Grid grid)
+        {
+            Grid = grid;
+            InitializeGameGrid();
+        }
         public MemoryGrid(System.Windows.Controls.Grid grid, GridSizeOptions.GRID_SIZES gridSize)
         {
             Grid = grid;

@@ -10,7 +10,8 @@ namespace MemoryProject.Models
     {
         public string Name { get; set; }
         public int? Score { get; set; }
-        public Dictionary<string,int> Powerups { get; set; }
+        public PowerUp Powerups { get; set; }
+        public bool IsMyTurn { get; set; }
 
     }
 }
