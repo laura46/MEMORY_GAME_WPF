@@ -30,6 +30,7 @@ namespace MemoryProject
             InitializeComponent();
             navbarFrame.Content = new MenuNavbar();
             int plek = 0;
+            int scores = 0;
 
             storageDirectory = new DirectoryInfo(path);
             if (!storageDirectory.Exists)
@@ -46,11 +47,16 @@ namespace MemoryProject
                 Player[] players = { finishedGame.Player1, finishedGame.Player2 };
                 foreach (var player in players)
                 {
-                    for (int i = 0; i < 1; i++)
-                    {
-                        plek = plek + 1;
-                    }
-                    var regel = "#" + plek  + " Naam: " + player.Name + " Score: " + player.Score + " Tijd: " + finishedGame.Grid.Timer.ToString().Split(new char[] { '.' })[0];
+                    scores = player.Score ?? default(int);
+                    int[] scoreArray = { scores };
+
+                    Array.Sort(scoreArray);
+                    Array.Reverse(scoreArray);
+                    plek += 1;
+                    int maxValue = scoreArray.Max();
+
+
+                    var regel = "#" + plek  + " Naam: " + player.Name + " Score: " + scoreArray[0] + " Tijd: " + finishedGame.Grid.Timer.ToString().Split(new char[] { '.' })[0];
 
                     RowDefinition row = new RowDefinition
                     {
