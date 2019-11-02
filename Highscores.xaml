@@ -13,11 +13,15 @@
             <RowDefinition Height="100"></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
             <RowDefinition ></RowDefinition>
-
         </Grid.RowDefinitions>
-        <Image Source="Assets/GrootScherm.png" HorizontalAlignment="Center"  Width="544" Grid.RowSpan="3" Margin="128,-45,128,-49"/>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+            
+        <Image Source="Assets/GrootScherm.png" Grid.Column="0" HorizontalAlignment="Center" Height="auto"  Width="auto" Grid.RowSpan="3" Margin="128,-45,128,-49"/>
         <Frame x:Name="navbarFrame" Grid.Row="0" Width="auto"/>
-        <Label x:Name="highscores" Grid.Row ="1" HorizontalAlignment="Center" FontSize="60" Content="Highscores"/>
+        <Label x:Name="highscores" Grid.Row ="1" HorizontalAlignment="Center" Margin="-50" FontSize="30" Content="Highscores"/>
         <Grid x:Name="scoreGrid" Grid.Row="2"/>
     </Grid>
 </Page>

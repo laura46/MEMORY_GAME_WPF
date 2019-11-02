@@ -47,7 +47,7 @@ namespace MemoryProject
                 Player[] players = { finishedGame.Player1, finishedGame.Player2 };
                 foreach (var player in players)
                 {
-                    scores = player.Score ?? default(int);
+                    scores = player.Score ?? default(int); // zorgt ervoor dat alle scores nu in een int vorm zitten en gebruikt kunnen worden
                     int[] scoreArray = { scores };
 
                     Array.Sort(scoreArray);
