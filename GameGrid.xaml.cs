@@ -161,7 +161,7 @@ namespace MemoryProject
             popup.IsOpen = true;
 
             DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(2);
+            timer.Interval = TimeSpan.FromMilliseconds(750);
             timer.Start();
             timer.Tick += delegate (object senders, EventArgs e)
             {
