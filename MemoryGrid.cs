@@ -27,8 +27,6 @@ namespace MemoryProject
         Image secondClickedImage;
         public EventHandler<string> OnPairMade;
         public EventHandler<string> OnOpenCardClicked;
-        bool mouseMove = true;
-        Point currentpoint = new Point(0, 0);
 
         //variabelen voor de score
         bool player1turn = true;
@@ -139,16 +137,16 @@ namespace MemoryProject
                     FlipCard(clickedImage, true);
                     secondClickedImage = clickedImage;
                     DispatcherTimer timeout = new DispatcherTimer();
-                    timeout.Interval = TimeSpan.FromMilliseconds(200);
+                    timeout.Interval = TimeSpan.FromMilliseconds(150);
                     timeout.Start();
                     timeout.Tick += delegate (object senders, EventArgs eventArgs)
                     {
                         timeout.Stop();
                         TimeoutCard();
-                        nrOfClickedCards = 0;
                     };
-
-                }
+                    nrOfClickedCards = 0;
+                }else
+                    FlipCard(clickedImage, true);
             }
             else
             {
@@ -178,6 +176,7 @@ namespace MemoryProject
         //Controlleerd of de kaartjes dezelfde naam hebben.
         private void CheckPair(Image firstCard, Image secondCard)
         {
+            System.Threading.Thread.Sleep(250);
             //check de strings
             string kaart1String = firstCard.Source.ToString();
             string kaart2String = secondCard.Source.ToString();
