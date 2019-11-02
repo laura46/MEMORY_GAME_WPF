@@ -62,7 +62,6 @@ namespace MemoryProject
                 {
                     Image image = new Image();
                     image.MouseDown += new MouseButtonEventHandler(CardClick);
-                    //image.Source = cards[j * (int)GridSize + i].Show();
                     image.Source = new BitmapImage(new Uri("Kaartjes/Achterkant.png", UriKind.Relative));
                     image.Uid = images.ElementAt(j * (int)GridSize + i).ToString();
                     image.Tag = j * (int)GridSize + i;
@@ -209,8 +208,8 @@ namespace MemoryProject
                     powerup.Add("player2", AmountOfWins2);
                     OnPowerUpUpdate?.Invoke(this, powerup);
                 }
-                powerup = new Dictionary<string, int>();
-                //if (IsGameFinished()) { EndGame(); }
+                
+                if (IsGameFinished()) { EndGame(); }
             }
             else
             {
@@ -235,22 +234,23 @@ namespace MemoryProject
             };
             players.Add(player1);
             players.Add(player2);
-            OnEndGame?.Invoke(this, true);
-            
-            //player1 en 2 namen, score, timer tijd, 
+            OnEndGame?.Invoke(this, true); 
 
         }
         private bool IsGameFinished()
         {
-            List<Card> clickedCards = new List<Card>();
-            foreach (var card in cards)
+            List<Image> imagesFacingDown = new List<Image>();
+            foreach (var image in Grid.Children) 
             {
-                if (card.clicked)
+               
+                Image thisImage = (Image)image;
+                if (thisImage.Source.ToString().Contains("Achterkant.png")) 
                 {
-                    clickedCards.Add(card);
+                    imagesFacingDown.Add(thisImage);
                 }
             }
-            return (clickedCards.Count == cards.Count) ? true : false;
+            
+            return (imagesFacingDown.Count == 0) ? true : false;
         }
 
         //Houdt de player turn bij

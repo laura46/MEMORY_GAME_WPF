@@ -24,9 +24,9 @@ namespace MemoryProject
         public EndScreen(Player player1, Player player2, TimeSpan time)
         {
             InitializeComponent();
-            player1Frame.Content = player1.Name + " " + player1.Score + " " + player1.Powerups.ToString();
-            player2Frame.Content = player2.Name + " " + player2.Score + " " + player2.Powerups.ToString();
-            timerFrame.Content = time;
+            player1Frame.Content = player1.Name + " " + player1.Score + " Powerups: 2X: " + player1.Powerups.X2 + " 4X: " + player1.Powerups.X4 + " 6X: " + player1.Powerups.X6;
+            player2Frame.Content = player2.Name + " " + player2.Score + " Powerups: 2X: " + player2.Powerups.X2 + " 4X: " + player2.Powerups.X4 + " 6X: " + player2.Powerups.X6;
+            timerFrame.Content = time.ToString().Split(new char[] {'.'})[0];
         }
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
