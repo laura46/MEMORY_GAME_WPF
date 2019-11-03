@@ -36,7 +36,7 @@ namespace MemoryProject
 
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
-            if (loadGame.Grid.Timer != null)
+            if (loadGame.Grid.Timer != new TimeSpan())
             {
                 timer.Tick += SetTimerOfLoadedGame;
             } else 
