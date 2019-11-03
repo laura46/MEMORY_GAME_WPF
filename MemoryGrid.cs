@@ -30,16 +30,17 @@ namespace MemoryProject
 
         //variabelen voor de score
         bool player1turn = true;
-        public string player1Name;
-        public string player2Name;
-        public EventHandler<bool> OnPlayerTurn;
         int score1 = 0;
         int score2 = 0;
+        public string player1Name;
+        public string player2Name;
+        int player1ConsecutiveWins = 0;
+        int player2ConsecutiveWins = 0;
+        public EventHandler<bool> OnPlayerTurn;
         public EventHandler<int> OnScore1Update;
         public EventHandler<int> OnScore2Update;
-        public int AmountOfWins1;
-        public int AmountOfWins2;
         public EventHandler<Dictionary<string, int>> OnPowerUpUpdate;
+        public EventHandler<String> OnPowerup;
         public EventHandler<bool> OnEndGame;
 
         public object BlockInput { get; private set; }
@@ -192,7 +193,7 @@ namespace MemoryProject
                 kaart2String = Regex.Split(kaart2String, @"(;component/)")[2];
             }
 
-            Dictionary<string, int> powerup = new Dictionary<string, int>();
+            
             if (kaart1String == kaart2String)
             {
                 OnPairMade?.Invoke(this, "goed");
@@ -201,19 +202,13 @@ namespace MemoryProject
                 {
                     score1 += 200;
                     UpdateScore(score1, player1turn);
-                    AmountOfWins1 += 1;
-                    
-                    powerup.Add("player1", AmountOfWins1);
-                    OnPowerUpUpdate?.Invoke(this, powerup);
+                    HandlePowerup(player1turn, true);
                 }
-                if (player1turn == false)
+                else 
                 {
                     score2 += 200;
                     UpdateScore(score2, player1turn);
-                    AmountOfWins2 += 1;
-
-                    powerup.Add("player2", AmountOfWins2);
-                    OnPowerUpUpdate?.Invoke(this, powerup);
+                    HandlePowerup(player1turn, true);
                 }
                 
                 if (IsGameFinished()) { EndGame(); }
@@ -221,9 +216,44 @@ namespace MemoryProject
             else
             {
                 OnPairMade?.Invoke(this, "fout");
+                HandlePowerup(player1turn, false);
                 FlipCard(firstCard, false);
                 FlipCard(secondCard, false);
                 SetPlayerTurn(!player1turn);
+            }
+        }
+
+        private void HandlePowerup(bool isPlayer1Turn, bool win) 
+        {
+            if (win)
+            {
+                Dictionary<string, int> powerup = new Dictionary<string, int>();
+
+                if (isPlayer1Turn)
+                {
+                    player1ConsecutiveWins += 1;
+                    if (player1ConsecutiveWins == 2 || player1ConsecutiveWins == 4 || player1ConsecutiveWins == 6) 
+                    {
+                        powerup.Add("player1", player1ConsecutiveWins);
+                        OnPowerUpUpdate?.Invoke(this, powerup);
+                        OnPowerup?.Invoke(this, "powerup");
+                    }
+                }
+                else
+                {                   
+                    player2ConsecutiveWins += 1;
+                    if (player2ConsecutiveWins == 2 || player2ConsecutiveWins == 4 || player2ConsecutiveWins == 6) 
+                    {
+                        powerup.Add("player2", player2ConsecutiveWins);
+                        OnPowerUpUpdate?.Invoke(this, powerup);
+                        OnPowerup?.Invoke(this, "powerup");
+                    }
+                }
+            }
+            else 
+            {
+                player1ConsecutiveWins = 0;
+                player2ConsecutiveWins = 0;
             }
         }
 

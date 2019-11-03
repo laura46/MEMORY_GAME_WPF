@@ -60,5 +60,10 @@
                 Het spel is opgeslagen!
             </TextBlock>
         </Popup>
+        <Popup Placement="Center" Name="powerup" Grid.ColumnSpan="2">
+            <TextBlock Background="#75ccdd" Width="800" TextAlignment="Center" FontSize="25">
+                POWER-UP!!!!
+            </TextBlock>
+        </Popup>
     </Grid>
 </Page>

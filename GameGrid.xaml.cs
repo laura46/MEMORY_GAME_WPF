@@ -57,6 +57,7 @@ namespace MemoryProject
             grid.OnPairMade += new EventHandler<string>(ShowPopup);
             grid.OnEndGame += new EventHandler<bool>(SaveGame);
             grid.OnOpenCardClicked += new EventHandler<string>(ShowPopup);
+            grid.OnPowerup += new EventHandler<string>(ShowPopup);
         }
         private void InitializeNavbar() 
         {
@@ -104,11 +105,12 @@ namespace MemoryProject
             GameGridref.Children.Clear();
             GameGridref.ColumnDefinitions.Clear();
             GameGridref.RowDefinitions.Clear();
-            this.grid = new MemoryGrid(GameGridref, currentGame.Grid.GridSize);
+
+            InitializeGameGrid();
             TimerFrame.Content = new CounterTimer(currentGame);
             ScoreFrame.Content = new Scorebord(this.grid, currentGame);
             turnFrame.Content = new PlayerTurn(this.grid, currentGame.Player1.Name, currentGame.Player2.Name);
-
+            powerupFrame.Content = new PowerUp(this.grid);
         }
         public void InitializeScorebord()
         {   
@@ -130,29 +132,28 @@ namespace MemoryProject
 
         public void ShowPopup(object sender, string uitkomst)
         {
-            if(uitkomst == "fout")
+            switch (uitkomst)
             {
-                OpenPopup(foutpop);
-            }
-
-            if (uitkomst == "goed")
-            {
-                OpenPopup(goedpop);
-            }
-
-            if (uitkomst == "dubbelKlik")
-            {
-                OpenPopup(dubbelKlik);
-            }
-
-            if (uitkomst == "alGeklikt")
-            {
-                OpenPopup(alGeklikt);
-            }
-
-            if (uitkomst == "opgeslagen")
-            {
-                OpenPopup(opgeslagen);
+                case "fout":
+                    OpenPopup(foutpop);
+                    break;
+                case "goed":
+                    OpenPopup(goedpop);
+                    break;
+                case "dubbelKlik":
+                    OpenPopup(dubbelKlik);
+                    break;
+                case "alGeklikt":
+                    OpenPopup(alGeklikt);
+                    break;
+                case "opgeslagen":
+                    OpenPopup(opgeslagen);
+                    break;
+                case "powerup":
+                    OpenPopup(powerup);
+                    break;
+                default:
+                    break;
             }
         }
         private void OpenPopup(object sender)
