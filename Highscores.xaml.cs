@@ -89,7 +89,7 @@ namespace MemoryProject
                 {
                     RowDefinition row = new RowDefinition
                     {
-                        Height = new GridLength(70)
+                        Height = new GridLength(67)
                     };
 
 
