@@ -263,5 +263,11 @@
   <ItemGroup>
     <Resource Include="Assets\GrootScherm.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Scores.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\VolScherm.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
