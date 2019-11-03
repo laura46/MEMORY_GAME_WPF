@@ -20,8 +20,8 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="1">Speler 1</Label>
-        <Label Grid.Row="0" Grid.Column="2">Speler 2</Label> 
+        <Label Name="lblPlayer1" Grid.Row="0" Grid.Column="1"></Label>
+        <Label Name="lblPlayer2" Grid.Row="0" Grid.Column="2"></Label> 
 
         <Label Grid.Row="1" Grid.Column="0">2x</Label>
         <Label Grid.Row="2" Grid.Column="0">4x</Label>

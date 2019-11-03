@@ -10,19 +10,27 @@ namespace MemoryProject
     /// </summary>
     public partial class PowerUp : UserControl
     {
-        public PowerUp(MemoryGrid currentGrid)
+        public PowerUp(MemoryGrid currentGrid, Game currentGame)
         {
             InitializeComponent();
+            InitializePlayerNames(currentGame);
+            if (currentGame.Date != new DateTime()) 
+            {
+                RestoreLoadGame(currentGame);
+            }
             currentGrid.OnPowerUpUpdate += new EventHandler<Dictionary<string, int>>(HandlePowerUp);
         }
-        public PowerUp(MemoryGrid currentGrid, Game loadGame)
+
+        private void InitializePlayerNames(Game currentGame) 
         {
-            InitializeComponent();
-            RestoreLoadGame(loadGame);
-            currentGrid.OnPowerUpUpdate += new EventHandler<Dictionary<string, int>>(HandlePowerUp);
+            lblPlayer1.Content = currentGame.Player1.Name;
+            lblPlayer2.Content = currentGame.Player2.Name;
         }
         private void RestoreLoadGame(Game loadGame) 
         {
+            lblPlayer1.Content = loadGame.Player1.Name;
+            lblPlayer2.Content = loadGame.Player2.Name;
+
             lbl1x2.Content = loadGame.Player1.Powerups.X2;
             lbl1x4.Content = loadGame.Player1.Powerups.X4;
             lbl1x6.Content = loadGame.Player1.Powerups.X6;

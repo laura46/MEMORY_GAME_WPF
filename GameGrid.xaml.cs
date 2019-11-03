@@ -42,13 +42,7 @@ namespace MemoryProject
         }
         private void InitializePowerups() 
         {
-            if (currentGame.Date != new DateTime())
-            {
-                this.PowerUp = new PowerUp(this.grid, currentGame);
-            }
-            else {
-                this.PowerUp = new PowerUp(this.grid);
-            }
+            this.PowerUp = new PowerUp(this.grid, currentGame);
             powerupFrame.Content = this.PowerUp;
         }
         private void InitializeGameGrid() 
@@ -110,7 +104,7 @@ namespace MemoryProject
             TimerFrame.Content = new CounterTimer(currentGame);
             ScoreFrame.Content = new Scorebord(this.grid, currentGame);
             turnFrame.Content = new PlayerTurn(this.grid, currentGame.Player1.Name, currentGame.Player2.Name);
-            powerupFrame.Content = new PowerUp(this.grid);
+            powerupFrame.Content = new PowerUp(this.grid, currentGame);
         }
         public void InitializeScorebord()
         {   
