@@ -28,16 +28,12 @@ namespace MemoryProject
         }
         private void RestoreLoadGame(Game loadGame) 
         {
-            lblPlayer1.Content = loadGame.Player1.Name;
-            lblPlayer2.Content = loadGame.Player2.Name;
-
             lbl1x2.Content = loadGame.Player1.Powerups.X2;
             lbl1x4.Content = loadGame.Player1.Powerups.X4;
             lbl1x6.Content = loadGame.Player1.Powerups.X6;
             lbl2x2.Content = loadGame.Player2.Powerups.X2;
             lbl2x4.Content = loadGame.Player2.Powerups.X4;
             lbl2x6.Content = loadGame.Player2.Powerups.X6;
-
         }
         public Game GetPowerups(Game currentGame) 
         {
