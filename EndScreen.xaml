@@ -16,9 +16,14 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Image MouseDown="Image_MouseDown" HorizontalAlignment="Left" VerticalAlignment="Top" Height="100" Source="Assets/Menu.png" Grid.Row="0" Cursor="Hand"></Image>
-        <Frame Name="player1Frame" NavigationUIVisibility="Hidden" Grid.Row="1"></Frame>
-        <Frame Name="player2Frame" NavigationUIVisibility="Hidden" Grid.Row="2"></Frame>
-        <Frame Name="timerFrame" NavigationUIVisibility="Hidden" Grid.Row="3"></Frame>
+        <Image Source="Assets/VolScherm.png" Grid.Column="0" HorizontalAlignment="Center" Height="900"  Width="900" Grid.RowSpan="4" Margin="0,100,0,0"/>
+        <Label Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="35" FontSize="35">BEDANKT VOOR HET SPELEN!</Label>
+        <Label Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" FontSize="25">SPELER 1 POWERUPS</Label>
+        <Frame Name="player1Frame" NavigationUIVisibility="Hidden" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"></Frame>
+        <Label Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" FontSize="25">SPELER 2 POWERUPS</Label>
+        <Frame Name="player2Frame" NavigationUIVisibility="Hidden" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"></Frame>
+        <Label Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" FontSize="25">TIJD</Label>
+            <Frame Name="timerFrame" NavigationUIVisibility="Hidden" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"></Frame>
         
     </Grid>
 </Page>
