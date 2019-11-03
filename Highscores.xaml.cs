@@ -24,9 +24,8 @@ namespace MemoryProject
     public partial class Highscores : Page
     {
         int maxValue;
-        int plek = 0;
+        int plek = 1;
         int scores = 0;
-        string playerScores;
 
         string path = @"Storage/Finish/";
         DirectoryInfo storageDirectory;
@@ -45,6 +44,74 @@ namespace MemoryProject
             {
                 Directory.CreateDirectory(path);
             }
+        }
+
+        private void GetFiles()
+        {
+            List<string> playerData = new List<string>();
+            List<int> scoreList = new List<int>();
+            int counter = 0;
+            int topTien = 0;
+            var regel = "";
+
+            foreach (var file in storageDirectory.GetFiles("*.txt"))
+            {
+                string content = File.ReadAllText(path + file.Name);
+                Game finishedGame = JsonConvert.DeserializeObject<Game>(content);
+                Player[] players = { finishedGame.Player1, finishedGame.Player2 };
+                foreach (var player in players)
+                {
+                    scores = player.Score ?? default(int); // zorgt ervoor dat alle scores nu in een int vorm zitten en gebruikt kunnen worden
+                    scoreList.Add(scores);
+                    scoreList.Sort();
+                    scoreList.Reverse();
+
+
+                    if (scoreList[0] > maxValue)
+                    {
+                        maxValue = scoreList.Max();
+                    }
+                    regel = " Naam: " + player.Name + " Score: " + scores + " Tijd: " + finishedGame.Grid.Timer.ToString().Split(new char[] { '.' })[0];
+                    playerData.Add(regel);
+                }
+            }
+
+            var ordered = playerData.Select(s => new { Str = s, Split = s.Split(' ') })
+            .OrderByDescending(x => int.Parse(x.Split[4]))
+            .ThenBy(x => x.Split[6])
+            .Select(x => x.Str)
+            .ToList();
+            int indexData = 0;
+            foreach (string data in playerData)
+            {
+                while (topTien < 10)
+                {
+                    RowDefinition row = new RowDefinition
+                    {
+                        Height = new GridLength(70)
+                    };
+
+
+                    scoreGrid.RowDefinitions.Add(row);
+                    Label game = new Label
+                    {
+                        Content = "#" + plek + ordered[indexData],
+                        FontSize = 18,
+                        FontWeight = FontWeights.Bold,
+                        Margin = new Thickness(10),
+                        HorizontalAlignment = HorizontalAlignment.Center
+
+                    };
+                    plek += 1;
+                    indexData++;
+                    System.Windows.Controls.Grid.SetRow(game, counter);
+                    scoreGrid.Children.Add(game);
+                    counter++;
+                    topTien++;
+                }
+            }
+            
+            
         }
 
         //private void GetFiles()
@@ -91,45 +158,45 @@ namespace MemoryProject
         //        }
         //    }
         //}
-        List<string> scorePlayer = new List<string>();
-        private void GetFiles()
-        {
-            foreach (var file in storageDirectory.GetFiles("*.txt"))
-            {
-                string content = File.ReadAllText(path + file.Name);
-                Game finishedGame = JsonConvert.DeserializeObject<Game>(content);
-                Player[] players = { finishedGame.Player1, finishedGame.Player2 };
-                foreach (var player in players)
-                {
-                    scores = player.Score ?? default(int); // zorgt ervoor dat alle scores nu in een int vorm zitten en gebruikt kunnen worden
-                    int[] scoreArray = { scores };
+        //List<string> scorePlayer = new List<string>();
+        //private void GetFiles()
+        //{
+        //    foreach (var file in storageDirectory.GetFiles("*.txt"))
+        //    {
+        //        string content = File.ReadAllText(path + file.Name);
+        //        Game finishedGame = JsonConvert.DeserializeObject<Game>(content);
+        //        Player[] players = { finishedGame.Player1, finishedGame.Player2 };
+        //        foreach (var player in players)
+        //        {
+        //            scores = player.Score ?? default(int); // zorgt ervoor dat alle scores nu in een int vorm zitten en gebruikt kunnen worden
+        //            int[] scoreArray = { scores };
 
-                    Array.Sort(scoreArray);
-                    Array.Reverse(scoreArray);
-                    plek += 1;
-                    maxValue = scoreArray.Max();
+        //            Array.Sort(scoreArray);
+        //            Array.Reverse(scoreArray);
+        //            plek += 1;
+        //            maxValue = scoreArray.Max();
 
-                    var regel = "#" + plek + " Naam: " + player.Name + " Score: " + scoreArray[0] + " Tijd: " + finishedGame.Grid.Timer.ToString().Split(new char[] { '.' })[0];
+        //            var regel = "#" + plek + " Naam: " + player.Name + " Score: " + scoreArray[0] + " Tijd: " + finishedGame.Grid.Timer.ToString().Split(new char[] { '.' })[0];
 
-                    scorePlayer.Add(regel);
-                    //foreach txt file
-                    //foreach player
-                    //zet regel
-                    //store in list
-                }
-            }
-            
-        }
-        private void CheckScores(string playerScores)
-        {
-            int scores = 0;
-            foreach(string score in scorePlayer)
-            {
-                //ga door alle items in de lijst
-                // split op de score
-                //
-            }
-        }
+        //            scorePlayer.Add(regel);
+        //            //foreach txt file
+        //            //foreach player
+        //            //zet regel
+        //            //store in list
+        //        }
+        //    }
+
+        //}
+        //private void CheckScores(string playerScores)
+        //{
+        //    int scores = 0;
+        //    foreach(string score in scorePlayer)
+        //    {
+        //        //ga door alle items in de lijst
+        //        // split op de score
+        //        //
+        //    }
+        //}
     }
 }
 
