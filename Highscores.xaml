@@ -11,7 +11,7 @@
     <Grid Background="#75ccdd" Width="auto" Height="auto">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
             <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
 
@@ -21,7 +21,7 @@
             
         <Image Source="Assets/GrootScherm.png" Grid.Column="0" HorizontalAlignment="Center" Height="auto"  Width="auto" Grid.RowSpan="3" Margin="128,-45,128,-49"/>
         <Frame x:Name="navbarFrame" Grid.Row="0" Width="auto"/>
-        <Label x:Name="highscores" Grid.Row ="1" HorizontalAlignment="Center" Margin="-50" FontSize="30" Content="Highscores"/>
-        <Grid x:Name="scoreGrid" Grid.Row="2"/>
+        <Label x:Name="highscores" Height="60" VerticalAlignment="Top" Margin="-50" Padding="10" Grid.Row ="1" HorizontalAlignment="Center" FontSize="30" Content="Highscores"/>
+        <Grid VerticalAlignment="Top" x:Name="scoreGrid" Grid.Row="2"/>
     </Grid>
 </Page>

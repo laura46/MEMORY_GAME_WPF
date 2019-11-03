@@ -82,9 +82,10 @@ namespace MemoryProject
             .Select(x => x.Str)
             .ToList();
             int indexData = 0;
+            int maxAmount = (playerData.Count < 10) ? playerData.Count : 10;
             foreach (string data in playerData)
             {
-                while (topTien < 10)
+                while (topTien < maxAmount)
                 {
                     RowDefinition row = new RowDefinition
                     {
