@@ -234,6 +234,7 @@ namespace MemoryProject
                     player1ConsecutiveWins += 1;
                     if (player1ConsecutiveWins == 2 || player1ConsecutiveWins == 4 || player1ConsecutiveWins == 6) 
                     {
+                        score1 += 200;
                         powerup.Add("player1", player1ConsecutiveWins);
                         OnPowerUpUpdate?.Invoke(this, powerup);
                         OnPowerup?.Invoke(this, "powerup");
@@ -244,6 +245,7 @@ namespace MemoryProject
                     player2ConsecutiveWins += 1;
                     if (player2ConsecutiveWins == 2 || player2ConsecutiveWins == 4 || player2ConsecutiveWins == 6) 
                     {
+                        score2 += 200;
                         powerup.Add("player2", player2ConsecutiveWins);
                         OnPowerUpUpdate?.Invoke(this, powerup);
                         OnPowerup?.Invoke(this, "powerup");
