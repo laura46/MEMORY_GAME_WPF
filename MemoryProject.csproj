@@ -269,5 +269,8 @@
   <ItemGroup>
     <Resource Include="Assets\VolScherm.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Powerup.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

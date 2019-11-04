@@ -5,36 +5,36 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MemoryProject"
              mc:Ignorable="d" >
-    <Grid Height="300" Width="300" Margin="0 -50 0 0">
+    <Grid Height="300" Width="300" Margin="0 0 0 0">
         <Grid.Background>
-            <ImageBrush ImageSource="Assets/Scorebord.png"></ImageBrush>
+            <ImageBrush ImageSource="Assets/Powerup.png"></ImageBrush>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="40" ></RowDefinition>
             <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
-        <Label VerticalAlignment="Top" Margin="0 30 0 -20" Grid.Row="0" Height="40" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">POWER-UPS</Label>
-        <Grid Margin="-10 40 0 0" VerticalAlignment="Top" Grid.Row="1" >
+        <Label VerticalAlignment="Top" Margin="0 -30 0 -20" Grid.Row="0" Height="40" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">POWER-UPS</Label>
+        <Grid Margin="-10 -10 0 0" VerticalAlignment="Top" Grid.Row="1" >
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="65"></RowDefinition>
+                <RowDefinition Height="65"></RowDefinition>
+                <RowDefinition Height="80"></RowDefinition>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80"></ColumnDefinition>
-                <ColumnDefinition Width="80"></ColumnDefinition>
-                <ColumnDefinition Width="80"></ColumnDefinition>
+                <ColumnDefinition Width="70"></ColumnDefinition>
+                <ColumnDefinition Width="115"></ColumnDefinition>
+                <ColumnDefinition Width="115"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <Label HorizontalAlignment="Center" Margin="0 0 0 0"  Name="lblPlayer1" Grid.Row="0" Grid.Column="1" FontSize="20" FontWeight="Bold"></Label>
             <Label HorizontalAlignment="Center" Margin="0 0 0 0" Name="lblPlayer2" Grid.Row="0" Grid.Column="2" FontSize="20" FontWeight="Bold"></Label>
 
-            <Label Grid.Row="1" Grid.Column="0">2x</Label>
-            <Label Grid.Row="2" Grid.Column="0">4x</Label>
-            <Label Grid.Row="3" Grid.Column="0">6x</Label>
+            <Label Grid.Row="1" Grid.Column="0"></Label>
+            <Label Grid.Row="2" Grid.Column="0"></Label>
+            <Label Grid.Row="3" Grid.Column="0"></Label>
 
             <Label HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" Name="lbl1x2" FontSize="20" FontWeight="Bold">0</Label>
             <Label HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" Name="lbl1x4" FontSize="20" FontWeight="Bold">0</Label>
