@@ -22,7 +22,7 @@
 
             </Grid>
         </DockPanel>
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Name="savedGames" Width="auto" Grid.Row="1" ShowGridLines="True">
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Name="savedGames" Width="671" Grid.Row="1" ShowGridLines="True" Height="320" Margin="58,200,71,0" Grid.RowSpan="2">
 
             <Label ></Label>
         </Grid>

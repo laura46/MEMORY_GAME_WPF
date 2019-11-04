@@ -101,6 +101,11 @@ namespace MemoryProject
             GameGridref.RowDefinitions.Clear();
 
             InitializeGameGrid();
+            InitializeNavbar();
+            InitializeScorebord();
+            InitializePlayerTurn();
+            InitializePowerups();
+            InitializeTimer();
             TimerFrame.Content = new CounterTimer(currentGame);
             ScoreFrame.Content = new Scorebord(this.grid, currentGame);
             turnFrame.Content = new PlayerTurn(this.grid, currentGame.Player1.Name, currentGame.Player2.Name);
