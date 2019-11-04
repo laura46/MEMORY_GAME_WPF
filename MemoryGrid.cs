@@ -232,21 +232,50 @@ namespace MemoryProject
                 if (isPlayer1Turn)
                 {
                     player1ConsecutiveWins += 1;
-                    if (player1ConsecutiveWins == 2 || player1ConsecutiveWins == 4 || player1ConsecutiveWins == 6) 
+                    if (player1ConsecutiveWins == 2)
                     {
                         score1 += 200;
                         powerup.Add("player1", player1ConsecutiveWins);
                         OnPowerUpUpdate?.Invoke(this, powerup);
                         OnPowerup?.Invoke(this, "powerup");
                     }
+                    if (player1ConsecutiveWins == 4)
+                    {
+                        score1 += 400;
+                        powerup.Add("player1", player1ConsecutiveWins);
+                        OnPowerUpUpdate?.Invoke(this, powerup);
+                        OnPowerup?.Invoke(this, "powerup");
+                    }
+                    if (player1ConsecutiveWins == 6)
+                    {
+                        score1 += 600;
+                        powerup.Add("player1", player1ConsecutiveWins);
+                        OnPowerUpUpdate?.Invoke(this, powerup);
+                        OnPowerup?.Invoke(this, "powerup");
+                    }
+
                 }
                 else
-                {                   
-                    player2ConsecutiveWins += 1;
-                    if (player2ConsecutiveWins == 2 || player2ConsecutiveWins == 4 || player2ConsecutiveWins == 6) 
+                {
+                    player1ConsecutiveWins += 1;
+                    if (player1ConsecutiveWins == 2)
                     {
-                        score2 += 200;
-                        powerup.Add("player2", player2ConsecutiveWins);
+                        score1 += 200;
+                        powerup.Add("player1", player1ConsecutiveWins);
+                        OnPowerUpUpdate?.Invoke(this, powerup);
+                        OnPowerup?.Invoke(this, "powerup");
+                    }
+                    if (player1ConsecutiveWins == 4)
+                    {
+                        score1 += 400;
+                        powerup.Add("player1", player1ConsecutiveWins);
+                        OnPowerUpUpdate?.Invoke(this, powerup);
+                        OnPowerup?.Invoke(this, "powerup");
+                    }
+                    if (player1ConsecutiveWins == 6)
+                    {
+                        score1 += 600;
+                        powerup.Add("player1", player1ConsecutiveWins);
                         OnPowerUpUpdate?.Invoke(this, powerup);
                         OnPowerup?.Invoke(this, "powerup");
                     }
